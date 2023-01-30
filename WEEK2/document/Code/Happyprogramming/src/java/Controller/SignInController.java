@@ -6,22 +6,19 @@ package Controller;
 
 import DAO.User_DAO;
 import DTO.Account;
-import DTO.Email;
-import DTO.EmailUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
- * @author okanh
+ * @author manuh
  */
-@WebServlet(name = "forgotPassword", urlPatterns = {"/forgotPassword"})
-public class forgotPassword extends HttpServlet {
+public class SignInController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,42 +32,11 @@ public class forgotPassword extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            String email=request.getParameter("email");
-            String username=request.getParameter("username");
-            String roles=request.getParameter("roles");
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
             
-            User_DAO dao=new User_DAO();
-            Account account=null;
-            if(roles.equals("Mentee"))
-                account=dao.findByEmailMentee(email, username);
-            if(roles.equals("Mentor"))
-                account=dao.findByEmailMentor(email, username);
-            if(account==null){
-                request.setAttribute("error", "Username Or Email are incorrect");
-            }else{
-                Email emails=new Email();
-                emails.setFrom("nguyenvudung96@gmail.com");
-                emails.setFromPassword("iogwhojeiupayzos");
-                emails.setTo(email);
-                emails.setSubject("Forgot Password Function");
-                StringBuilder sb = new StringBuilder();
-                sb.append("Dear ").append(username).append("<br>");
-                sb.append("You are used the fogot password function. <br>");
-                sb.append("Your password is <b>").append(account.getPassword()).append("</b>");
-                sb.append("Regards<br>");
-                sb.append("Administrator");
-                
-                emails.setContent(sb.toString());
-                EmailUtils.sendEmail(emails);
-                
-                request.setAttribute("message", "Email sended");
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-            request.setAttribute("error", e.getMessage());
         }
-    }  
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -98,9 +64,21 @@ public class forgotPassword extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        User_DAO userDAO = new User_DAO();
+        Account account = userDAO.checkLogin(username, password);
+        if (account == null) {
+            request.setAttribute("inputUsername", username);
+            request.setAttribute("errorMessage", "Tài khoản hoặc mật khẩu không đúng !");
+            request.getRequestDispatcher("SignIn.jsp").forward(request, response);
+        }
+        else{
+            HttpSession session = request.getSession();
+            session.setAttribute("account", account);
+            request.getRequestDispatcher("HomePage.jsp").forward(request, response);
+        }
     }
-
     /**
      * Returns a short description of the servlet.
      *
@@ -112,4 +90,3 @@ public class forgotPassword extends HttpServlet {
     }// </editor-fold>
 
 }
-

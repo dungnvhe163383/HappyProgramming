@@ -20,6 +20,14 @@
         <servlet-name>MentorControll</servlet-name>
         <servlet-class>Controller.MentorControll</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SignInController</servlet-name>
+        <servlet-class>Controller.SignInController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SignOutController</servlet-name>
+        <servlet-class>Controller.SignOutController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Databasecontext</servlet-name>
         <url-pattern>/Databasecontext</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>MentorControll</servlet-name>
         <url-pattern>/MentorControll</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignInController</servlet-name>
+        <url-pattern>/signIn</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignOutController</servlet-name>
+        <url-pattern>/signOut</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

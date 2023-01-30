@@ -7,9 +7,7 @@ package DAO;
 import ConnectDB.DBContext;
 import DTO.Account;
 import DTO.Mentor;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,17 +15,15 @@ import java.util.List;
  *
  * @author okanh
  */
-public class User_DAO {
-    Connection conn = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
+public class User_DAO extends DBContext{
+    
     public Account findByEmailMentee(String email, String username){
         Account result=null;
-        String query = "select Account.ID,AccountName,Password,RoleID from Account,"
+        query = "select Account.ID,AccountName,Password,RoleID from Account,"
                 + "Mentee where Account.ID=Mentee.ID and Mentee.Email like ? and Account.Accountname like ?";
         try {
-            conn = new DBContext().getConnection();//connect with database
-            ps = conn.prepareStatement(query);
+            //connect with database
+            ps = connection.prepareStatement(query);
             ps.setString(1, email);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -40,11 +36,11 @@ public class User_DAO {
     
     public Account findByEmailMentor(String email, String username){
         Account result=null;
-        String query = "select Account.ID,AccountName,Password,RoleID from Account,"
+        query = "select Account.ID,AccountName,Password,RoleID from Account,"
                 + "Mentor where Account.ID=Mentor.ID and Mentor.Email like ? and Account.Accountname like ?";
         try {
-            conn = new DBContext().getConnection();//connect with database
-            ps = conn.prepareStatement(query);
+            
+            ps = connection.prepareStatement(query);
             ps.setString(1, email);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -55,12 +51,12 @@ public class User_DAO {
         return result;
     }
     
-    public List<Mentor> getAllMentor(){
+    public List<Mentor> getMentor(){
         List<Mentor> list = new ArrayList<>();
-        String query = "select * from Mentor";
+        query = "select * from Mentor";
         try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);
+            
+            ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getDate(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13)));
@@ -69,20 +65,20 @@ public class User_DAO {
         }
         return list;
     }
-  
-    public Mentor getMentor(int id){
-        Mentor x= new Mentor();
-        String query = "select * from Mentor where ID=?";
-        try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);
-            ps.setInt(1, id);
+    public Account checkLogin(String username, String password){
+        query = "select * from Account WHERE AccountName = ? AND Password = ? "; 
+        try{
+            ps = connection.prepareStatement(query);
+            ps.setString(1, username);
+            ps.setString(2, password);
             rs = ps.executeQuery();
-            while (rs.next()) {
-                x=new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getDate(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13));
+            if (rs.next()) {
+                return new Account(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4));
             }
-        } catch (Exception e) {
         }
-        return x;
+        catch(SQLException e){
+            System.out.println(e);
+        }
+        return null;
     }
 }
