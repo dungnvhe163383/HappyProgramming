@@ -55,7 +55,7 @@ public class User_DAO {
         return result;
     }
     
-    public List<Mentor> getMentor(){
+    public List<Mentor> getAllMentor(){
         List<Mentor> list = new ArrayList<>();
         String query = "select * from Mentor";
         try {
@@ -70,4 +70,19 @@ public class User_DAO {
         return list;
     }
   
+    public Mentor getMentor(int id){
+        Mentor x= new Mentor();
+        String query = "select * from Mentor where ID=?";
+        try {
+            conn = new DBContext().getConnection();//mo ket noi voi sql
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                x=new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getDate(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13));
+            }
+        } catch (Exception e) {
+        }
+        return x;
+    }
 }

@@ -34,7 +34,7 @@ public class MentorControll extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter pr = response.getWriter();
         User_DAO dao= new User_DAO();
-        List<Mentor> list = dao.getMentor();
+        List<Mentor> list = dao.getAllMentor();
         request.setAttribute("listMentor", list);
         request.getRequestDispatcher("ViewMentor.jsp").forward(request, response);
     }

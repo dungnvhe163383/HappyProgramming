@@ -1,13 +1,12 @@
+package Controller;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controller;
 
 import DAO.User_DAO;
-import DTO.Account;
-import DTO.Email;
-import DTO.EmailUtils;
+import DTO.Mentor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,13 +14,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
  * @author okanh
  */
-@WebServlet(name = "forgotPassword", urlPatterns = {"/forgotPassword"})
-public class forgotPassword extends HttpServlet {
+@WebServlet(urlPatterns = {"/MentorDetailControll"})
+public class MentorDetailControll extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,8 +34,15 @@ public class forgotPassword extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-    }  
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter pr = response.getWriter();
+        String id=request.getParameter("mentorid");
+        int mentorid=Integer.parseInt(id);
+        User_DAO dao= new User_DAO();
+        Mentor m = dao.getMentor(mentorid);
+        request.setAttribute("Mentor", m);
+            request.getRequestDispatcher("MentorDetail.jsp").forward(request, response);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -63,42 +70,7 @@ public class forgotPassword extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try {
-            String email=request.getParameter("email");
-            String username=request.getParameter("username");
-            String roles=request.getParameter("roles");
-            
-            User_DAO dao=new User_DAO();
-            Account account=null;
-            if(roles.equals("Mentee"))
-                account=dao.findByEmailMentee(email, username);
-            if(roles.equals("Mentor"))
-                account=dao.findByEmailMentor(email, username);
-            if(account==null){
-                request.setAttribute("error", "Username Or Email are incorrect");
-            }else{
-                Email emails=new Email();
-                emails.setFrom("nguyenvudung96@gmail.com");
-                emails.setFromPassword("iogwhojeiupayzos");
-                emails.setTo(email);
-                emails.setSubject("Forgot Password Function");
-                StringBuilder sb = new StringBuilder();
-                sb.append("Dear ").append(username).append("<br>");
-                sb.append("You are used the fogot password function. <br>");
-                sb.append("Your password is <b>").append(account.getPassword()).append("</b>");
-                sb.append("Regards<br>");
-                sb.append("Administrator");
-                
-                emails.setContent(sb.toString());
-                EmailUtils.sendEmail(emails);
-                
-                request.setAttribute("message", "Email sended");
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-            request.setAttribute("error", e.getMessage());
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -112,4 +84,3 @@ public class forgotPassword extends HttpServlet {
     }// </editor-fold>
 
 }
-

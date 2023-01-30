@@ -44,65 +44,73 @@
                 <nav id="navbar" class="navbar">
                     <ul>
                         <li><a class="" href="HomePage.jsp">Home</a></li>
-                        <li><a href="ViewMentor.jsp">Mentor</a></li>
-                        <li><a href="SignIn.jsp">Sign In</a></li>
-                        <li><a href="SignUp.jsp">Sign Up</a></li>
-                        <!--          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+                        <li><a href="ViewMentor">Mentor</a></li>
+                        <li><a href="services.html">Sign In</a></li>
+                        <li><a href="portfolio.html">Sign Up</a></li>
+
+<!--                        <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a href="#">Drop Down 1</a></li>
+                                <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
                                     <ul>
-                                      <li><a href="#">Drop Down 1</a></li>
-                                      <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                                        <ul>
-                                          <li><a href="#">Deep Drop Down 1</a></li>
-                                          <li><a href="#">Deep Drop Down 2</a></li>
-                                          <li><a href="#">Deep Drop Down 3</a></li>
-                                          <li><a href="#">Deep Drop Down 4</a></li>
-                                          <li><a href="#">Deep Drop Down 5</a></li>
-                                        </ul>
-                                      </li>
-                                      <li><a href="#">Drop Down 2</a></li>
-                                      <li><a href="#">Drop Down 3</a></li>
-                                      <li><a href="#">Drop Down 4</a></li>
+                                        <li><a href="#">Deep Drop Down 1</a></li>
+                                        <li><a href="#">Deep Drop Down 2</a></li>
+                                        <li><a href="#">Deep Drop Down 3</a></li>
+                                        <li><a href="#">Deep Drop Down 4</a></li>
+                                        <li><a href="#">Deep Drop Down 5</a></li>
                                     </ul>
-                                  </li>-->
+                                </li>
+                                <li><a href="#">Drop Down 2</a></li>
+                                <li><a href="#">Drop Down 3</a></li>
+                                <li><a href="#">Drop Down 4</a></li>
+                            </ul>
+                        </li>-->
                     </ul>
                     <i class="bi bi-list mobile-nav-toggle"></i>
                 </nav><!-- .navbar -->
 
             </div>
         </header><!-- End Header -->
+
         <main id="main">
 
-            <!-- ======= Our Portfolio Section ======= -->
+            <!-- ======= Our Team Section ======= -->
             <section class="breadcrumbs">
                 <div class="container">
 
                     <div class="d-flex justify-content-between align-items-center">
-                        <h2>MENTORS</h2>
+                        <h2>MENTOR</h2>
                     </div>
 
                 </div>
-            </section><!-- End Our Portfolio Section -->
-   
-            <!-- ======= Portfolio Section ======= -->
-            <div class="container">
-                <div class="row portfolio-container" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-                    <c:forEach items="${listMentor}" var="o">
-                        <div class="col-lg-4 col-md-6 portfolio-wrap filter-app">
-                            <div class="portfolio-item">
-                                <img src="${o.avatar}" class="img-fluid" alt="">
-                                <div class="portfolio-info">
-                                    <h3>${o.fullname}</h3>
-                                    <div>
-                                        <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                                        <a href="MentorDetail.html" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                                    </div>
+            </section><!-- End Our Team Section -->
+
+            <!-- ======= Team Section ======= -->
+            <section class="team" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+                <div class="container">
+
+                    <div class="row">
+                        <c:forEach items="${listMentor}" var="o">
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="assets/img/${o.avatar}" class="img-fluid" alt="">
+                                    
+                                </div>
+                                <div class="member-info">
+                                    <h4><a href="MentorDetailControll?mentorid=${o.id}">${o.fullname}</a></h4>
+                                    <span>${o.profession}</span>
                                 </div>
                             </div>
                         </div>
-                    </c:forEach>
+                        </c:forEach>
+                    </div>
                 </div>
-            </div>   
+            </section>
         </main>
+        
+                       
+
         <!-- Vendor JS Files -->
         <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
         <script src="assets/vendor/aos/aos.js"></script>

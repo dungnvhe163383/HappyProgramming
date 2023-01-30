@@ -9,12 +9,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>View mentor</title>
+        <title>Mentor Detail</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
 
 
         <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
 
         <!-- Vendor CSS Files -->
@@ -36,7 +37,7 @@
             <div class="container d-flex justify-content-between align-items-center">
 
                 <div class="logo">
-                    <h1 class="text-light"><a href="HomePage.jsp"><span>CODELEARN</span></a></h1>
+                    <h1 class="text-light"><a href="index.html"><span>CODELEARN</span></a></h1>
                     <!-- Uncomment below if you prefer to use an image logo -->
                     <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
                 </div>
@@ -74,43 +75,69 @@
 
         <main id="main">
 
-            <!-- ======= Our Team Section ======= -->
-            <section class="breadcrumbs">
-                <div class="container">
+    <!-- ======= Blog Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
 
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h2>MENTOR</h2>
-                    </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Mentor Detail</h2>
 
-                </div>
-            </section><!-- End Our Team Section -->
+      </div>
+    </section><!-- End Blog Section -->
 
-            <!-- ======= Team Section ======= -->
-            <section class="team" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-                <div class="container">
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up">
 
-                    <div class="row">
-                        <c:forEach items="${listMentor}" var="o">
-                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                            <div class="member">
-                                <div class="member-img">
-                                    <img src="assets/img/${o.avatar}" class="img-fluid" alt="">
-                                    
-                                </div>
-                                <div class="member-info">
-                                    <h4><a href="MentorDetailControll?mentorid=${o.id}">${o.fullname}</a></h4>
-                                    <span>${o.profession}</span>
-                                </div>
-                            </div>
-                        </div>
-                        </c:forEach>
-                    </div>
-                </div>
-            </section>
-        </main>
+        <div class="row">
+
+          <div class="col-lg-8 entries">
+              
+            <article class="entry">
+
+              <div class="entry-img">
+                <img src="assets/img/${Mentor.avatar}" alt="" class="img-fluid">
+              </div>
+
+              <h2 class="entry-title">
+                <a href="blog-single.html">${Mentor.fullname}</a>
+              </h2>
+
+              <div class="entry-meta">
+                <p
+                  <li class="d-flex align-items-center"><i class="glyphicon glyphicon-envelope"></i> <a >Email: ${Mentor.email}</a></li>
+                  <li class="d-flex align-items-center"><i class="glyphicon glyphicon-globe"></i> <a >Address: ${Mentor.address}</a></li>
+                  
+                  <i class="glyphicon glyphicon-envelope">Address: ${Mentor.address}</i>
+                  <i class="glyphicon glyphicon-envelope">Phone: ${Mentor.phone}</i>
+                  <i class="glyphicon glyphicon-envelope">Date of Birth: ${Mentor.dob}</i>
+                  <i class="glyphicon glyphicon-envelope">Sex: ${Mentor.sex}</i> comment 
+                  <i class="glyphicon glyphicon-envelope">Profession: ${Mentor.profession}</i> comment 
+                  <i class="glyphicon glyphicon-envelope">Profession Introduction: ${Mentor.professionIntro}</i>
+                  <i class="glyphicon glyphicon-envelope">Service: ${Mentor.serviceDesc}</i>
+                  <i class="glyphicon glyphicon-envelope">Achievement: ${Mentor.achievementDesc}</i>
+                  <i class="glyphicon glyphicon-envelope">Framework: ${Mentor.framework}</i>
+              </div>
+
+              <div class="entry-content">
+                
+              </div>
+
+            </article><!-- End blog entry -->
+
+            
+            
+         
+
+        </div>
+
+      </div>
+      </div>
+    </section><!-- End Blog Section -->
+
+  </main><!-- End #main -->
+
         
-                       
-
         <!-- Vendor JS Files -->
         <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
         <script src="assets/vendor/aos/aos.js"></script>
