@@ -12,25 +12,30 @@ create table Account (
 ID int identity primary key,
 AccountName varchar(50),
 Password varchar(50),
+Email nvarchar(250) unique,
 RoleID int foreign key references Roles(ID)
+)
+
+create table city (
+	ID int identity primary key,
+	city nvarchar(250)
 )
 
 create table Mentee (
 ID int foreign key references Account(ID) primary key,
-Email nvarchar(250) unique,
+addressID int foreign key references city(ID),
 FullName nvarchar(250) ,
-Address nvarchar(250) ,
 Phone nvarchar(250) ,
 DateOfBirth Date ,
 Sex nvarchar(250) ,
 Avatar nvarchar(250),
+
 )
 
 create table Mentor(
 ID int foreign key references Account(ID) primary key,
-Email nvarchar(250) unique,
+addressID int foreign key references city(ID),
 FullName nvarchar(250) ,
-Address nvarchar(250) ,
 Phone nvarchar(250) ,
 DateOfBirth Date ,
 Sex nvarchar(250) ,
@@ -40,6 +45,7 @@ ServiceDesc nvarchar(250),
 AchievementDesc nvarchar(250),
 Framework nvarchar(250),
 Avatar nvarchar(250),
+
 )
 
 create table Request (
@@ -97,14 +103,15 @@ create table mentordiscuss(
 	comment varchar(250)
 )
 
-create table admin(
-	ID int foreign key references Account(ID) primary key,
-	name varchar(250),
-	picture varchar(250),
-	information varchar(250),
-	phone nvarchar(250),
-	job nvarchar(250),
+create table adminInfo(
+ID int identity primary key,
+name nvarchar(250),
+sex nvarchar(250),
+introduce nvarchar(250)
 )
+
+create table 
+
 
 insert into Roles values ('Mentee');
 insert into Roles values ('Mentor');
@@ -115,12 +122,18 @@ insert into Account values ('mentee2', 'mentee', 1);
 insert into Account values ('mentor1', 'mentor', 2);
 insert into Account values ('mentor2', 'mentor', 2);
 insert into Account values ('admin1', 'admin', 3);
+insert into Account values ('mentee3', 'mentee', 1);
+insert into Account values ('mentee4', 'mentee', 1);
 
-insert into Mentee values  (1, 'mentee@email1', 'Le Nam Phu', '01 Le Van Viet', '0123456789','11-03-2002', 'M', 'images/avatar3.jpg')
-insert into Mentee values  (2, 'mentee@email2', 'Le Tri Quyen', '02 Le Van Viet', '0987654321','11-04-2002', 'M', 'images/avatar4.jpg')
 
-insert into Mentor values (3, 'mentee@email2', 'Le Dang Truong', '03 Le Van Viet', '0887654321','11-05-2002', 'M', 'Software Engineer', 'I write stuff', 'Will teach how to code','PhD','Java', 'images/avatar1.jpg');
-insert into Mentor values (4, 'mentee@email3', 'Le Phuc Thien', '04 Le Van Viet', '0787654321','11-06-2002', 'M', 'Tester', 'I test stuff', 'Will teach how to test','Master','JUnit', 'images/avatar2.jpg');
+
+insert into Mentee values  (1, 'mentee@email1', 'Le Nam Phu', '01 Le Van Viet', '0123456789','11-03-2002', 'M', 'assets/img/avt.jpg')
+insert into Mentee values  (2, 'mentee@email2', 'Le Tri Quyen', '02 Le Van Viet', '0987654321','11-04-2002', 'M', 'avt.jpg')
+insert into Mentee values  (5, 'dungnvhe163383@fpt.edu.vn', 'Le Tri Quyen', '02 Le Van Viet', '0987654321','11-04-2002', 'M', 'avt.jpg')
+insert into Mentee values  (7, 'nguyenvudung96@gmail.com', 'Le Tri Quyen', '02 Le Van Viet', '0987654321','11-04-2002', 'M', 'avt.jpg')
+
+insert into Mentor values (3, 'mentee@email2', 'Le Dang Truong', '0887654321','11-05-2002', 'M', 'Software Engineer', 'I write stuff', 'Will teach how to code','PhD','Java', 'avt2.jpg');
+insert into Mentor values (4, 'mentee@email3', 'Le Phuc Thien', '0787654321','11-06-2002', 'M', 'Tester', 'I test stuff', 'Will teach how to test','Master','JUnit', 'avt2.jpg');
 
 insert into Request values ('Teach me java', 'Open', 'I wanna learn java', 1, '11-09-2022', 9);
 insert into Request values ('Teach me mockito', 'Open', 'I wanna learn mockito', 2, '11-10-2022', 10);
@@ -142,3 +155,8 @@ insert into MentorSKill values (1,4);
 insert into RequestSKill values (1,1);
 insert into RequestSKill values (2,1);
 insert into RequestSKill values (2,2);
+
+select Account.ID,AccountName,Password,RoleID,Email,Fullname from Account,Mentee where Account.ID=Mentee.ID and Mentee.Email like 'dungnvhe163383@fpt.edu.vn' and Accountname like 'admin1'
+select*from Mentor
+select*from Account
+update Mentor SET Avatar = 
