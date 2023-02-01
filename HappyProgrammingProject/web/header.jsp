@@ -48,7 +48,7 @@
                             <li><a href="SignIn.jsp">Sign In</a></li>
                         </c:if>
                         <c:if test="${sessionScope.account == null}">
-                            <li><a href="SignUpControll">Sign Up</a></li>
+                            <li><a href="SignUp">Sign Up</a></li>
                         </c:if>
                         <c:if test="${sessionScope.account != null}">
                             <li><a href="signOut">Sign Out</a></li>

@@ -1,4 +1,9 @@
-﻿
+﻿use master
+
+drop database HappyProgramming
+
+create database HappyProgramming
+
 use HappyProgramming
 
 
@@ -187,29 +192,4 @@ create table FavoriteMentor(
 	MentorID int foreign key references Mentor(ID),
 	constraint pkk primary key (MenteeID, MentorID)
 )
-
-
-select * from roles
-select * from Account
-select * from Country
-select * from city
-select * from Mentee
-select * from Profession
-select * from Status
-select * from Framework
-select * from MentorFramework
-select * from MentorProfession
-select * from Request
-select * from Invite
-select * from comment
-select * from Skill
-select * from MentorSkill
-select * from RequestSkill
-select * from menteediscuss
-select * from mentordiscuss
-select * from Mentor
-
-select m.ID,m.Email ,m.FullName,c.city,ct.country, m.Phone,m.DateOfBirth,m.Sex,m.ServiceDesc,m.AchievementDesc,m.Avatar from Mentor m,City c,country ct 
-where m.CityID=c.ID and c.countryID=ct.ID
-select framework.ID,framework from Mentor,Framework,MentorFramework where Mentor.ID=MentorFramework.MentorID and MentorFramework.FrameworkID=framework.ID and Mentor.ID=4
 

@@ -6,12 +6,14 @@ package Controller;
 
 import DAO.DAO;
 import DTO.Account;
+import DTO.Role;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
@@ -46,7 +48,10 @@ public class SignUp extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        DAO dao=new DAO();
+        List<Role> show_role = dao.getRole();
+        request.setAttribute("role", show_role);
+        request.getRequestDispatcher("SignUp.jsp").forward(request, response);
     }
 
     /**
@@ -66,8 +71,9 @@ public class SignUp extends HttpServlet {
         String email = request.getParameter("email");
         String role = request.getParameter("role");
         int roleid=Integer.parseInt(role);
-
-        DAO dao = new DAO();
+        DAO dao=new DAO();
+        List<Role> show_role= dao.getRole();
+        request.setAttribute("role", show_role);
         Account a = dao.checkLogin(username, pass);
         if (a != null) {
             request.setAttribute("errorMessage", "username and accout is exit !");
