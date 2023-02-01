@@ -12,10 +12,6 @@ insert into Country values (N'VIệT NAM');
 insert into Country values (N'Anh');
 insert into Country values (N'Mỹ');
 
-insert into company values ('A');
-insert into company values ('B');
-insert into company values ('C');
-
 insert into city values (N'HÀ NỘI',1);
 insert into city values (N'HỒ CHÍ MINH',1);
 insert into city values (N'Đà Nẵng',2);
@@ -40,8 +36,8 @@ insert into Framework values ('Xamarin ');
 insert into Framework values ('PhoneGap ');
 
 
-insert into Mentor values (3,3, 'okanhchaphet7@gmail.com', 'Le Dang Truong', '0887654321','11-05-2002', 'M', 'Will teach how to code','PhD', 'avatar1.jpg',1);
-insert into Mentor values (4,4, 'nguyenvudung96@gmail.com', 'Le Phuc Thien', '0787654321','11-06-2002', 'M', 'Will teach how to test','Master', 'avatar2.jpg',2);
+insert into Mentor values (3,3, 'okanhchaphet7@gmail.com', 'Le Dang Truong', '0887654321','11-05-2002', 'M', 'Will teach how to code','PhD', 'avatar1.jpg');
+insert into Mentor values (4,4, 'nguyenvudung96@gmail.com', 'Le Phuc Thien', '0787654321','11-06-2002', 'M', 'Will teach how to test','Master', 'avatar2.jpg');
 
 
 insert into MentorFramework values (3,2);

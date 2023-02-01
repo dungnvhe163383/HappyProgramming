@@ -1,6 +1,7 @@
 ﻿
 use HappyProgramming
 
+
 ---------------------------------------------- Table roles -------------------------------
 
 create table roles (
@@ -25,13 +26,6 @@ RoleID int foreign key references Roles(ID)
   country nvarchar(250),
  )
 
- ---------------------------------------------- Table company -------------------------------
-
-
-create table company(
-	ID int identity(1,1) primary key,
-	company nvarchar(250)
-)
 
 
  ---------------------------------------------- Table City -------------------------------
@@ -91,8 +85,7 @@ DateOfBirth Date ,
 Sex nvarchar(250) ,
 ServiceDesc nvarchar(250),
 AchievementDesc nvarchar(250),
-Avatar nvarchar(250),
-companyID int foreign key references company(ID)
+Avatar nvarchar(250)
 )
 
 ---------------------------------------------- Table MentorFramework((mentor có nhiều Framework và  1 Framework có nhiều mentor có) -------------------------------
@@ -199,7 +192,6 @@ create table FavoriteMentor(
 select * from roles
 select * from Account
 select * from Country
-select * from company
 select * from city
 select * from Mentee
 select * from Profession
@@ -216,4 +208,8 @@ select * from RequestSkill
 select * from menteediscuss
 select * from mentordiscuss
 select * from Mentor
+
+select m.ID,m.Email ,m.FullName,c.city,ct.country, m.Phone,m.DateOfBirth,m.Sex,m.ServiceDesc,m.AchievementDesc,m.Avatar from Mentor m,City c,country ct 
+where m.CityID=c.ID and c.countryID=ct.ID
+select framework.ID,framework from Mentor,Framework,MentorFramework where Mentor.ID=MentorFramework.MentorID and MentorFramework.FrameworkID=framework.ID and Mentor.ID=4
 
