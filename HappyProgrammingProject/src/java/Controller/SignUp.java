@@ -55,7 +55,7 @@ public class SignUp extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> MethodMethod.
      *
      * @param request servlet request
      * @param response servlet response
