@@ -48,6 +48,14 @@
         <servlet-name>SignUpController</servlet-name>
         <servlet-class>Controller.SignUpController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewProfile</servlet-name>
+        <servlet-class>Controller.ViewProfile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewMenteeProfile</servlet-name>
+        <servlet-class>Controller.ViewMenteeProfile</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Databasecontext</servlet-name>
         <url-pattern>/Databasecontext</url-pattern>
@@ -95,6 +103,14 @@
     <servlet-mapping>
         <servlet-name>SignUpController</servlet-name>
         <url-pattern>/SignUpController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProfile</servlet-name>
+        <url-pattern>/viewProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewMenteeProfile</servlet-name>
+        <url-pattern>/viewMenteeProfile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

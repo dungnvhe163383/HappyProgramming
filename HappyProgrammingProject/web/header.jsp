@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-       <meta content="" name="description">
+        <meta content="" name="description">
         <meta content="" name="keywords">
 
 
@@ -45,34 +45,26 @@
                         <li><a class="" href="HomePage.jsp">Home</a></li>
                         <li><a href="ViewAllMentor">Mentor</a></li>
                         <c:if test="${sessionScope.account == null}">
-                            <li><a href="SignIn.jsp">Sign In</a></li>
+                        <li><a href="SignIn.jsp">Sign In</a></li>
                         </c:if>
                         <c:if test="${sessionScope.account == null}">
-                            <li><a href="SignUp">Sign Up</a></li>
+                        <li><a href="SignUp">Sign Up</a></li>
                         </c:if>
                         <c:if test="${sessionScope.account != null}">
-                            <li><a href="signOut">Sign Out</a></li>
+                        <li class="dropdown"><a href="#"><span>Setting</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <c:if test="${sessionScope.account.roleId == 1}">
+                                    <li><a href="viewMenteeProfile">Profile</a></li>
+                                </c:if>
+                                <c:if test="${sessionScope.account != null}">
+                                    <li><a href="ChangePassword.jsp">Change Password</a></li>
+                                </c:if>
+                                <c:if test="${sessionScope.account != null}">
+                                    <li><a href="signOut">Sign Out</a></li>
+                                </c:if>
+                            </ul>
+                        </li>
                         </c:if>
-                        <c:if test="${sessionScope.account != null}">
-                            <li><a href="ChangePassword.jsp">ChangePassword</a></li>
-                        </c:if>
-                        <!--          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-                                    <ul>
-                                      <li><a href="#">Drop Down 1</a></li>
-                                      <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                                        <ul>
-                                          <li><a href="#">Deep Drop Down 1</a></li>
-                                          <li><a href="#">Deep Drop Down 2</a></li>
-                                          <li><a href="#">Deep Drop Down 3</a></li>
-                                          <li><a href="#">Deep Drop Down 4</a></li>
-                                          <li><a href="#">Deep Drop Down 5</a></li>
-                                        </ul>
-                                      </li>
-                                      <li><a href="#">Drop Down 2</a></li>
-                                      <li><a href="#">Drop Down 3</a></li>
-                                      <li><a href="#">Drop Down 4</a></li>
-                                    </ul>
-                                  </li>-->
                     </ul>
                     <i class="bi bi-list mobile-nav-toggle"></i>
                 </nav><!-- .navbar -->

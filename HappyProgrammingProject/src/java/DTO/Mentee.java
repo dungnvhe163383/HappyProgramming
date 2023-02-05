@@ -97,5 +97,10 @@ public class Mentee {
         this.avatar = avatar;
     }
 
+    @Override
+    public String toString() {
+        return "Mentee{" + "id=" + id + ", email=" + email + ", fullname=" + fullname + ", address=" + address + ", phone=" + phone + ", dob=" + dob + ", sex=" + sex + ", avatar=" + avatar + '}';
+    }
+
     
 }
