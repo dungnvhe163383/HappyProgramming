@@ -1,12 +1,7 @@
-﻿use master
-
-drop database HappyProgramming
-
-create database HappyProgramming
-
+﻿
+--drop database HappyProgramming
+--create database HappyProgramming
 use HappyProgramming
-
-
 ---------------------------------------------- Table roles -------------------------------
 
 create table roles (
@@ -56,21 +51,21 @@ Avatar nvarchar(250),
 
 )
 
----------------------------------------------- Table Profession -------------------------------
+---------------------------------------------- Table Profession(nghề nghiệp) -------------------------------
 
 create table Profession(
 ID int identity(1, 1) primary key,
 profession nvarchar(250)
 )
 
----------------------------------------------- Table Status -------------------------------
+---------------------------------------------- Table Status(trạng thái của request) -------------------------------
 
 create table Status(
 	ID int identity(1, 1) primary key,
 	Status nvarchar(250)
 )
 
----------------------------------------------- Table Framework -------------------------------
+---------------------------------------------- Table Framework (framework thường dùng của mentor) -------------------------------
 
 create table Framework(
 	ID int identity(1, 1) primary key,
@@ -90,7 +85,8 @@ DateOfBirth Date ,
 Sex nvarchar(250) ,
 ServiceDesc nvarchar(250),
 AchievementDesc nvarchar(250),
-Avatar nvarchar(250)
+Avatar nvarchar(250),
+costHire int
 )
 
 ---------------------------------------------- Table MentorFramework((mentor có nhiều Framework và  1 Framework có nhiều mentor có) -------------------------------
@@ -110,7 +106,7 @@ create table MentorProfession(
 	Constraint PK Primary key (ProfessionID,MentorID)
 )
 
----------------------------------------------- Table Request -------------------------------
+---------------------------------------------- Table Request(các request do Mentee đưa ra) -------------------------------
 
 
 create table Request (
@@ -167,29 +163,31 @@ RequestID int foreign key references Request(ID),
 primary key(SkillID, RequestID)
 )
 
+create table RequestHistoryMentee(
+ID int identity(1, 1) primary key,
+	Title nvarchar(250),
+Content nvarchar(250),
+MenteeID int foreign key references Mentee(ID),
+DeadlineDate date
+)
 
----------------------------------------------- Table mentee discuss ( chứa các comment của các mentee nói vs nhau) -------------------------------
+create table HireRequest (
+ReqID int foreign key references Request(ID),
+MentorID int foreign key references Mentor(ID),
+constraint pk3 primary key (ReqID,MentorID)
+)
 
-create table menteediscuss(
+create table MenteeHireMentor(
+MenteeID int foreign key references Mentee(ID),
+MentorID int foreign key references Mentor(ID),
+constraint pk2 primary key (MenteeID,MentorID)
+)
+
+create table RejectInviteRequestMentor(
 	ID int identity(1, 1) primary key,
-	menteeID int foreign key references Mentee(ID),
-	comment varchar(250)
+	Title nvarchar(250),
+Content nvarchar(250),
+MenteeID int foreign key references Mentee(ID),
+MentorID int foreign key references Mentor(ID),
+DeadlineDate date
 )
-
----------------------------------------------- Table mentor discuss ( chứa các comment của các mentor nói vs nhau) -------------------------------
-
-
-create table mentordiscuss(
-	ID int identity(1, 1) primary key,
-	mentorID int foreign key references Mentor(ID),
-	comment varchar(250)
-)
-
----------------------------------------------- Table Favorite Mentor (Favorite mentor của các mentee) -------------------------------
-
-create table FavoriteMentor(
-	MenteeID int foreign key references Mentee(ID),
-	MentorID int foreign key references Mentor(ID),
-	constraint pkk primary key (MenteeID, MentorID)
-)
-
