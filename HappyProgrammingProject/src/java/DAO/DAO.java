@@ -182,7 +182,21 @@ public class DAO extends DBContext {
         }
         return null;
     }
-
+    
+    public Account checkAccountExist(String username){
+        query = "select * from Account WHERE AccountName = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
     public static void main(String[] args) {
         Mentee m = new DAO().getMenteeById(1);
         System.out.println(m);
