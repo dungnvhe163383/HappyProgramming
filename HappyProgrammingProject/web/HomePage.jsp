@@ -62,7 +62,8 @@
 
             </div>
         </section><!-- End Hero -->
-
+<!-- ======= Footer ======= -->
+        <jsp:include page="Footer.jsp"></jsp:include>
         
 
         <!-- Vendor JS Files -->
