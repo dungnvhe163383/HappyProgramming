@@ -11,9 +11,11 @@ import DTO.Mentee;
 import DTO.Mentor;
 import DTO.Role;
 import DTO.Skill;
+import DTO.Request;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Date;
 
 /**
  *
@@ -181,6 +183,26 @@ public class DAO extends DBContext {
             System.out.println(e);
         }
         return null;
+    }
+
+    public List<Request> getRequestByMentee(int id) {
+        List<Request> list = new ArrayList<>();
+        List<Skill> listSkills = new ArrayList<>();
+        query = "select RHM.ID, RHM.Title, RHM.Content, RHM.DeadlineDate\n"
+                + "from RequestHistoryMentee RHM, Mentee M, Request R\n"
+                + "where M.ID = RHM.MenteeID and R.ID = RHM.ID and RHM.MenteeID=1";
+        try {
+            
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Request(rs.getString(1), rs.getDate(2), rs.getString(3),rs.getString(listSkills.) ,rs.getString(5), rs.getString(6)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
     }
 
     public static void main(String[] args) {

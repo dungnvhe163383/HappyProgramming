@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    
     <servlet>
         <servlet-name>Databasecontext</servlet-name>
         <servlet-class>ConnectDB.Databasecontext</servlet-class>
@@ -56,6 +57,10 @@
         <servlet-name>ViewMenteeProfile</servlet-name>
         <servlet-class>Controller.ViewMenteeProfile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewRequsetByMentee</servlet-name>
+        <servlet-class>Controller.ViewRequsetByMentee</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Databasecontext</servlet-name>
         <url-pattern>/Databasecontext</url-pattern>
@@ -111,6 +116,10 @@
     <servlet-mapping>
         <servlet-name>ViewMenteeProfile</servlet-name>
         <url-pattern>/viewMenteeProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewRequsetByMentee</servlet-name>
+        <url-pattern>/viewRequsetByMentee</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
