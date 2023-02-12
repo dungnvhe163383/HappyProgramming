@@ -198,13 +198,13 @@ public class DAO extends DBContext {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                list.add(new Request(rs.getString(1), rs.getDate(2), rs.getString(3),rs.getString(listSkills.) ,rs.getString(5), rs.getString(6)));
+                list.add(new Request(rs.getString(1), rs.getDate(2), rs.getString(3), rs.getList(), rs.getString(5), rs.getString(6)));
             }
         } catch (Exception e) {
         }
         return list;
     }
-
+    
     public static void main(String[] args) {
         Mentee m = new DAO().getMenteeById(1);
         System.out.println(m);
