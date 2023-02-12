@@ -5,126 +5,137 @@ use HappyProgramming
 ---------------------------------------------- Table roles -------------------------------
 
 create table roles (
-	ID int identity(1, 1) primary key,
-	Name nvarchar(50)
+	id int identity(1, 1) primary key,
+	name nvarchar(50)
 )
 
 ---------------------------------------------- Table account -------------------------------
 
 create table account (
-ID int identity(1, 1) primary key,
-AccountName varchar(50),
-Password varchar(50),
-RoleID int foreign key references Roles(ID)
+id int identity(1, 1) primary key,
+username varchar(50),
+password varchar(50),
+roleID int foreign key references Roles(ID)
 )
 
----------------------------------------------- Table country-------------------------------
-
-
- create table country(
-  ID int identity(1, 1) primary key,
-  country nvarchar(250),
- )
-
-
-
- ---------------------------------------------- Table City -------------------------------
-
-create table City (
-	ID int identity(1, 1) primary key,
-	city nvarchar(250),
-	countryID int foreign key references Country(ID)
-)
 
 ---------------------------------------------- Table Mentee -------------------------------
 
 
-create table Mentee (
-ID int foreign key references Account(ID) primary key,
-CityID int foreign key references city(ID),
-Email nvarchar(250) unique,
-FullName nvarchar(250) ,
-Phone nvarchar(250) ,
-DateOfBirth Date ,
-Sex nvarchar(250) ,
-Avatar nvarchar(250),
-
+create table mentee (
+id int foreign key references account(id) primary key,
+address nvarchar(250),
+email nvarchar(250),
+name nvarchar(250) ,
+phone nvarchar(250),
+birthday Date ,
+sex nvarchar(250) ,
+avatar nvarchar(250)
 )
 
----------------------------------------------- Table Profession(nghề nghiệp) -------------------------------
+---------------------------------------------- Table Status -------------------------------
 
-create table Profession(
-ID int identity(1, 1) primary key,
-profession nvarchar(250)
-)
-
----------------------------------------------- Table Status(trạng thái của request) -------------------------------
-
-create table Status(
+create table status(
 	ID int identity(1, 1) primary key,
 	Status nvarchar(250)
 )
 
----------------------------------------------- Table Framework (framework thường dùng của mentor) -------------------------------
-
-create table Framework(
-	ID int identity(1, 1) primary key,
-	framework nvarchar(250)
-)
 
 ---------------------------------------------- Table Mentor -------------------------------
 
 
-create table Mentor(
-ID int foreign key references Account(ID) primary key,
-CityID int foreign key references city(ID),
-Email nvarchar(250) unique,
-FullName nvarchar(250) ,
-Phone nvarchar(250) ,
-DateOfBirth Date ,
-Sex nvarchar(250) ,
-ServiceDesc nvarchar(250),
-AchievementDesc nvarchar(250),
-Avatar nvarchar(250),
+create table mentor(
+id int foreign key references Account(ID) primary key,
+address nvarchar(250),
+email nvarchar(250) unique,
+name nvarchar(250) ,
+phone nvarchar(250) ,
+birthday Date ,
+sex nvarchar(250) ,
+introduce nvarchar(250),
+profession nvarchar(250),
+professionIntroduce nvarchar(250),
+Achievement nvarchar(250),
+avatar nvarchar(250),
 costHire int
 )
 
----------------------------------------------- Table MentorFramework((mentor có nhiều Framework và  1 Framework có nhiều mentor có) -------------------------------
-
-create table MentorFramework(
-	MentorID int foreign key references Mentor(ID),
-	frameworkID int foreign key references Framework(ID),
-	constraint primarykey primary key (MentorID, frameworkID)
-)
-
----------------------------------------------- Table MentorProfesion(mentor có nhiều profesion và  1 profesion có nhiều mentor có)-------------------------------
-
-
-create table MentorProfession(
-	ProfessionID int foreign key references Profession(ID),
-	MentorID int foreign key references Mentor(ID),
-	Constraint PK Primary key (ProfessionID,MentorID)
-)
 
 ---------------------------------------------- Table Request(các request do Mentee đưa ra) -------------------------------
+create table request (
+id int identity(1, 1) primary key,
+title nvarchar(250),
+content nvarchar(250),
+menteeID int foreign key references mentee(id),
+deadline date,
+statusID int foreign key references status(id),
+)
 
 
-create table Request (
-ID int identity(1, 1) primary key,
-Title nvarchar(250),
-Content nvarchar(250),
-MenteeID int foreign key references Mentee(ID),
-DeadlineDate date,
-statusID int foreign key references Status(ID)
+
+create table rate(
+id int identity(1, 1) primary key,
+requestID int foreign key references request(id),
+rate int
+)
+---------------------------------------------- Table Skill -------------------------------
+
+
+create table skill(
+id int identity(1, 1) primary key,
+name nvarchar(250),
+)
+
+create table historyMenteeRequest(
+	id int identity(1, 1) primary key,
+	title nvarchar(250),
+	content nvarchar(250),
+	menteeID int foreign key references mentee(id),
+	deadline date,
+)
+
+create table historyMentorRequest(
+	id int identity(1, 1) primary key,
+	title nvarchar(250),
+	content nvarchar(250),
+	mentorID int foreign key references mentor(id),
+	deadline date,
+)
+
+create table hire(
+	mentorID int foreign key references mentor(id),
+	menteeID int foreign key references mentee(id),
+	primary key (mentorID,menteeID),
+	content nvarchar(250),
+	statusID int foreign key references status(id)
 )
 
 ---------------------------------------------- Table Invite(1 request thì gửi cho (mời) mentor nào trả lời)-------------------------------
 
 
-create table Invite (
+create table inviteRequest (
 ReqID int foreign key references Request(ID),
 MentorID int foreign key references Mentor(ID),
-constraint pk1 primary key (ReqID,MentorID)
+primary key (ReqID,MentorID),
+	statusID int foreign key references status(id)
+
+)
+
+create table hireRequest (
+ReqID int foreign key references Request(ID),
+MentorID int foreign key references Mentor(ID),
+primary key (ReqID,MentorID),
+	statusID int foreign key references status(id)
+
+)
+
+---------------------------------------------- Table MentorSkill ( mentor có nhiều skill) -------------------------------
+
+
+create table mentorSkill(
+skillID int foreign key references skill(id),
+mentorID int foreign key references mentor(id),
+primary key(skillID, mentorID)
 )
 
 ---------------------------------------------- Table Comment(mentee vote mentor) -------------------------------
@@ -132,62 +143,51 @@ constraint pk1 primary key (ReqID,MentorID)
 
 create table Comment(
 ID int identity(1,1) primary key,
-RateStar int,
 CommentDetail nvarchar(250),
-MenteeID int foreign key references Mentee(ID),
-MentorID int foreign key references Mentor(ID),
+requestID int foreign key references request(id)
 )
 
----------------------------------------------- Table Skill -------------------------------
+
+---------------------------------------------- Table MentorSkill ( mentor có nhiều skill) -------------------------------
 
 
-create table Skill(
-ID int identity(1, 1) primary key,
-Name nvarchar(250),
+create table requestSkill(
+skillID int foreign key references skill(id),
+requestID int foreign key references request(id),
+primary key(skillID, requestID)
 )
 
 ---------------------------------------------- Table MentorSkill ( mentor có nhiều skill) -------------------------------
 
 
-create table MentorSkill(
-SkillID int foreign key references Skill(ID),
-MentorID int foreign key references Mentor(ID),
-primary key(SkillID, MentorID)
+create table mentorRequest(
+requestID int foreign key references request(id),
+mentorID int foreign key references mentor(id),
+primary key(requestID, mentorID)
+)
+create table following(
+	mentorID int foreign key references mentor(id),
+	menteeID int foreign key references mentee(id),
+	primary key (mentorID,menteeID),
 )
 
----------------------------------------------- Table Request Skill( câu hỏi yêu cầu những skill nào) -------------------------------
-
-create table RequestSkill(
-SkillID int foreign key references Skill(ID),
-RequestID int foreign key references Request(ID),
-primary key(SkillID, RequestID)
+create table historyHire(
+	mentorID int foreign key references mentor(id),
+	menteeID int foreign key references mentee(id),
+	primary key (mentorID,menteeID),
+	content nvarchar(250)
 )
 
-create table RequestHistoryMentee(
-ID int identity(1, 1) primary key,
-	Title nvarchar(250),
-Content nvarchar(250),
-MenteeID int foreign key references Mentee(ID),
-DeadlineDate date
+create table historyFollow(
+	mentorID int foreign key references mentor(id),
+	menteeID int foreign key references mentee(id),
+	primary key (mentorID,menteeID),
 )
 
-create table HireRequest (
-ReqID int foreign key references Request(ID),
-MentorID int foreign key references Mentor(ID),
-constraint pk3 primary key (ReqID,MentorID)
+create table answerRequest(
+	id int identity(1,1) primary key,
+	content nvarchar(250),
+	requestID int foreign key references request(id),
+	mentorid int foreign key references mentor(id)
 )
 
-create table MenteeHireMentor(
-MenteeID int foreign key references Mentee(ID),
-MentorID int foreign key references Mentor(ID),
-constraint pk2 primary key (MenteeID,MentorID)
-)
-
-create table RejectInviteRequestMentor(
-	ID int identity(1, 1) primary key,
-	Title nvarchar(250),
-Content nvarchar(250),
-MenteeID int foreign key references Mentee(ID),
-MentorID int foreign key references Mentor(ID),
-DeadlineDate date
-)
