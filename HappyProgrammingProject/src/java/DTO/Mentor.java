@@ -14,29 +14,33 @@ import java.sql.Date;
 public class Mentor {
 
     private int id;
+    private String address;
     private String email;
-    private String fullname;
-    private String city;
-    private String country;
+    private String name;
     private String phone;
-    private Date dob;
+    private Date birthday;
     private String sex;
-    private String serviceDesc;
-    private String achievementDesc;
+    private String introduce;
+    private String profession;
+    private String professionIntroduce;
+    private String achievement;
     private String avatar;
+    private int costHire;
 
-    public Mentor(int id, String email, String fullname, String city, String country, String phone, Date dob, String sex, String serviceDesc, String achievementDesc, String avatar) {
+    public Mentor(int id, String address, String email, String name, String phone, Date birthday, String sex, String introduce, String profession, String professionIntroduce, String achievement, String avatar, int costHire) {
         this.id = id;
+        this.address = address;
         this.email = email;
-        this.fullname = fullname;
-        this.city = city;
-        this.country = country;
+        this.name = name;
         this.phone = phone;
-        this.dob = dob;
+        this.birthday = birthday;
         this.sex = sex;
-        this.serviceDesc = serviceDesc;
-        this.achievementDesc = achievementDesc;
+        this.introduce = introduce;
+        this.profession = profession;
+        this.professionIntroduce = professionIntroduce;
+        this.achievement = achievement;
         this.avatar = avatar;
+        this.costHire = costHire;
     }
 
     public int getId() {
@@ -47,6 +51,14 @@ public class Mentor {
         this.id = id;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -55,28 +67,12 @@ public class Mentor {
         this.email = email;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getName() {
+        return name;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPhone() {
@@ -87,12 +83,12 @@ public class Mentor {
         this.phone = phone;
     }
 
-    public Date getDob() {
-        return dob;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public void setDob(Date dob) {
-        this.dob = dob;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public String getSex() {
@@ -103,20 +99,36 @@ public class Mentor {
         this.sex = sex;
     }
 
-    public String getServiceDesc() {
-        return serviceDesc;
+    public String getIntroduce() {
+        return introduce;
     }
 
-    public void setServiceDesc(String serviceDesc) {
-        this.serviceDesc = serviceDesc;
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
     }
 
-    public String getAchievementDesc() {
-        return achievementDesc;
+    public String getProfession() {
+        return profession;
     }
 
-    public void setAchievementDesc(String achievementDesc) {
-        this.achievementDesc = achievementDesc;
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
+
+    public String getProfessionIntroduce() {
+        return professionIntroduce;
+    }
+
+    public void setProfessionIntroduce(String professionIntroduce) {
+        this.professionIntroduce = professionIntroduce;
+    }
+
+    public String getAchievement() {
+        return achievement;
+    }
+
+    public void setAchievement(String achievement) {
+        this.achievement = achievement;
     }
 
     public String getAvatar() {
@@ -125,6 +137,14 @@ public class Mentor {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public int getCostHire() {
+        return costHire;
+    }
+
+    public void setCostHire(int costHire) {
+        this.costHire = costHire;
     }
 
    

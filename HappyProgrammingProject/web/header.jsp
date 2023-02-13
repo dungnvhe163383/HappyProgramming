@@ -56,6 +56,9 @@
                                 <c:if test="${sessionScope.account.roleId == 1}">
                                     <li><a href="viewMenteeProfile">Profile</a></li>
                                 </c:if>
+                                      <c:if test="${sessionScope.account.roleId == 1}">
+                                    <li><a href="viewRequsetByMentee">Request history</a></li>
+                                </c:if>
                                 <c:if test="${sessionScope.account != null}">
                                     <li><a href="ChangePassword.jsp">Change Password</a></li>
                                 </c:if>

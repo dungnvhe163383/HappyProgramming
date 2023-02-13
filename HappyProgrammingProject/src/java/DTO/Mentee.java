@@ -13,25 +13,24 @@ import java.sql.Date;
  */
 public class Mentee {
     private int id;
-    private String email;
-    private String fullname;
     private String address;
+    private String email;
+    private String name;
     private String phone;
-    private Date dob;
+    private Date birthday;
     private String sex;
     private String avatar;
 
-    public Mentee(int id, String email, String fullname, String address, String phone, Date dob, String sex, String avatar ) {
+    public Mentee(int id, String address, String email, String name, String phone, Date birthday, String sex, String avatar) {
         this.id = id;
-        this.email = email;
-        this.fullname = fullname;
         this.address = address;
+        this.email = email;
+        this.name = name;
         this.phone = phone;
-        this.dob = dob;
+        this.birthday = birthday;
         this.sex = sex;
         this.avatar = avatar;
     }
-
 
     public int getId() {
         return id;
@@ -39,22 +38,6 @@ public class Mentee {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFullname() {
-        return fullname;
-    }
-
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
     }
 
     public String getAddress() {
@@ -65,6 +48,22 @@ public class Mentee {
         this.address = address;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -73,12 +72,12 @@ public class Mentee {
         this.phone = phone;
     }
 
-    public Date getDob() {
-        return dob;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public void setDob(Date dob) {
-        this.dob = dob;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public String getSex() {
@@ -95,11 +94,6 @@ public class Mentee {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
-    }
-
-    @Override
-    public String toString() {
-        return "Mentee{" + "id=" + id + ", email=" + email + ", fullname=" + fullname + ", address=" + address + ", phone=" + phone + ", dob=" + dob + ", sex=" + sex + ", avatar=" + avatar + '}';
     }
 
     

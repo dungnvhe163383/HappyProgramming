@@ -11,16 +11,13 @@ package DTO;
  */
 public class Account {
     private int id;
-    private String accountName;
+    private String username;
     private String password;
     private int roleId;
 
-    public Account() {
-    }
-
-    public Account(int id, String accountName, String password, int roleId) {
+    public Account(int id, String username, String password, int roleId) {
         this.id = id;
-        this.accountName = accountName;
+        this.username = username;
         this.password = password;
         this.roleId = roleId;
     }
@@ -33,12 +30,12 @@ public class Account {
         this.id = id;
     }
 
-    public String getAccountName() {
-        return accountName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -56,5 +53,7 @@ public class Account {
     public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
+    
+    
     
 }

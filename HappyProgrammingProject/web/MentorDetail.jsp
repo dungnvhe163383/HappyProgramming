@@ -71,14 +71,17 @@
 
                         <div class="col-lg-4">
                             <div class="portfolio-info">
-                                <h3>${Mentor.fullname}</h3>
+                                <h3>${Mentor.name}</h3>
                                 <ul>
                                     <li><strong>Email</strong>: ${Mentor.email}</li>
-                                    <li><strong>Address</strong>: ${Mentor.city} ,${Mentor.country}</li>
+                                    <li><strong>Address</strong>: ${Mentor.address}</li>
                                     <li><strong>Phone</strong>: ${Mentor.phone}</li>
-                                    <li><strong>Birthday</strong>: ${Mentor.dob}</li>
-                                    <li><strong>Service Desc</strong>: ${Mentor.serviceDesc}</li>
-                                    <li><strong>Achievement Desc</strong>: ${Mentor.achievementDesc}</li>
+                                    <li><strong>Birthday</strong>: ${Mentor.birthday}</li>
+                                    <li><strong>Introduce</strong>: ${Mentor.introduce}</li>
+                                    <li><strong>Profession</strong>: ${Mentor.profession}</li>
+                                    <li><strong>Introduce Profession</strong>: ${Mentor.professionIntroduce}</li>
+                                    <li><strong>Achievement</strong>: ${Mentor.achievement}</li>
+                                    <li><strong>Cost Hire</strong>: ${Mentor.costHire}</li>
                                 </ul>
                             </div>
                             <div class="portfolio-description">

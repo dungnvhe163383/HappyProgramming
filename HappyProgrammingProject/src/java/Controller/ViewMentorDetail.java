@@ -36,12 +36,7 @@ public class ViewMentorDetail extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter pr = response.getWriter();
-        String id=request.getParameter("mentorid");
-        int mentorid=Integer.parseInt(id);
-        DAO dao= new DAO();
-        Mentor m = dao.getMentor(mentorid);
-        request.setAttribute("Mentor", m);
-            request.getRequestDispatcher("MentorDetail.jsp").forward(request, response);
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -57,6 +52,12 @@ public class ViewMentorDetail extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+         String id=request.getParameter("mentorid");
+        int mentorid=Integer.parseInt(id);
+        DAO dao= new DAO();
+        Mentor m = dao.getMentor(mentorid);
+        request.setAttribute("Mentor", m);
+            request.getRequestDispatcher("MentorDetail.jsp").forward(request, response);
     }
 
     /**
