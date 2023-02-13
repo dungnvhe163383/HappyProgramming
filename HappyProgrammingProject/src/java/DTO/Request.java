@@ -11,23 +11,28 @@ import java.util.List;
 public class Request {
     private int id;
     private String tille;
-    private Date deadline;
     private String content;
-    private List<String> skill;
-    private String programmingLanguage;
-    private String status;
+    private int menteeID;
+    private Date deadline;
+    private int statusID;
+    private int rate;
 
-    public Request() {
+    public Request(int id, String tille, String content, int menteeID, Date deadline, int statusID, int rate) {
+        this.id = id;
+        this.tille = tille;
+        this.content = content;
+        this.menteeID = menteeID;
+        this.deadline = deadline;
+        this.statusID = statusID;
+        this.rate = rate;
     }
 
-    public Request(int id, String tille, Date deadline, String content, List<String> skill, String programmingLanguage, String status) {
-        this.id=id;
-        this.tille = tille;
-        this.deadline = deadline;
-        this.content = content;
-        this.skill = skill;
-        this.programmingLanguage = programmingLanguage;
-        this.status = status;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTille() {
@@ -38,14 +43,6 @@ public class Request {
         this.tille = tille;
     }
 
-    public Date getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(Date deadline) {
-        this.deadline = deadline;
-    }
-
     public String getContent() {
         return content;
     }
@@ -54,36 +51,38 @@ public class Request {
         this.content = content;
     }
 
-    public List<String> getSkill() {
-        return skill;
+    public int getMenteeID() {
+        return menteeID;
     }
 
-    public void setSkill(List<String> skill) {
-        this.skill = skill;
+    public void setMenteeID(int menteeID) {
+        this.menteeID = menteeID;
     }
 
-    public String getProgrammingLanguage() {
-        return programmingLanguage;
+    public Date getDeadline() {
+        return deadline;
     }
 
-    public void setProgrammingLanguage(String programmingLanguage) {
-        this.programmingLanguage = programmingLanguage;
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
     }
 
-    public String getStatus() {
-        return status;
+    public int getStatusID() {
+        return statusID;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatusID(int statusID) {
+        this.statusID = statusID;
     }
 
-    public int getId() {
-        return id;
+    public int getRate() {
+        return rate;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRate(int rate) {
+        this.rate = rate;
     }
-   
+    
+    
+  
 }
