@@ -182,22 +182,23 @@ public class DAO extends DBContext {
         while (rs.next()) {
             int requestId = rs.getInt(1);
             String title = rs.getString(2);
-            Date deadline = rs.getDate(4);
             String content = rs.getString(3);
-            int status = rs.getInt(6);
             List<String> skills = new ArrayList<>();
             boolean requestExists = false;
             for (Request r : list) {
                 if (r.getId() == requestId) {
-                    r.getSkill().add(rs.getString(5));
+                    r.getSkill().add(rs.getString(4));
                     requestExists = true;
                     break;
                 }
             }
-
+            int menteeID = rs.getInt(5);
+            Date deadline = rs.getDate(6);
+            int statusID = rs.getInt(7);
+            int rate = rs.getInt(8);
             if (!requestExists) {
                 skills.add(rs.getString(5));
-                list.add(new Request(requestId, title, deadline, content, skills, rs.getString(6), status));
+                list.add(new Request(requestId, title, content, skills, menteeID, deadline, statusID,rate));
             }
         }
     } catch (Exception e) {
