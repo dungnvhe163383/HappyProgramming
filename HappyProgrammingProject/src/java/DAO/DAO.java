@@ -184,7 +184,7 @@ public class DAO extends DBContext {
             String title = rs.getString(2);
             Date deadline = rs.getDate(4);
             String content = rs.getString(3);
-            String status = rs.getString(6);
+            int status = rs.getInt(6);
             List<String> skills = new ArrayList<>();
             boolean requestExists = false;
             for (Request r : list) {
