@@ -186,23 +186,40 @@ public class DAO extends DBContext {
     }
 
     public List<Request> getRequestByMentee(int id) {
-        List<Request> list = new ArrayList<>();
-        List<Skill> listSkills = new ArrayList<>();
-        query = "select RHM.ID, RHM.Title, RHM.Content, RHM.DeadlineDate\n"
-                + "from RequestHistoryMentee RHM, Mentee M, Request R\n"
-                + "where M.ID = RHM.MenteeID and R.ID = RHM.ID and RHM.MenteeID=1";
-        try {
-            
-            ps = connection.prepareStatement(query);
-            ps.setInt(1, id);
-            rs = ps.executeQuery();
+    List<Request> list = new ArrayList<>();
+    Request request = new Request();
+    query = "select RHM.ID, RHM.Title, RHM.Content, RHM.DeadlineDate, S.Skill\n"
+            + "from RequestHistoryMentee RHM, Mentee M, Request R, RequestSkills RS, Skills S\n"
+            + "where M.ID = RHM.MenteeID and R.ID = RHM.ID and RHM.ID = RS.RequestID and RS.SkillID = S.ID and RHM.MenteeID=?";
+    try {
+        ps = connection.prepareStatement(query);
+        ps.setInt(1, id);
+        rs = ps.executeQuery();
 
-            while (rs.next()) {
-                list.add(new Request(rs.getString(1), rs.getDate(2), rs.getString(3), rs.getList(), rs.getString(5), rs.getString(6)));
+        while (rs.next()) {
+            int requestId = rs.getInt(1);
+            String title = rs.getString(2);
+            Date deadline = rs.getDate(4);
+            String content = rs.getString(3);
+            String status = rs.getString(6);
+            List<String> skills = new ArrayList<>();
+            boolean requestExists = false;
+            for (Request r : list) {
+                if (r.getId() == requestId) {
+                    r.getSkill().add(rs.getString(5));
+                    requestExists = true;
+                    break;
+                }
             }
-        } catch (Exception e) {
+
+            if (!requestExists) {
+                skills.add(rs.getString(5));
+                list.add(new Request(requestId, title, deadline, content, skills, rs.getString(6), status));
+            }
         }
-        return list;
+    } catch (Exception e) {
+    }
+    return list;
     }
     
     public static void main(String[] args) {

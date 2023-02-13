@@ -31,7 +31,7 @@ public class SearchControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");//để search có thể hiểu cả tiếng việt
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             String idString = request.getParameter("id");
             int id = Integer.parseInt(idString);
             DAO dao = new DAO();

@@ -9,6 +9,7 @@ import java.util.List;
  * @author fpt shop
  */
 public class Request {
+    private int id;
     private String tille;
     private Date deadline;
     private String content;
@@ -19,7 +20,8 @@ public class Request {
     public Request() {
     }
 
-    public Request(String tille, Date deadline, String content, List<String> skill, String programmingLanguage, String status) {
+    public Request(int id, String tille, Date deadline, String content, List<String> skill, String programmingLanguage, String status) {
+        this.id=id;
         this.tille = tille;
         this.deadline = deadline;
         this.content = content;
@@ -75,6 +77,13 @@ public class Request {
     public void setStatus(String status) {
         this.status = status;
     }
-    
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+   
 }

@@ -71,8 +71,6 @@ deadline date,
 statusID int foreign key references status(id),
 )
 
-
-
 create table rate(
 id int identity(1, 1) primary key,
 requestID int foreign key references request(id),
