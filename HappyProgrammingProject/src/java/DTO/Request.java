@@ -17,6 +17,11 @@ public class Request {
     private int statusID;
     private int rate;
 
+    public Request() {
+    }
+    
+    
+
     public Request(int id, String tille, String content, int menteeID, Date deadline, int statusID, int rate) {
         this.id = id;
         this.tille = tille;

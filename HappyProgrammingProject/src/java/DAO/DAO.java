@@ -6,7 +6,6 @@ package DAO;
 
 import ConnectDB.DBContext;
 import DTO.Account;
-import DTO.Framework;
 import DTO.Mentee;
 import DTO.Mentor;
 import DTO.Role;
@@ -31,7 +30,7 @@ public class DAO extends DBContext {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDate(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11)));
+                list.add(new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11),rs.getString(12),rs.getInt(13)));
             }
         } catch (Exception e) {
         }
@@ -47,7 +46,7 @@ public class DAO extends DBContext {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                mentor = new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDate(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11));
+                mentor = new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11),rs.getString(12),rs.getInt(13));
             }
         } catch (Exception e) {
         }
@@ -87,20 +86,6 @@ public class DAO extends DBContext {
         return null;
     }
 
-    public List<Framework> getFramework(int id) {
-        List<Framework> list = new ArrayList<>();
-        query = "select framework.ID,framework.framework from Mentor,Framework,MentorFramework where Mentor.ID=MentorFramework.MentorID and MentorFramework.FrameworkID=framework.ID and Mentor.ID=?";
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setInt(1, id);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(new Framework(rs.getInt(1), rs.getString(2)));
-            }
-        } catch (Exception e) {
-        }
-        return list;
-    }
 
     public void updatePassword(String username, String pass, String newpass) {
         query = "update Account set Password=? where Accountname like ? and Password like ?";
