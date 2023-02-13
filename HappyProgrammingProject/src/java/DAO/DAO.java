@@ -24,8 +24,7 @@ public class DAO extends DBContext {
 
     public List<Mentor> getAllMentor() {
         List<Mentor> list = new ArrayList<>();
-        query = "select m.ID,m.Email ,m.FullName,c.city,ct.country, m.Phone,m.DateOfBirth,m.Sex,m.ServiceDesc,m.AchievementDesc,m.Avatar from Mentor m,City c,country ct \n"
-                + "where m.CityID=c.ID and c.countryID=ct.ID";
+        query = "select *from mentor";
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
@@ -39,8 +38,7 @@ public class DAO extends DBContext {
 
     public Mentor getMentor(int id) {
         Mentor mentor = null;
-        query = "select m.ID,m.Email ,m.FullName,c.city,ct.country, m.Phone,m.DateOfBirth,m.Sex,m.ServiceDesc,m.AchievementDesc,m.Avatar from Mentor m,City c,country ct \n"
-                + "where m.CityID=c.ID and c.countryID=ct.ID and m.ID=?";
+        query = " select * from mentor where  id=?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, id);
