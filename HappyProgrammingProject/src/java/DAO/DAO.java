@@ -29,7 +29,7 @@ public class DAO extends DBContext {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11),rs.getString(12),rs.getInt(13)));
+                list.add(new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getInt(13)));
             }
         } catch (Exception e) {
         }
@@ -44,7 +44,7 @@ public class DAO extends DBContext {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                mentor = new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11),rs.getString(12),rs.getInt(13));
+                mentor = new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getInt(13));
             }
         } catch (Exception e) {
         }
@@ -83,7 +83,6 @@ public class DAO extends DBContext {
         }
         return null;
     }
-
 
     public void updatePassword(String username, String pass, String newpass) {
         query = "update Account set Password=? where Accountname like ? and Password like ?";
@@ -169,43 +168,42 @@ public class DAO extends DBContext {
     }
 
     public List<Request> getRequestByMentee(int id) {
-    List<Request> list = new ArrayList<>();
-    Request request = new Request();
-    query = "select RHM.ID, RHM.Title, RHM.Content, RHM.DeadlineDate, S.Skill\n"
-            + "from RequestHistoryMentee RHM, Mentee M, Request R, RequestSkills RS, Skills S\n"
-            + "where M.ID = RHM.MenteeID and R.ID = RHM.ID and RHM.ID = RS.RequestID and RS.SkillID = S.ID and RHM.MenteeID=?";
-    try {
-        ps = connection.prepareStatement(query);
-        ps.setInt(1, id);
-        rs = ps.executeQuery();
+        List<Request> list = new ArrayList<>();
+        query = "select hrm.id , hrm.title, hrm.content, hrm.deadline, r.statusID\n"
+                + "from historyMenteeRequest hrm, request r, mentee me, status st\n"
+                + "where hrm.id = r.id and hrm.menteeID = me.id and st.ID = r.statusID and me.id = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
 
-        while (rs.next()) {
-            int requestId = rs.getInt(1);
-            String title = rs.getString(2);
-            String content = rs.getString(3);
-            List<String> skills = new ArrayList<>();
-            boolean requestExists = false;
-            for (Request r : list) {
-                if (r.getId() == requestId) {
-                    r.getSkill().add(rs.getString(4));
-                    requestExists = true;
-                    break;
+            while (rs.next()) {
+                int requestId = rs.getInt(1);
+                String title = rs.getString(2);
+                String content = rs.getString(3);
+                List<String> skills = new ArrayList<>();
+                boolean requestExists = false;
+                for (Request r : list) {
+                    if (r.getId() == requestId) {
+                        r.getSkill().add(rs.getString(4));
+                        requestExists = true;
+                        break;
+                    }
+                }
+                int menteeID = rs.getInt(5);
+                Date deadline = rs.getDate(6);
+                int statusID = rs.getInt(7);
+                int rate = rs.getInt(8);
+                if (!requestExists) {
+                    skills.add(rs.getString(5));
+                    list.add(new Request(requestId, title, content, skills, menteeID, deadline, statusID, rate));
                 }
             }
-            int menteeID = rs.getInt(5);
-            Date deadline = rs.getDate(6);
-            int statusID = rs.getInt(7);
-            int rate = rs.getInt(8);
-            if (!requestExists) {
-                skills.add(rs.getString(5));
-                list.add(new Request(requestId, title, content, skills, menteeID, deadline, statusID,rate));
-            }
+        } catch (Exception e) {
         }
-    } catch (Exception e) {
+        return list;
     }
-    return list;
-    }
-    
+
     public static void main(String[] args) {
         Mentee m = new DAO().getMenteeById(1);
         System.out.println(m);
