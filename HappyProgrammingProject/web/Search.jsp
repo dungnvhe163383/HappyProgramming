@@ -32,12 +32,8 @@
               <select data-trigger="" name="choices-single-defaul">
                 <option placeholder="">Category</option>
                 <option>ID</option>
-                <option></option>
-                <option>Ladies</option>
-                <option>Men</option>
-                <option>Clothing</option>
-                <option>Footwear</option>
-                <option>Accessories</option>
+                <option>Name</option>
+                <option>Request</option>
               </select>
             </div>
           </div>
@@ -63,5 +59,17 @@
       });
 
     </script>
-  </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
-</html>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+        <script src="assets/vendor/aos/aos.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+        <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+        <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+        <script src="assets/vendor/php-email-form/validate.js"></script>
+
+        <!-- Template Main JS File -->
+        <script src="assets/js/main.js"></script>
+         </body>
+     </html>
+  
