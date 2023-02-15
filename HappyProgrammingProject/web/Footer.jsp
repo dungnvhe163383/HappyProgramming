@@ -5,12 +5,13 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-         <meta content="" name="description">
+        <meta content="" name="description">
         <meta content="" name="keywords">
 
 
@@ -31,67 +32,69 @@
     </head>
     <body>
         <!-- ======= Footer ======= -->
-  <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+        <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
 
-    <div class="footer-newsletter">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6">
-            <h4>Search Mentor</h4>
-            <p>Find your Mentor you want</p>
-          </div>
-          <div class="col-lg-6">
-            <form action="Search mentor" method="post">
-              <input type="name" name="name"><input type="submit" value="Subscribe">
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="HomePage.jsp">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="ViewAllMentor">Mentor</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="SignIn.jsp">Sign In</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="SignUp">Sign Up</a></li>
-            </ul>
-          </div>
-
-
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h4>Contact Us</h4>
-            <p>
-              Thach Hoa, Thach That <br>
-              Ha Noi<br>
-              Viet Nam <br><br>
-              <strong>Phone:</strong> 0367897478<br>
-              <strong>Email:</strong> HappyProgramming@gmail.com<br>
-            </p>
-
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-info">
-            <h3>About Happy Programming</h3>
-            <p>This project is aimed at developing an online Happy Programming system which mainly to allow
-mentors, mentees and other actorsto connect online and support mentee to learn programming.</p>
-            <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            <div class="footer-newsletter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h4>Search Mentor</h4>
+                            <p>Find your Mentor you want</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <form action="Search mentor" method="post">
+                                <input type="name" name="name"><input type="submit" value="Subscribe">
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
 
-        </div>
-      </div>
-    </div>
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
 
-  </footer><!-- End Footer -->
+                        <div class="col-lg-3 col-md-6 footer-links">
+                            <h4>Useful Links</h4>
+                            <ul>
+                                <li><i class="bx bx-chevron-right"></i> <a href="HomePage.jsp">Home</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <a href="ViewAllMentor">Mentor</a></li>
+                                    <c:if test="${sessionScope.account == null}">
+                                    <li><i class="bx bx-chevron-right"></i> <a href="SignIn.jsp">Sign In</a></li>
+                                    <li><i class="bx bx-chevron-right"></i> <a href="SignUp">Sign Up</a></li>
+                                    </c:if>
+                            </ul>
+                        </div>
+
+
+                        <div class="col-lg-3 col-md-6 footer-contact">
+                            <h4>Contact Us</h4>
+                            <p>
+                                Thach Hoa, Thach That <br>
+                                Ha Noi<br>
+                                Viet Nam <br><br>
+                                <strong>Phone:</strong> 0367897478<br>
+                                <strong>Email:</strong> HappyProgramming@gmail.com<br>
+                            </p>
+
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 footer-info">
+                            <h3>About Happy Programming</h3>
+                            <p>This project is aimed at developing an online Happy Programming system which mainly to allow
+                                mentors, mentees and other actorsto connect online and support mentee to learn programming.</p>
+                            <div class="social-links mt-3">
+                                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </footer><!-- End Footer -->
     </body>
 </html>

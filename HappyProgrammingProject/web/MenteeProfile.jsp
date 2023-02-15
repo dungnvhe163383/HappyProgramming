@@ -74,7 +74,7 @@
                 </div>
             </section><!-- End Portfolio Details Section -->
 
-
+            <jsp:include page="Footer.jsp"></jsp:include>
 
         <!-- Vendor JS Files -->
         <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
