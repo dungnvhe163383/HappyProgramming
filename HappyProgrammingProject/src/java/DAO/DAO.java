@@ -69,7 +69,7 @@ public class DAO extends DBContext {
     }
 
     public Account checkLogin(String username, String password) {
-        query = "select * from Account WHERE AccountName = ? AND Password = ? ";
+        query = "select * from Account WHERE username = ? AND password = ? ";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, username);
@@ -203,6 +203,8 @@ public class DAO extends DBContext {
         }
         return list;
     }
+    
+    
 
     public static void main(String[] args) {
         Mentee m = new DAO().getMenteeById(1);

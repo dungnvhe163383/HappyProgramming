@@ -34,6 +34,9 @@
                 <option>ID</option>
                 <option>Name</option>
                 <option>Request</option>
+                <div class="portfolio-info">
+                                    <h3><a href="SearchControlller?mentorid=${o.id}">${o.name}</a></h3>
+                </div>
               </select>
             </div>
           </div>
