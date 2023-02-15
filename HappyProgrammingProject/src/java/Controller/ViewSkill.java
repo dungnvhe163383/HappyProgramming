@@ -33,7 +33,6 @@ public class ViewSkill extends HttpServlet {
     protected static void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
         String id=request.getParameter("mentorid");
         int mentorid=Integer.parseInt(id);
         PrintWriter pr = response.getWriter();
@@ -43,7 +42,6 @@ public class ViewSkill extends HttpServlet {
         request.setAttribute("listSkill", list);
         request.setAttribute("Mentor", m);
         request.getRequestDispatcher("ViewSkill.jsp").forward(request, response);
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -75,14 +73,5 @@ public class ViewSkill extends HttpServlet {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

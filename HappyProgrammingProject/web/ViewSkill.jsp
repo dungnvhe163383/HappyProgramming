@@ -71,7 +71,7 @@
 
                         <div class="col-lg-4">
                             <div class="portfolio-info">
-                                <h3>${Mentor.fullname}</h3>
+                                <h3>${Mentor.name}</h3>
                                 <ul>
                                    <c:forEach items="${listSkill}" var="o">
                                         <li><strong>Skill</strong>: ${o.name}</li>                                   
