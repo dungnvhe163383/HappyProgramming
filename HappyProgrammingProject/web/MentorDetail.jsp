@@ -34,31 +34,31 @@
     <body>
         <jsp:include page="header.jsp"></jsp:include>
 
-        <main id="main">
+            <main id="main">
 
-            <!-- ======= Our Portfolio Section ======= -->
-            <section class="breadcrumbs">
-                <div class="container">
+                <!-- ======= Our Portfolio Section ======= -->
+                <section class="breadcrumbs">
+                    <div class="container">
 
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h2>Mentor Details</h2>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2>Mentor Details</h2>
+                        </div>
+
                     </div>
+                </section><!-- End Our Portfolio Section -->
 
-                </div>
-            </section><!-- End Our Portfolio Section -->
+                <!-- ======= Portfolio Details Section ======= -->
+                <section id="portfolio-details" class="portfolio-details">
+                    <div class="container">
 
-            <!-- ======= Portfolio Details Section ======= -->
-            <section id="portfolio-details" class="portfolio-details">
-                <div class="container">
+                        <div class="row gy-4">
 
-                    <div class="row gy-4">
+                            <div class="col-lg-8">
+                                <div class="portfolio-details-slider swiper">
+                                    <div class="swiper-wrapper align-items-center">
 
-                        <div class="col-lg-8">
-                            <div class="portfolio-details-slider swiper">
-                                <div class="swiper-wrapper align-items-center">
-
-                                    <div class="swiper-slide">
-                                        <img src="assets/img/${Mentor.avatar}" alt="">
+                                        <div class="swiper-slide">
+                                            <img src="assets/img/${Mentor.avatar}" alt="">
                                     </div>
 
                                     <div class="swiper-slide">
@@ -85,9 +85,9 @@
                                 </ul>
                             </div>
                             <div class="portfolio-description">
-                                <h2>You can see My Skill and Framework </h2>
+                                <h2>You can see My Skill</h2>
                                 <a href="ViewSkill?mentorid=${Mentor.id}"">MY SKILL</a></br>
-                                <a href="ViewFramework?mentorid=${Mentor.id}">MY Framework</a>
+
                                 <p>I hope we will have lively discussions after you choose me as your mentor. Thank you very much </p>
                             </div>
                         </div>
