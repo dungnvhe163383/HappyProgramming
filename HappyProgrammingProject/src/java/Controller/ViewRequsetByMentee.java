@@ -33,7 +33,6 @@ public class ViewRequsetByMentee extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
         String id=request.getParameter("menteeid");
         int menteeid=Integer.parseInt(id);
         PrintWriter pr = response.getWriter();
@@ -42,8 +41,7 @@ public class ViewRequsetByMentee extends HttpServlet {
         List<Request> list = dao.getRequestByMentee(menteeid);
         request.setAttribute("listRequest", list);
         request.setAttribute("Mentee", mt);
-        request.getRequestDispatcher("ViewRequsetByMentee.jsp").forward(request, response);
-        }
+        request.getRequestDispatcher("ViewRequestByMentee.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
