@@ -145,13 +145,7 @@ public class DAO extends DBContext {
     }
 
     public Mentee getMenteeById(int id) {
-        query = "Select Mentee.ID, Mentee.Email, Mentee.FullName ,City.city +', '+ country.country as [address], Mentee.Phone, Mentee.DateOfBirth,\n"
-                + "Mentee.Sex, Mentee.Avatar\n"
-                + "from Mentee Left outer join City\n"
-                + "on Mentee.ID = City.ID \n"
-                + "Left outer Join country \n"
-                + "on City.countryID = country.ID \n"
-                + "Where Mentee.ID = ?";
+        query = "select * from mentee where  id= ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, id);

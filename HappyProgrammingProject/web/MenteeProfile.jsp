@@ -51,12 +51,12 @@
                             </div>
                             
                             <div class="portfolio-info">
-                                <h3>${mentee.fullname}</h3>
+                                <h3>${mentee.name}</h3>
                                 <ul>
                                     <li><strong>Email</strong>: ${mentee.email}</li>
                                     <li><strong>Address</strong>: ${mentee.address}</li>
                                     <li><strong>Phone</strong>: ${mentee.phone}</li>
-                                    <li><strong>Birthday</strong>: ${mentee.dob}</li>
+                                    <li><strong>Birthday</strong>: ${mentee.birthday}</li>
                                     <li><strong>Gender</strong>: ${mentee.sex}</li>
                                 </ul>
                             </div>
