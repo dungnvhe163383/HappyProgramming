@@ -6,6 +6,7 @@ package DAO;
 
 import ConnectDB.DBContext;
 import DTO.Account;
+import DTO.Invite;
 import DTO.Mentee;
 import DTO.Mentor;
 import DTO.Role;
@@ -196,6 +197,29 @@ public class DAO extends DBContext {
         } catch (Exception e) {
         }
         return list;
+    }
+    
+    public List<Invite> getInvite(){
+        List<Invite> list = new ArrayList<>();
+        query = "select ir.ReqID , ir.MentorID ,m.name, r.title, r.content, ir.statusID\n" +
+                "from request r, mentee m, inviteRequest ir, status s\n" +
+                "where ir.ReqID = r.id and r.menteeID = m.id and ir.statusID=s.ID and m.id =?";
+        try{
+            ps =  connection.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                int reqID = rs.getInt(1);
+                int mentorID = rs.getInt(2);
+                String mentorName = rs.getString(3);
+                String title = rs.getString(4);
+                String content = rs.getString(5);
+                int statusID = rs.getInt(6);
+                Invite invite = new Invite(reqID, mentorID, mentorName, title, content, statusID);
+                list.add(invite);
+            }
+        }catch(Exception e){
+        }
+           return list;         
     }
     
     
