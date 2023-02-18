@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class Request {
     private int id;
-    private String title;
+    private String tille;
     private String content;
     private List<String> skill;
     private int menteeID;
@@ -22,9 +22,9 @@ public class Request {
     public Request() {
     }
 
-    public Request(int id, String title, String content, List<String> skill, int menteeID, Date deadline, int statusID, int rate) {
+    public Request(int id, String tille, String content, List<String> skill, int menteeID, Date deadline, int statusID, int rate) {
         this.id = id;
-        this.title = title;
+        this.tille = tille;
         this.content = content;
         this.skill = skill;
         this.menteeID = menteeID;
@@ -41,12 +41,12 @@ public class Request {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTille() {
+        return tille;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTille(String tille) {
+        this.tille = tille;
     }
 
     public String getContent() {

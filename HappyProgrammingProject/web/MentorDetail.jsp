@@ -87,6 +87,7 @@
                             <div class="portfolio-description">
                                 <h2>You can see My Skill</h2>
                                 <a href="ViewSkill?mentorid=${Mentor.id}"">MY SKILL</a></br>
+                                <button class="btn btn-primary"><a style="color: white; text-decoration: none" href="HireForm">HIRE ME</a></button>
 
                                 <p>I hope we will have lively discussions after you choose me as your mentor. Thank you very much </p>
                             </div>

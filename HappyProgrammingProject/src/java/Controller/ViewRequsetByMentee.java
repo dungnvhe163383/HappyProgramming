@@ -30,18 +30,19 @@ public class ViewRequsetByMentee extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected static void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         response.setContentType("text/html;charset=UTF-8");
-        String id=request.getParameter("menteeid");
-        int menteeid=Integer.parseInt(id);
+        response.setContentType("text/html;charset=UTF-8");
+        String id = request.getParameter("menteeid");
+        int menteeid= Integer.parseInt(id);
         PrintWriter pr = response.getWriter();
         DAO dao= new DAO();
         Mentee mt = dao.getMenteeById(menteeid);
         List<Request> list = dao.getRequestByMentee(menteeid);
         request.setAttribute("listRequest", list);
         request.setAttribute("Mentee", mt);
-        request.getRequestDispatcher("ViewRequestByMentee.jsp").forward(request, response);
+        request.getRequestDispatcher("ViewRequsetByMentee.jsp").forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,15 +73,5 @@ public class ViewRequsetByMentee extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

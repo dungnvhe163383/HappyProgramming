@@ -6,12 +6,12 @@ package DAO;
 
 import ConnectDB.DBContext;
 import DTO.Account;
-import DTO.Invite;
 import DTO.Mentee;
 import DTO.Mentor;
 import DTO.Role;
 import DTO.Skill;
 import DTO.Request;
+import DTO.Hire;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -198,31 +198,31 @@ public class DAO extends DBContext {
         }
         return list;
     }
-    
-    public List<Invite> getInvite(){
-        List<Invite> list = new ArrayList<>();
-        query = "select ir.ReqID , ir.MentorID ,m.name, r.title, r.content, ir.statusID\n" +
-                "from request r, mentee m, inviteRequest ir, status s\n" +
-                "where ir.ReqID = r.id and r.menteeID = m.id and ir.statusID=s.ID and m.id =?";
-        try{
-            ps =  connection.prepareStatement(query);
+    public List<Hire> getHire(){
+        List<Hire> hireList = new ArrayList<>();
+        query = "select * from hire";
+        try {
+            ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
-            while (rs.next()){
-                int reqID = rs.getInt(1);
-                int mentorID = rs.getInt(2);
-                String mentorName = rs.getString(3);
-                String title = rs.getString(4);
-                String content = rs.getString(5);
-                int statusID = rs.getInt(6);
-                Invite invite = new Invite(reqID, mentorID, mentorName, title, content, statusID);
-                list.add(invite);
+            while(rs.next()){
+                hireList.add(new Hire(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4)));
             }
-        }catch(Exception e){
+        } catch (Exception e) {
         }
-           return list;         
+        return hireList;
     }
-    
-    
+     public void InsertHire(int mentorID, int menteeID, String content ,int statusID) {
+        query = "insert into Hire values (?,?,?,?)";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, mentorID);
+            ps.setInt(2, menteeID);
+            ps.setString(3, content);
+            ps.setInt(4, statusID);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 
     public static void main(String[] args) {
         Mentee m = new DAO().getMenteeById(1);

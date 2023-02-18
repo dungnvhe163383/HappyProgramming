@@ -5,21 +5,25 @@
 package Controller;
 
 import DAO.DAO;
+import DTO.Account;
+import DTO.Mentee;
 import DTO.Mentor;
-import DTO.Skill;
+import DTO.Hire;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
- * @author okanh
+ * @author ASUS
  */
-public class ViewSkill extends HttpServlet {
+@WebServlet(name = "HireController", urlPatterns = {"/HireController"})
+public class CreateHireController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,18 +34,21 @@ public class ViewSkill extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected static void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id=request.getParameter("mentorid");
-        int mentorid=Integer.parseInt(id);
-        PrintWriter pr = response.getWriter();
-        DAO dao= new DAO();
-            Mentor m = dao.getMentor(mentorid);
-        List<Skill> list = dao.getSkillByMentorID(mentorid);
-        request.setAttribute("listSkill", list);
-        request.setAttribute("Mentor", m);
-        request.getRequestDispatcher("ViewSkill.jsp").forward(request, response);
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet HireController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet HireController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -56,7 +63,7 @@ public class ViewSkill extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       request.getRequestDispatcher("HireForm.jsp").forward(request, response);
     }
 
     /**
@@ -70,8 +77,25 @@ public class ViewSkill extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       HttpSession session = request.getSession();
+        DAO dao = new DAO();
+        Account ac = (Account) session.getAttribute("active");
+        int menteeID = ac.getId();
+        Mentor m = (Mentor) session.getAttribute("m");
+        int mentorID = m.getId();
+        String content = request.getParameter("content");
+        dao.InsertHire(mentorID, menteeID, content, 2);
+        response.sendRedirect("mentee");
     }
 
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
 }

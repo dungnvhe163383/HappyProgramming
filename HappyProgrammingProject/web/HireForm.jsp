@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ViewRequestByMentee
-    Created on : Feb 11, 2023, 5:57:25 PM
+    Document   : HireForm
+    Created on : Feb 18, 2023, 8:53:20 PM
     Author     : ASUS
 --%>
 
@@ -9,6 +9,7 @@
 <html>
     <head>
          <meta charset="utf-8">
+         <title>Hire information</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
 
@@ -28,28 +29,17 @@
         <link href="assets/css/style.css" rel="stylesheet">
     </head>
     <body>
-        <jsp:include page="header.jsp"></jsp:include>
-        <main id="main">
-        <h1>Requests</h1>
-        <table>
-            <thead>
-                <tr>
-                    <td>title</td>
-                    <td>content</td>
-                    <td>deadline</td>
-                    <td>status</td>
-                </tr>
-            </thead>
-             <c:forEach items="${listRequest}" var="o">
-                 <th scope="now">${o.id}</th>
-                 <td>${o.title}</td>
-                 <td>${o.content}</td>
-                 <td>${o.deadline}</td>
-                 <td>${o.status}</td>
-                 </c:forEach>
-        </table>
-        </main>
-                 <jsp:include page="Footer.jsp"></jsp:include>
+          <form class="" action="HireForm" >
+        
+             <div class="form-group">
+                 <label for="content">Content:</label>
+                 <textarea class="form-control" row ="3" name="content"></textarea>
+             </div>
+             <button type="submit" class ="btn btn-primary">Hire</button>
+             <button type="reset" class ="btn btn-primary">Cancel</button>
+         
+          </form>
+        <jsp:include page="Footer.jsp"></jsp:include>
 
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
