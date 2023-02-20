@@ -65,7 +65,7 @@ public class CreateHireController extends HttpServlet {
             throws ServletException, IOException {
        request.getRequestDispatcher("HireForm.jsp").forward(request, response);
     }
-
+    
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
