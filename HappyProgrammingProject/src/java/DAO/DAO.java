@@ -12,6 +12,7 @@ import DTO.Role;
 import DTO.Skill;
 import DTO.Request;
 import DTO.Hire;
+import DTO.Status;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
