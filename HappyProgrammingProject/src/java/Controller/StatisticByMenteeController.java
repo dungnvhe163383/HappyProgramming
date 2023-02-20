@@ -8,6 +8,6 @@ package Controller;
  *
  * @author fpt shop
  */
-public class NewClass {
+public class StatisticByMenteeController {
     
 }

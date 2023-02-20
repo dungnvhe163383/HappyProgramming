@@ -44,6 +44,9 @@
                     <ul>
                         <li><a class="" href="HomePage.jsp">Home</a></li>
                         <li><a href="ViewAllMentor">Mentor</a></li>
+                        <c:if test="${sessionScope.account != null}">
+                        <li><a href="CreateRequest.jsp">New Request</a></li>
+                        </c:if>
                         <c:if test="${sessionScope.account == null}">
                         <li><a href="SignIn.jsp">Sign In</a></li>
                         </c:if>
