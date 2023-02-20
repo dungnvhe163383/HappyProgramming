@@ -228,4 +228,17 @@ public class DAO extends DBContext {
         Mentee m = new DAO().getMenteeById(1);
         System.out.println(m);
     }
+    
+    public Request viewRequestDetail(int id){
+        Request request = new Request();
+        query = "select *from Request where id=?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            request=new Request(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getInt(13)));
+        } catch (Exception e) {
+        }
+        return request;
+    }
 }
