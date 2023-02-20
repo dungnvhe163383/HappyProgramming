@@ -223,11 +223,6 @@ public class DAO extends DBContext {
         } catch (Exception e) {
         }
     }
-
-    public static void main(String[] args) {
-        Mentee m = new DAO().getMenteeById(1);
-        System.out.println(m);
-    }
     
     public Request viewRequestDetail(int id){
         Request request = new Request();
