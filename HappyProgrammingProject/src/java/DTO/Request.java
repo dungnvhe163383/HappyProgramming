@@ -13,7 +13,6 @@ public class Request {
     private int id;
     private String tille;
     private String content;
-    private List<String> skill;
     private int menteeID;
     private Date deadline;
     private int statusID;
@@ -22,11 +21,10 @@ public class Request {
     public Request() {
     }
 
-    public Request(int id, String tille, String content, List<String> skill, int menteeID, Date deadline, int statusID, int rate) {
+    public Request(int id, String tille, String content, int menteeID, Date deadline, int statusID, int rate) {
         this.id = id;
         this.tille = tille;
         this.content = content;
-        this.skill = skill;
         this.menteeID = menteeID;
         this.deadline = deadline;
         this.statusID = statusID;
@@ -55,14 +53,6 @@ public class Request {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public List<String> getSkill() {
-        return skill;
-    }
-
-    public void setSkill(List<String> skill) {
-        this.skill = skill;
     }
 
     public int getMenteeID() {
@@ -97,10 +87,4 @@ public class Request {
         this.rate = rate;
     }
     
-    
-
-    
-    
-    
-  
 }
