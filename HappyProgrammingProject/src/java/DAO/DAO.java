@@ -268,4 +268,19 @@ public class DAO extends DBContext {
         }
         return list;
     }
+    public List<Skill> getAllSkill(){
+        List<Skill> list = new ArrayList<>();
+        query = "Select * From skill";
+        try{
+            ps = connection.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                list.add(new Skill(rs.getInt(1),rs.getString(2)));
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        return list;
+    }
 }
