@@ -4,7 +4,7 @@
  */
 package Controller;
 
-import DAO.DAO;
+import DAO.RequestDAO;
 import DTO.Request;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,7 +35,7 @@ public class ViewRequestDetail extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String id= request.getParameter("requestid");
         int requestid= Integer.parseInt(id);
-        DAO dao= new DAO();
+        RequestDAO dao= new RequestDAO();
         Request rs=dao.viewRequestDetail(requestid);
         request.setAttribute("request", rs);
         request.getRequestDispatcher("ViewRequestDetail.jsp").forward(request, response);

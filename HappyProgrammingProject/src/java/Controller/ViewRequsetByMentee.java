@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import DAO.RequestDAO;
 import DAO.DAO;
 import DTO.Mentee;
 import DTO.Request;
@@ -36,9 +37,10 @@ public class ViewRequsetByMentee extends HttpServlet {
         String id = request.getParameter("menteeid");
         int menteeid= Integer.parseInt(id);
         PrintWriter pr = response.getWriter();
-        DAO dao= new DAO();
+        DAO dao = new DAO();
+        RequestDAO Reqdao= new RequestDAO();
         Mentee mt = dao.getMenteeById(menteeid);
-        List<Request> list = dao.getRequestByMentee(menteeid);
+        List<Request> list = Reqdao.getRequestByMentee(menteeid);
         request.setAttribute("listRequest", list);
         request.setAttribute("Mentee", mt);
         request.getRequestDispatcher("ViewRequsetByMentee.jsp").forward(request, response);
