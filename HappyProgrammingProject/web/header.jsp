@@ -67,10 +67,7 @@
                                 </c:if>
                                 <c:if test="${sessionScope.account != null}">
                                     <li><a href="signOut">Sign Out</a></li>
-                                </c:if>
-                                <c:if test="${sessionScope.account !=null }">
-                                   <li><a href="Search.jsp">Search</a></li>
-                                </c:if>   
+                                </c:if> 
                             </ul>
                         </li>
                         </c:if>

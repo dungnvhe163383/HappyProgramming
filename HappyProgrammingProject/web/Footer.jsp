@@ -42,10 +42,12 @@
                             <p>Find your Mentor you want</p>
                         </div>
                         <div class="col-lg-6">
+                            <ul>
                             <form action="Search mentor" method="post">
-                                <input type="name" name="name"><input type="submit" value="Subscribe">
+                                <input type="text" name="username" value="${inputMentee}"><a href="Search.jsp">   Search</a></li>
                             </form>
-                        </div>
+                            </ul>    
+                        </div>    
                     </div>
                 </div>
             </div>
@@ -65,7 +67,10 @@
                                     </c:if>
                             </ul>
                         </div>
-
+<%--<div class="form-outline mb-4">
+                                <label class="form-label">Username</label>
+                                <input name="username" type="text" class="form-control form-control-lg" value="${inputUsername}" />   
+                            </div>--%>  
 
                         <div class="col-lg-3 col-md-6 footer-contact">
                             <h4>Contact Us</h4>
