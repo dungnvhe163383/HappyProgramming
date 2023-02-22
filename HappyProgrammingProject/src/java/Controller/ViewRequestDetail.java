@@ -5,7 +5,11 @@
 package Controller;
 
 import DAO.DAO;
+import DAO.RequestDAO;
+import DTO.Mentor;
 import DTO.Request;
+import DTO.Skill;
+import DTO.Status;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,6 +17,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
@@ -36,8 +41,15 @@ public class ViewRequestDetail extends HttpServlet {
         String id= request.getParameter("requestid");
         int requestid= Integer.parseInt(id);
         DAO dao= new DAO();
-        Request rs=dao.viewRequestDetail(requestid);
+        RequestDAO rdao=new RequestDAO();
+        Request rs=rdao.viewRequestDetail(requestid);
+        List<Skill> s=rdao.getSkillOfRequest(requestid);
+        List<Mentor> m=rdao.getMentorOfRequest(requestid);
+        Status sr=rdao.getStatusOfRequest(requestid);        
         request.setAttribute("request", rs);
+        request.setAttribute("skill", s);
+        request.setAttribute("mentor", m);
+        request.setAttribute("status", sr);
         request.getRequestDispatcher("ViewRequestDetail.jsp").forward(request, response);
     }
 
