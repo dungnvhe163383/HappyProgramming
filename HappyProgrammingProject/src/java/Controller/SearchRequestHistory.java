@@ -5,21 +5,22 @@
 package Controller;
 
 import DAO.DAO;
+import DTO.Account;
 import DTO.Request;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  *
- * @author okanh
+ * @author manuh
  */
-@WebServlet(name = "ViewRequestDetail", urlPatterns = {"/ViewRequestDetail"})
-public class ViewRequestDetail extends HttpServlet {
+public class SearchRequestHistory extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,12 +34,18 @@ public class ViewRequestDetail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id= request.getParameter("requestid");
-        int requestid= Integer.parseInt(id);
-        DAO dao= new DAO();
-        Request rs=dao.viewRequestDetail(requestid);
-        request.setAttribute("request", rs);
-        request.getRequestDispatcher("ViewRequestDetail.jsp").forward(request, response);
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet SearchRequestHistory</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet SearchRequestHistory at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -67,7 +74,12 @@ public class ViewRequestDetail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String key = request.getParameter("keyword");
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+        List<Request> list = new DAO().searchHistoryRequest(key,account.getId());
+        request.setAttribute("historyRequestList", list);
+        request.getRequestDispatcher("historyMenteeRequest.jsp").forward(request, response);
     }
 
     /**

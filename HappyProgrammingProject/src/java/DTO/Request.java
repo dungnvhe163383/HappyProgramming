@@ -11,19 +11,30 @@ import java.util.List;
  */
 public class Request {
     private int id;
-    private String tille;
+    private String title;
     private String content;
     private int menteeID;
     private Date deadline;
     private int statusID;
+    private String requestStatus;
     private int rate;
 
     public Request() {
     }
 
-    public Request(int id, String tille, String content, int menteeID, Date deadline, int statusID, int rate) {
+    public Request(int id, String title, String content, int menteeID, Date deadline, String requestStatus) {
         this.id = id;
-        this.tille = tille;
+        this.title = title;
+        this.content = content;
+        this.menteeID = menteeID;
+        this.deadline = deadline;
+        this.requestStatus = requestStatus;
+    }
+
+        
+    public Request(int id, String title, String content, int menteeID, Date deadline, int statusID, int rate) {
+        this.id = id;
+        this.title = title;
         this.content = content;
         this.menteeID = menteeID;
         this.deadline = deadline;
@@ -39,12 +50,12 @@ public class Request {
         this.id = id;
     }
 
-    public String getTille() {
-        return tille;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTille(String tille) {
-        this.tille = tille;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
@@ -85,6 +96,14 @@ public class Request {
 
     public void setRate(int rate) {
         this.rate = rate;
+    }
+
+    public String getRequestStatus() {
+        return requestStatus;
+    }
+
+    public void setRequestStatus(String requestStatus) {
+        this.requestStatus = requestStatus;
     }
     
 }

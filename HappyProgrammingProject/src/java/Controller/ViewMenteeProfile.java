@@ -56,7 +56,7 @@ public class ViewMenteeProfile extends HttpServlet {
         Account account = (Account) session.getAttribute("account");
         Mentee mentee = new DAO().getMenteeById(account.getId());
         request.setAttribute("mentee", mentee);
-        request.getRequestDispatcher("MenteeProfile.jsp").forward(request, response);    
+        request.getRequestDispatcher("MenteeProfile.jsp").forward(request, response);   
     }
 
     /**

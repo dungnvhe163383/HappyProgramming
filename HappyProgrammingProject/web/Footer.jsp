@@ -43,15 +43,33 @@
                         </div>
                         <div class="col-lg-6">
                             <ul>
-                            <form action="Search mentor" method="post">
-                                <input type="text" name="username" value="${inputMentee}"><a href="Search.jsp">   Search</a></li>
-                            </form>
+                                <form action="Search mentor" method="post">
+                                    <input type="text" name="username" value="${inputMentee}"><a href="Search.jsp">   Search</a></li>
+                                </form>
                             </ul>    
                         </div>    
                     </div>
                 </div>
             </div>
-
+            <c:if test="${sessionScope.account.roleId == 1}">  
+            <br class="breadcrumb">
+            <div class="footer-newsletter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <h4>Search Request History</h4>
+                            <h6>Input part of title in Request to Search</h6>
+                        </div>
+                        <div class="col-lg-3">
+                            <form action="SearchRequestHistory" method="post">
+                                <input type="text" name="keyword" value=""> <button type="submit" > Search</button>
+                            </form>
+                        </div>    
+                    </div>
+                </div>
+            <br class="breadcrumb">
+            </c:if>
+            </div>
             <div class="footer-top">
                 <div class="container">
                     <div class="row">
@@ -67,10 +85,10 @@
                                     </c:if>
                             </ul>
                         </div>
-<%--<div class="form-outline mb-4">
-                                <label class="form-label">Username</label>
-                                <input name="username" type="text" class="form-control form-control-lg" value="${inputUsername}" />   
-                            </div>--%>  
+                        <%--<div class="form-outline mb-4">
+                                                        <label class="form-label">Username</label>
+                                                        <input name="username" type="text" class="form-control form-control-lg" value="${inputUsername}" />   
+                                                    </div>--%>  
 
                         <div class="col-lg-3 col-md-6 footer-contact">
                             <h4>Contact Us</h4>

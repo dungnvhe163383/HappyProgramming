@@ -4,7 +4,7 @@
  */
 package Controller;
 
-import DAO.RequestDAO;
+import DAO.DAO;
 import DTO.Request;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -34,7 +34,7 @@ public class SearchControl extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String idString = request.getParameter("id");
             int id = Integer.parseInt(idString);
-            RequestDAO dao = new RequestDAO();
+            DAO dao = new DAO();
             List<Request> list = dao.getRequestByMentee(id);//search request của me theo id
             request.setAttribute("listP", list);
             request.setAttribute("txts", idString);

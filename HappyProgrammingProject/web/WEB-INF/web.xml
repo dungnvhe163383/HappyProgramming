@@ -68,6 +68,10 @@
         <servlet-name>CreateRequest</servlet-name>
         <servlet-class>Controller.CreateRequest</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchRequestHistory</servlet-name>
+        <servlet-class>Controller.SearchRequestHistory</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Databasecontext</servlet-name>
         <url-pattern>/Databasecontext</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>CreateRequest</servlet-name>
         <url-pattern>/CreateRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchRequestHistory</servlet-name>
+        <url-pattern>/SearchRequestHistory</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
