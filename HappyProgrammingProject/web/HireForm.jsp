@@ -33,7 +33,8 @@
         
              <div class="form-group">
                  <label for="content">Content:</label>
-                 <textarea class="form-control" row ="3" name="content"></textarea>
+                 <textarea class="form-control" row ="5" cols="5" name="content"></textarea>
+                 
              </div>
              <button type="submit" class ="btn btn-primary">Hire</button>
              <button type="reset" class ="btn btn-primary">Cancel</button>

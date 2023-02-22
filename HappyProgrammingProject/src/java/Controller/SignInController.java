@@ -68,6 +68,7 @@ public class SignInController extends HttpServlet {
         String password = request.getParameter("password");
         DAO userDAO = new DAO();
         Account account = userDAO.checkLogin(username, password);
+        
         if (account == null) {
             request.setAttribute("inputUsername", username);
             request.setAttribute("errorMessage", "Tài khoản hoặc mật khẩu không đúng !");

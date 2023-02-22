@@ -165,9 +165,11 @@ public class DAO extends DBContext {
 
     public List<Request> getRequestByMentee(int id) {
         List<Request> list = new ArrayList<>();
-        query = "select hrm.id , hrm.title, hrm.content, hrm.deadline, r.statusID\n"
-                + "from historyMenteeRequest hrm, request r, mentee me, status st\n"
-                + "where hrm.id = r.id and hrm.menteeID = me.id and st.ID = r.statusID and me.id = ?";
+        query = "Select historyMenteeRequest.id, title, content, menteeID, deadline,[status].[Status] "
+                + "from historyMenteeRequest " 
+                + "left outer join [status] "
+                + "on [status].ID = historyMenteeRequest.[status] " 
+                + "where menteeID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, id);

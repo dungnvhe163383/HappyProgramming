@@ -1,16 +1,17 @@
 <%-- 
-    Document   : ViewRequestByMentee
-    Created on : Feb 11, 2023, 5:57:25 PM
-    Author     : ASUS
+    Document   : HomePage
+    Created on : Jan 28, 2023, 5:25:10 PM
+    Author     : okanh
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
-         <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
+        <title>HomePage</title>
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
@@ -27,32 +28,55 @@
         <!-- Template Main CSS File -->
         <link href="assets/css/style.css" rel="stylesheet">
     </head>
-    <body>
+    <body>          
+        <!-- ======= Header ======= -->
         <jsp:include page="header.jsp"></jsp:include>
-        <main id="main">
-        <h1>Requests</h1>
-        <table>
-            <thead>
-                <tr>
-                    <td>title</td>
-                    <td>content</td>
-                    <td>deadline</td>
-                    <td>status</td>
-                </tr>
-            </thead>
-             <c:forEach items="${listRequest}" var="o">
-                 <th scope="now">${o.id}</th>
-                 <td>${o.title}</td>
-                 <td>${o.content}</td>
-                 <td>${o.deadline}</td>
-                 <td>${o.status}</td>
-                 </c:forEach>
-        </table>
+            <main id="main">
+                <section class="h-100" style="background-color: #eee;">
+                    <div class="container py-5 h-100">
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <h5 class="col-4 mb-3">History Request</h5>
+                                                    <p class="fw-bold text-success col-4 mx-auto"></p>
+                                                </div>
+                                                <hr>
+                                                <table class="table table-striped ">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Title</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <c:forEach items="${historyRequestList}" var="r">
+                                                        <tr>
+                                                            <td>${r.id}</td>
+                                                            <td>${r.title}</td>
+                                                            <td>${r.requestStatus}</td>
+                                                            <td>
+                                                                <a href="ViewRequestDetails=${r.id}"><i class="text-info fw-bold" data-toggle="tooltip" title="ViewDetails">View Request Details</i></a>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
-                 <jsp:include page="Footer.jsp"></jsp:include>
-
-        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
+        <jsp:include page="Footer.jsp"></jsp:include>
         <!-- Vendor JS Files -->
         <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
         <script src="assets/vendor/aos/aos.js"></script>

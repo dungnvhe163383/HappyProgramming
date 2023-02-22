@@ -57,8 +57,8 @@
         <servlet-class>Controller.ViewMenteeProfile</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ViewRequsetByMentee</servlet-name>
-        <servlet-class>Controller.ViewRequsetByMentee</servlet-class>
+        <servlet-name>ViewRequestByMentee</servlet-name>
+        <servlet-class>Controller.ViewRequestByMentee</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreateHireController</servlet-name>
@@ -129,8 +129,8 @@
         <url-pattern>/viewMenteeProfile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ViewRequsetByMentee</servlet-name>
-        <url-pattern>/viewRequsetByMentee</url-pattern>
+        <servlet-name>ViewRequestByMentee</servlet-name>
+        <url-pattern>/viewRequestByMentee</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreateHireController</servlet-name>

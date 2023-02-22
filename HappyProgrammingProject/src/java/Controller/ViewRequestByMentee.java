@@ -5,10 +5,12 @@
 package Controller;
 
 import DAO.DAO;
+import DTO.Account;
 import DTO.Mentee;
+import DTO.Mentor;
 import DTO.Request;
 import java.io.IOException;
-import java.io.PrintWriter;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,7 +21,7 @@ import java.util.List;
  *
  * @author ASUS
  */
-public class ViewRequsetByMentee extends HttpServlet {
+public class ViewRequestByMentee extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,15 +35,16 @@ public class ViewRequsetByMentee extends HttpServlet {
     protected static void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("menteeid");
-        int menteeid= Integer.parseInt(id);
-        PrintWriter pr = response.getWriter();
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+        String id=request.getParameter("menteeid");
+        int menteeid=Integer.parseInt(id);
         DAO dao= new DAO();
-        Mentee mt = dao.getMenteeById(menteeid);
+        Mentee m = dao.getMenteeById(menteeid);
         List<Request> list = dao.getRequestByMentee(menteeid);
-        request.setAttribute("listRequest", list);
-        request.setAttribute("Mentee", mt);
-        request.getRequestDispatcher("ViewRequsetByMentee.jsp").forward(request, response);
+        request.setAttribute("historyRequestList", list);
+        request.setAttribute("mentee", m);
+        request.getRequestDispatcher("ViewRequestByMentee.jsp").forward(request, response);
         
     }
 

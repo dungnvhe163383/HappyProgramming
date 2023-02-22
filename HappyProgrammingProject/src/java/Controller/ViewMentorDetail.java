@@ -52,7 +52,7 @@ public class ViewMentorDetail extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-         String id=request.getParameter("mentorid");
+        String id=request.getParameter("mentorid");
         int mentorid=Integer.parseInt(id);
         DAO dao= new DAO();
         Mentor m = dao.getMentor(mentorid);
