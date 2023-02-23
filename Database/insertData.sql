@@ -9,14 +9,28 @@ insert into Account values ('mentor2', 'mentor', 2);
 insert into Account values ('admin1', 'admin', 3);
 
 
-insert into Mentee values  (1,'Nghe an','manhndhe161791@fpt.edu.vn', 'Nguyen Duy Manh', '0123456789','11-03-2002', 'M', 'avatar3.jpg')
-insert into Mentee values  (2,'Ha Noi', 'longnhhe164030@fpt.edu.vn', 'Nguyen Vu Dung', '0987654321','11-04-2002', 'F', 'avatar4.jpg')
+insert into Mentee values  (1,'manhndhe161791@fpt.edu.vn', '0123456789','11-03-2002', 'M', 'avatar3.jpg')
+insert into Mentee values  (2,'longnhhe164030@fpt.edu.vn', '0987654321','11-04-2002', 'F', 'avatar4.jpg')
 
+insert into Mentor values (3, 'okanhchaphet7@gmail.com', '0887654321','11-05-2002', 'M', 
+'toi la mot nguoi co trach nhiem va muon mang den cho ban nhieu kien thức','tot nghiep dai hoc fpt', 'avatar1.jpg',300);
+insert into Mentor values (4, 'nguyenvudung96@gmail.com', '0887654321','10-05-2002', 'M', 
+'toi la mot nguoi co trach nhiem va muon mang den cho ban nhieu kien thức','tot nghiep dai hoc fpt', 'avatar2.jpg',400);
 
-insert into Mentor values (3,'Ho Chi Minh', 'okanhchaphet7@gmail.com', 'Pham Anh Tuan', '0887654321','11-05-2002', 'M', 
-'toi la mot nguoi co trach nhiem va muon mang den cho ban nhieu kien thức','Developer','toi code phan mem và xay dung ke hoach kinh phat trien phan mem','tot nghiep dai hoc fpt', 'avatar1.jpg',300);
-insert into Mentor values (4,'Ha Noi', 'nguyenvudung96@gmail.com', 'Nguyen Hoang Long', '0887654321','10-05-2002', 'M', 
-'toi la mot nguoi co trach nhiem va muon mang den cho ban nhieu kien thức','Developer','toi code phan mem và xay dung ke hoach kinh phat trien phan mem','tot nghiep dai hoc fpt', 'avatar2.jpg',400);
+insert into [Name] values (1,'Nguyen','Duy Manh')
+insert into [Name] values (2,'Nguyen','Hoang Long')
+insert into [Name] values (3,'Pham','Anh Tuan')
+insert into [Name] values (4,'Nguyen','Vu Dung')
+
+insert into profession values ('Developer','toi code phan mem và xay dung ke hoach kinh phat trien phan mem',3)
+insert into profession values ('Tester','toi kiem thu phan mem',3)
+insert into profession values ('Developer','toi code phan mem và xay dung ke hoach kinh phat trien phan mem',4)
+insert into profession values ('BA','toi thu thap yeu cau khach hang',4)
+
+insert into [address] values (1,'HA NOI')
+insert into [address] values (2,'Thanh Hoa')
+insert into [address] values (3,'HA NOI')
+insert into [address] values (4,'Nghe An')
 
 
 insert into Status values ('must do');--kiểu request ( bắt phải làm hay có thể từ chối)
@@ -42,14 +56,6 @@ insert into Request values ('Teach me R', 'I wanna learn R','02-25-2023', 1);
 insert into Request values ('Teach me PhoneGap', 'I wanna learn PhoneGap','02-25-2023', 2);
 
 
-insert into requestStatus values (9,11)
-insert into requestStatus values (9,2)
-insert into requestStatus values (10,8)
-insert into requestStatus values (10,1)
-insert into requestStatus values (11,11)
-insert into requestStatus values (11,2)
-insert into requestStatus values (12,8)
-insert into requestStatus values (12,1)
 insert into requestStatus values (5,11)
 insert into requestStatus values (5,2)
 insert into requestStatus values (6,8)
@@ -58,26 +64,34 @@ insert into requestStatus values (7,11)
 insert into requestStatus values (7,2)
 insert into requestStatus values (8,8)
 insert into requestStatus values (8,1)
+insert into requestStatus values (1,11)
+insert into requestStatus values (1,2)
+insert into requestStatus values (2,8)
+insert into requestStatus values (2,1)
+insert into requestStatus values (3,11)
+insert into requestStatus values (3,2)
+insert into requestStatus values (4,8)
+insert into requestStatus values (4,1)
 
+insert mentorRequest values (1,3)
+insert mentorRequest values (2,3)
+insert mentorRequest values (3,3)
+insert mentorRequest values (4,3)
 insert mentorRequest values (5,3)
 insert mentorRequest values (6,3)
-insert mentorRequest values (7,3)
-insert mentorRequest values (8,3)
-insert mentorRequest values (9,3)
-insert mentorRequest values (10,3)
-insert mentorRequest values (5,4)
-insert mentorRequest values (6,4)
+insert mentorRequest values (1,4)
+insert mentorRequest values (2,4)
+insert mentorRequest values (3,4)
 insert mentorRequest values (7,4)
-insert mentorRequest values (11,4)
-insert mentorRequest values (12,4)
+insert mentorRequest values (8,4)
 
 
 
-insert into feedback values (10,3,5,'good1')
-insert into feedback values (6,4,5,'good2')
-insert into feedback values (12,4,5,'good3')
-insert into feedback values (6,3,5,'good4')
-insert into feedback values (8,3,5,'good5')
+insert into feedback values (6,3,5,'good1')
+insert into feedback values (2,4,5,'good2')
+insert into feedback values (8,4,5,'good3')
+insert into feedback values (2,3,5,'good4')
+insert into feedback values (4,3,5,'good5')
 
 
 
@@ -87,15 +101,15 @@ insert into Skill values('C++')
 insert into Skill values('C#')
 
 
-insert into requestSkill values(1,5)
-insert into requestSkill values(2,12)
-insert into requestSkill values(3,6)
-insert into requestSkill values(4,6)
-insert into requestSkill values(4,7)
-insert into requestSkill values(3,8)
-insert into requestSkill values(2,9)
-insert into requestSkill values(1,10)
-insert into requestSkill values(3,11)
+insert into requestSkill values(1,1)
+insert into requestSkill values(2,8)
+insert into requestSkill values(3,2)
+insert into requestSkill values(4,2)
+insert into requestSkill values(4,3)
+insert into requestSkill values(3,4)
+insert into requestSkill values(2,5)
+insert into requestSkill values(1,6)
+insert into requestSkill values(3,7)
 
 insert into historyRequest values('want to know javax', 'I wanna learn javax','02-13-2023',1,11)
 insert into historyRequest values('want to know css', 'I wanna learn css','02-25-2023',2,8)
@@ -120,8 +134,8 @@ insert into mentorSkill values(2,4)
 insert into following values (4,2,7)
 
 
-insert into answerRequest values ('join A link to know ',10,3)
-insert into answerRequest values ('join B link to know ',6,4)
-insert into answerRequest values ('join C link to know ',12,4)
-insert into answerRequest values ('join D link to know ',6,3)
-insert into answerRequest values ('join E link to know ',8,3)
+insert into answerRequest values ('join A link to know ',5,3)
+insert into answerRequest values ('join B link to know ',2,4)
+insert into answerRequest values ('join C link to know ',8,4)
+insert into answerRequest values ('join D link to know ',2,3)
+insert into answerRequest values ('join E link to know ',4,3)

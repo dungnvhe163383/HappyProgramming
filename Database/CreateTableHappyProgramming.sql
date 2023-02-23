@@ -22,15 +22,28 @@ create table account (
 
 create table mentee (
 	id int foreign key references account(id) primary key,
-	[address] nvarchar(250),
 	email nvarchar(250),
-	[name] nvarchar(250) ,
 	phone nvarchar(250),
 	birthday Date ,
 	sex nvarchar(250) ,
 	avatar nvarchar(250)
 )
 
+
+
+---------------------------------------------- Table Mentor -------------------------------
+-- 1 bảng tách họ, tên đệm, tên
+create table mentor(
+	id int foreign key references Account(ID) primary key,
+	email nvarchar(250) unique,
+	phone nvarchar(250) ,
+	birthday Date ,
+	sex nvarchar(250) ,
+	introduce nvarchar(250),
+	achievement nvarchar(250),
+	avatar nvarchar(250),
+	costHire int
+)
 
 ---------------------------------------------image-------------------------------------------
 create table [Image](
@@ -39,22 +52,23 @@ create table [Image](
 	[image] nvarchar(250),
 )
 
----------------------------------------------- Table Mentor -------------------------------
--- 1 bảng tách họ, tên đệm, tên
-create table mentor(
+create table [Name](
 	id int foreign key references Account(ID) primary key,
-	[address] nvarchar(250),
-	email nvarchar(250) unique,
-	[name] nvarchar(250) ,
-	phone nvarchar(250) ,
-	birthday Date ,
-	sex nvarchar(250) ,
-	introduce nvarchar(250),
+	firstName nvarchar(250),
+	lastName nvarchar(250),
+)
+
+
+create table profession(
+	id int identity(1,1) primary key,
 	profession nvarchar(250),
 	professionIntroduce nvarchar(250),
-	achievement nvarchar(250),
-	avatar nvarchar(250),
-	costHire int
+	mentorid int foreign key references mentor(id)
+)
+
+create table [address](
+	id int foreign key references Account(id) primary key,
+	[address] nvarchar(250)
 )
 ---------------------------------------------- Table Status -------------------------------
 
