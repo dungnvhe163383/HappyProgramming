@@ -5,14 +5,7 @@
 package DAO;
 
 import ConnectDB.DBContext;
-import DTO.Account;
-import DTO.Mentee;
-import DTO.Mentor;
-import DTO.Role;
-import DTO.Skill;
-import DTO.Request;
-import DTO.Hire;
-import DTO.Status;
+import DTO.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -147,15 +140,21 @@ public class DAO extends DBContext {
     }
 
     public Mentee getMenteeById(int id) {
-        query = "select * from mentee where  id= ?";
+        query = "select mentee.id ,[Name].firstName, [Name].lastName, mentee.email, \n"
+                + "dbo.[address].[address], mentee.phone, mentee.birthday, mentee.sex, mentee.avatar "
+                + "from mentee\n"
+                + "Left outer join dbo.[address]\n"
+                + "on mentee.id = dbo.[address].id\n"
+                + "left outer join [Name]\n"
+                + "on mentee.id = [Name].id\n"
+                + "where mentee.id = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, id);
             rs = ps.executeQuery();
             if (rs.next()) {
-                return new Mentee(rs.getInt(1), rs.getString(2),
-                        rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getDate(6), rs.getString(7), rs.getString(8));
+                return new Mentee(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)
+                        , rs.getString(6), rs.getDate(7),rs.getString(8),rs.getString(9));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -166,9 +165,9 @@ public class DAO extends DBContext {
     public List<Request> getRequestByMentee(int id) {
         List<Request> list = new ArrayList<>();
         query = "Select historyMenteeRequest.id, title, content, menteeID, deadline,[status].[Status] "
-                + "from historyMenteeRequest " 
+                + "from historyMenteeRequest "
                 + "left outer join [status] "
-                + "on [status].ID = historyMenteeRequest.[status] " 
+                + "on [status].ID = historyMenteeRequest.[status] "
                 + "where menteeID = ?";
         try {
             ps = connection.prepareStatement(query);
@@ -183,26 +182,28 @@ public class DAO extends DBContext {
                 Date deadline = rs.getDate(5);
                 int statusID = rs.getInt(6);
                 int rate = rs.getInt(7);
-                list.add(new Request(requestId,title,content,menteeID,deadline,statusID,rate));
+                list.add(new Request(requestId, title, content, menteeID, deadline, statusID, rate));
             }
         } catch (Exception e) {
         }
         return list;
     }
-    public List<Hire> getHire(){
+
+    public List<Hire> getHire() {
         List<Hire> hireList = new ArrayList<>();
         query = "select * from hire";
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 hireList.add(new Hire(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4)));
             }
         } catch (Exception e) {
         }
         return hireList;
     }
-     public void InsertHire(int mentorID, int menteeID, String content ,int statusID) {
+
+    public void InsertHire(int mentorID, int menteeID, String content, int statusID) {
         query = "insert into Hire values (?,?,?,?)";
         try {
             ps = connection.prepareStatement(query);
@@ -214,97 +215,76 @@ public class DAO extends DBContext {
         } catch (Exception e) {
         }
     }
-    
-     public Request viewRequestDetail(int id){
+
+    public Request viewRequestDetail(int id) {
         Request request = new Request();
         query = "select *from Request where id=?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, id);
             rs = ps.executeQuery();
-            request=new Request(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5), rs.getInt(6), rs.getInt(7));
+            request = new Request(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5), rs.getInt(6), rs.getInt(7));
         } catch (Exception e) {
         }
         return request;
     }
-    
-    public Status getStatusOfRequest(int id){
+
+    public Status getStatusOfRequest(int id) {
         Status status = new Status();
         query = "select s.Status from request r, status s where r.statusID=s.ID and r.id=?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, id);
             rs = ps.executeQuery();
-            status=new Status(rs.getInt(1), rs.getString(2));
+            status = new Status(rs.getInt(1), rs.getString(2));
         } catch (Exception e) {
         }
         return status;
     }
-    
-    public List<Skill> getSkillOfRequest(int id){
-        List<Skill> list=new ArrayList<>();
-        query="select s.name from skill s,requestskill rs,request r where s.id=rs.skillID and r.id=rs.requestID and r.id=?";
+
+    public List<Skill> getSkillOfRequest(int id) {
+        List<Skill> list = new ArrayList<>();
+        query = "select s.name from skill s,requestskill rs,request r where s.id=rs.skillID and r.id=rs.requestID and r.id=?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, id);
             rs = ps.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 list.add(new Skill(rs.getInt(1), rs.getString(2)));
             }
         } catch (Exception e) {
         }
         return list;
     }
-    
-    public List<Mentor> getMentorOfRequest(int id){
-        List<Mentor> list=new ArrayList<>();
-        query="select m.name from mentor m,mentorRequest ms,request r where m.id=ms.mentorID and r.id=ms.requestID and r.id=?";
+
+    public List<Mentor> getMentorOfRequest(int id) {
+        List<Mentor> list = new ArrayList<>();
+        query = "select m.name from mentor m,mentorRequest ms,request r where m.id=ms.mentorID and r.id=ms.requestID and r.id=?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, id);
             rs = ps.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 list.add(new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getInt(13)));
             }
         } catch (Exception e) {
         }
         return list;
     }
-    public List<Skill> getAllSkill(){
+
+    public List<Skill> getAllSkill() {
         List<Skill> list = new ArrayList<>();
         query = "Select * From skill";
-        try{
+        try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
-            while(rs.next()){
-                list.add(new Skill(rs.getInt(1),rs.getString(2)));
+            while (rs.next()) {
+                list.add(new Skill(rs.getInt(1), rs.getString(2)));
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return list;
     }
-    public List<Request> searchHistoryRequest (String key, int menteeId){
-        List<Request> list = new ArrayList<>();
-        query = "Select historyMenteeRequest.id, title, content, menteeID, deadline,[status].[Status] "
-                + "from historyMenteeRequest " 
-                + "left outer join [status] "
-                + "on [status].ID = historyMenteeRequest.[status] " 
-                + "where menteeID = ? AND title Like ?";
-        try{
-            ps = connection.prepareStatement(query);
-            ps.setInt(1, menteeId);
-            ps.setString(2, "%" + key + "%");
-            rs = ps.executeQuery();
-            while(rs.next()){
-                list.add(new Request(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getDate(5),rs.getString(6)));
-            }
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
-        return list;
-    }
-    
+
 }

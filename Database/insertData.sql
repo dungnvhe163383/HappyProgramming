@@ -27,9 +27,9 @@ insert into profession values ('Tester','toi kiem thu phan mem',3)
 insert into profession values ('Developer','toi code phan mem và xay dung ke hoach kinh phat trien phan mem',4)
 insert into profession values ('BA','toi thu thap yeu cau khach hang',4)
 
-insert into [address] values (1,'HA NOI')
+insert into [address] values (1,'Ha Noi')
 insert into [address] values (2,'Thanh Hoa')
-insert into [address] values (3,'HA NOI')
+insert into [address] values (3,'Ha Noi')
 insert into [address] values (4,'Nghe An')
 
 

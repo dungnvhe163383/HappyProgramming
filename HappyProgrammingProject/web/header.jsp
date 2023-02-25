@@ -59,8 +59,11 @@
                                 <c:if test="${sessionScope.account.roleId == 1}">
                                     <li><a href="viewMenteeProfile">Profile</a></li>
                                 </c:if>
-                                      <c:if test="${sessionScope.account.roleId == 1}">
-                                      <li><a href="viewRequestByMentee?menteeid=${sessionScope.account.id}">Request history</a></li>
+                                <c:if test="${sessionScope.account.roleId == 1}">
+                                    <li><a href="viewRequestByMentee?menteeid=${sessionScope.account.id}">My Request</a></li>
+                                </c:if>
+                                <c:if test="${sessionScope.account.roleId == 1 || sessionScope.account.roleId == 2}">
+                                    <li><a href="RequestHistory?id=${sessionScope.account.id}">Request History</a></li>
                                 </c:if>
                                 <c:if test="${sessionScope.account != null}">
                                     <li><a href="ChangePassword.jsp">Change Password</a></li>

@@ -28,58 +28,61 @@
         <!-- Template Main CSS File -->
         <link href="assets/css/style.css" rel="stylesheet">
     </head>
-    <body>    
-        <jsp:include page="header.jsp"></jsp:include>
-            <!-- ======= Hero Section ======= -->
+    <body>
+
+        <c:if test="${sessionScope.account == null}">
+            <jsp:include page="NotFound.jsp"></jsp:include>
+        </c:if>
+        <c:if test="${sessionScope.account != null}">
+            <jsp:include page="header.jsp"></jsp:include>
+                <!-- ======= Hero Section ======= -->
             <section class="vh-100 mt-5">
                 <div class="container-fluid h-custom">
                     <div class="row d-flex justify-content-start align-items-center h-100">
                         <!-- Login part -->
                         <div class="col-md-6 col-lg-6 col-xl-4 offset-xl-1">
                             <h2 class="text-center text-primary fw-bold">Create New Request</h2>
-
                             <form class="" action="SearchMentorForRequest" method="post">
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label">Request Title</label>
+                                        <input name="requestTitle" type="text" class="form-control form-control-lg" value="${inputUsername}" />   
+                                </div>
 
-                                <div class="form-outline mb-4">
-                                    <label class="form-label">Request Title</label>
-                                    <input name="requestTitle" type="text" class="form-control form-control-lg" value="${inputUsername}" />   
-                            </div>
+                                <div class="form-outline mb-3">
+                                    <label class="form-label">Request Content</label>
+                                    <input name="requestContent" type="text" class="form-control form-control-lg"  value="" />
+                                </div>
 
-                            <div class="form-outline mb-3">
-                                <label class="form-label">Request Content</label>
-                                <input name="requestContent" type="text" class="form-control form-control-lg"  value="" />
-                            </div>
+                                <div class="my-2 mb-4">
+                                    Skill Require <h6 class="text-warning">(At least 1 skill)</h6>
+                                    <c:forEach items = "${skillList}" var = "s">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="SkillRequire" value="${s.ID}" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                ${s.name}
+                                            </label>
+                                        </div>
+                                    </c:forEach>
+                                </div>
 
-                            <div class="my-2 mb-4">
-                                Skill Require <h6 class="text-warning">(At least 1 skill)</h6>
-                                <c:forEach items = "${skillList}" var = "s">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="SkillRequire" value="${s.ID}" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            ${s.name}
-                                        </label>
-                                    </div>
-                                </c:forEach>
-                            </div>
-
-                            <div class="form-outline mb-3">
-                                <label class="form-label">Deadline</label>
-                                <input name="deadline" type="date" class="form-control form-control-lg"  value="" />
-                            </div>
-                            <div class="text-center text-lg-start mt-4 pt-2 mb-4">
-                                <button type="submit" class="btn btn-outline-primary btn-lg"style="padding-left: 2.5rem; padding-right: 2.5rem;">
-                                    FIND MENTOR
-                                </button>
-                            </div>    
-                        </form>
-                        <p class="text-danger my-4 fw-bold">
-                            ${errorMessage}
-                        </p>
+                                <div class="form-outline mb-3">
+                                    <label class="form-label">Deadline</label>
+                                    <input name="deadline" type="date" class="form-control form-control-lg"  value="" />
+                                </div>
+                                <div class="text-center text-lg-start mt-4 pt-2 mb-4">
+                                    <button type="submit" class="btn btn-outline-primary btn-lg"style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                                        FIND MENTOR
+                                    </button>
+                                </div>    
+                            </form>
+                            <p class="text-danger my-4 fw-bold">
+                                ${errorMessage}
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </div>           
-        </section>
-
+                </div>           
+            </section>
+        </c:if>
 
 
         <!-- Vendor JS Files -->

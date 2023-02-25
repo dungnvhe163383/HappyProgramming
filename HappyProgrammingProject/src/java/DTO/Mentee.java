@@ -7,31 +7,35 @@ package DTO;
 
 import java.sql.Date;
 
-/**
- *
- * @author admin
- */
+
 public class Mentee {
     private int id;
-    private String address;
+    private String firstName;
+    private String lastName;
     private String email;
-    private String name;
+    private String address;
     private String phone;
     private Date birthday;
     private String sex;
     private String avatar;
 
-    public Mentee(int id, String address, String email, String name, String phone, Date birthday, String sex, String avatar) {
+    public Mentee() {
+    }
+
+    public Mentee(int id, String firstName, String lastName, String email, String address, String phone, Date birthday, String sex, String avatar) {
         this.id = id;
-        this.address = address;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-        this.name = name;
+        this.address = address;
         this.phone = phone;
         this.birthday = birthday;
         this.sex = sex;
         this.avatar = avatar;
     }
 
+    
+    
     public int getId() {
         return id;
     }
@@ -40,12 +44,20 @@ public class Mentee {
         this.id = id;
     }
 
-    public String getAddress() {
-        return address;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -56,12 +68,12 @@ public class Mentee {
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getAddress() {
+        return address;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPhone() {
@@ -95,6 +107,7 @@ public class Mentee {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
-
+    
+    
     
 }

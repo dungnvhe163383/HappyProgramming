@@ -72,6 +72,14 @@
         <servlet-name>SearchRequestHistory</servlet-name>
         <servlet-class>Controller.SearchRequestHistory</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RequestHistory</servlet-name>
+        <servlet-class>Controller.RequestHistory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RequestHistorySearch</servlet-name>
+        <servlet-class>Controller.RequestHistorySearch</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Databasecontext</servlet-name>
         <url-pattern>/Databasecontext</url-pattern>
@@ -143,6 +151,14 @@
     <servlet-mapping>
         <servlet-name>SearchRequestHistory</servlet-name>
         <url-pattern>/SearchRequestHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestHistory</servlet-name>
+        <url-pattern>/RequestHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestHistorySearch</servlet-name>
+        <url-pattern>/RequestHistorySearch</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

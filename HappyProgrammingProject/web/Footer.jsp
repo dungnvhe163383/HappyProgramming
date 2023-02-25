@@ -51,24 +51,7 @@
                     </div>
                 </div>
             </div>
-            <c:if test="${sessionScope.account.roleId == 1}">  
-            <br class="breadcrumb">
-            <div class="footer-newsletter">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <h4>Search Request History</h4>
-                            <h6>Input part of title in Request to Search</h6>
-                        </div>
-                        <div class="col-lg-3">
-                            <form action="SearchRequestHistory" method="post">
-                                <input type="text" name="keyword" value=""> <button type="submit" > Search</button>
-                            </form>
-                        </div>    
-                    </div>
-                </div>
-            <br class="breadcrumb">
-            </c:if>
+            
             </div>
             <div class="footer-top">
                 <div class="container">

@@ -29,29 +29,33 @@
         <link href="assets/css/style.css" rel="stylesheet">
     </head>
     <body>    
-        <jsp:include page="header.jsp"></jsp:include>
 
-            <section class="breadcrumbs">
-                <div class="container">
+        <c:if test="${sessionScope.account == null}">
+            <jsp:include page="NotFound.jsp"></jsp:include>
+        </c:if>
+        <c:if test="${sessionScope.account != null}">
+            <jsp:include page="header.jsp"></jsp:include>
+                <section class="breadcrumbs">
+                    <div class="container">
 
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h2>Mentor Details</h2>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2>Profile</h2>
+                        </div>
+
                     </div>
+                </section><!-- End Our Portfolio Section -->
 
-                </div>
-            </section><!-- End Our Portfolio Section -->
+                <!-- ======= Hero Section ======= -->
+                <section id="portfolio-details" class="portfolio-details">
+                    <div class="container">
+                        <div class="row gy-4">
+                            <div class="col-lg-4 mx-4">
+                                <div>
+                                    <a class="btn btn-outline-primary my-4" href="editMenteeProfile">Edit Profile</a>
+                                </div>
 
-            <!-- ======= Hero Section ======= -->
-            <section id="portfolio-details" class="portfolio-details">
-                <div class="container">
-                    <div class="row gy-4">
-                        <div class="col-lg-4 mx-4">
-                            <div>
-                                <a class="btn btn-outline-primary my-4" href="editMenteeProfile">Edit Profile</a>
-                            </div>
-                            
-                            <div class="portfolio-info">
-                                <h3>${mentee.name}</h3>
+                                <div class="portfolio-info">
+                                    <h3>${mentee.firstName} ${mentee.lastName}</h3>
                                 <ul>
                                     <li><strong>Email</strong>: ${mentee.email}</li>
                                     <li><strong>Address</strong>: ${mentee.address}</li>
@@ -61,10 +65,10 @@
                                 </ul>
                             </div>
                         </div>
-                        
+
                         <div class="col-lg-6 mx-5">
                             <div>
-                                <button class="btn btn-outline-primary my-4">Upload Avatar</button>
+                                <h3 class="">Avatar</h3>
                             </div>
                             <div class="portfolio-details-slider swiper">
                                 <img src="assets/img/${mentee.avatar}" alt=""/>
@@ -75,7 +79,7 @@
             </section><!-- End Portfolio Details Section -->
 
             <jsp:include page="Footer.jsp"></jsp:include>
-
+        </c:if>
         <!-- Vendor JS Files -->
         <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
         <script src="assets/vendor/aos/aos.js"></script>

@@ -5,6 +5,7 @@
 package Controller;
 
 import DAO.DAO;
+import DAO.RequestDAO;
 import DTO.Account;
 import DTO.Request;
 import java.io.IOException;
@@ -20,7 +21,7 @@ import java.util.List;
  *
  * @author manuh
  */
-public class SearchRequestHistory extends HttpServlet {
+public class RequestHistorySearch extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,15 +37,7 @@ public class SearchRequestHistory extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SearchRequestHistory</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SearchRequestHistory at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
         }
     }
 
@@ -74,12 +67,12 @@ public class SearchRequestHistory extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String key = request.getParameter("keyword");
+        String key = request.getParameter("key");
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
-        List<Request> list = new DAO().searchHistoryRequest(key,account.getId());
-        request.setAttribute("historyRequestList", list);
-        request.getRequestDispatcher("historyMenteeRequest.jsp").forward(request, response);
+        List<Request> list = new RequestDAO().searchHistoryRequest(key, account.getId());
+        request.setAttribute("RequestHistoryList", list);
+        request.getRequestDispatcher("RequestHistory.jsp").forward(request, response);
     }
 
     /**

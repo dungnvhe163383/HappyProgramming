@@ -18,19 +18,18 @@ public class Request {
     private int statusID;
     private String requestStatus;
     private int rate;
-
+    private String account;
     public Request() {
     }
 
-    public Request(int id, String title, String content, int menteeID, Date deadline, String requestStatus) {
+    public Request(int id, String title, String content, Date deadline, String account, String requestStatus) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.menteeID = menteeID;
         this.deadline = deadline;
+        this.account = account;
         this.requestStatus = requestStatus;
     }
-
         
     public Request(int id, String title, String content, int menteeID, Date deadline, int statusID, int rate) {
         this.id = id;
@@ -104,6 +103,14 @@ public class Request {
 
     public void setRequestStatus(String requestStatus) {
         this.requestStatus = requestStatus;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
     
 }
