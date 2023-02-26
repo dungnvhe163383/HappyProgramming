@@ -14,22 +14,19 @@ public class RequestDAO extends DBContext {
 
     public List<Request> getRequestByMentee(String id) {
         List<Request> list = new ArrayList<>();
-        query = "select historyRequest.id,historyRequest.title, historyRequest.content, historyRequest.deadline\n" +
-"                , [status].[Status]\n" +
-"                from historyRequest\n" +
-"                left outer join account\n" +
-"                on historyRequest.accountID = account.id\n" +
-"                left outer join [status]\n" +
-"                on historyRequest.statusID = [status].id\n" +
-"                where account.id = ?";
+        query = "select historyRequest.id,historyRequest.title, historyRequest.content, historyRequest.deadline,[status].[Status]\n"
+                + "from historyRequest left outer join account\n"
+                + "on historyRequest.accountID = account.id\n"
+                + "left outer join [status]\n"
+                + "on historyRequest.statusID = [status].id\n"
+                + "where account.id = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, id);
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                list.add(new Request(rs.getInt(1), rs.getString(2), rs.getString(3),
-                         rs.getDate(4), rs.getString(5)));
+                list.add(new Request(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5)));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -109,7 +106,7 @@ public class RequestDAO extends DBContext {
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new Request(rs.getInt(1), rs.getString(2), rs.getString(3),
-                         rs.getDate(4), rs.getString(5), rs.getString(6)));
+                        rs.getDate(4), rs.getString(5), rs.getString(6)));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -140,6 +137,7 @@ public class RequestDAO extends DBContext {
         }
         return list;
     }
+
     public static void main(String[] args) {
         List<Request> list = new RequestDAO().searchHistoryRequest("boos", 4);
         System.out.println(list.get(0).getContent());

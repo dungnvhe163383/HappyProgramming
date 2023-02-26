@@ -58,7 +58,7 @@ public class ViewRequestByMentee extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      String id = request.getParameter("id");
+      String id = request.getParameter("menteeid");
         List<Request> list = new RequestDAO().getRequestByMentee(id);
         request.setAttribute("RequestList", list);
         request.getRequestDispatcher("ViewRequestByMentee.jsp").forward(request, response);

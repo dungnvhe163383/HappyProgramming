@@ -153,8 +153,8 @@ public class DAO extends DBContext {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             if (rs.next()) {
-                return new Mentee(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)
-                        , rs.getString(6), rs.getDate(7),rs.getString(8),rs.getString(9));
+                return new Mentee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+                         rs.getString(6), rs.getDate(7), rs.getString(8), rs.getString(9));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -283,6 +283,28 @@ public class DAO extends DBContext {
             }
         } catch (Exception e) {
             System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<Hire> getHiredMentor(String id) {
+        List<Hire> list = new ArrayList<>();
+        query = "select [Name].lastName, mentor.avatar, mentor.introduce, [status].[Status]\n"
+                + "from mentor left outer join hire\n"
+                + "on mentor.id = hire.mentorID\n"
+                + "left outer join [Name]\n"
+                + "on mentor.id = [Name].id\n"
+                + "left outer join [status]\n"
+                + "on hire.statusID = [status].id\n"
+                + "where hire.menteeID = ?";
+            try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Hire(rs.getInt(1), rs.getInt(2), rs., 0));
+            }
+        } catch (Exception e) {
         }
         return list;
     }
