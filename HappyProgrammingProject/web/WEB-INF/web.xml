@@ -80,6 +80,10 @@
         <servlet-name>ViewRequestByMentee</servlet-name>
         <servlet-class>Controller.ViewRequestByMentee</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchMentorForRequest</servlet-name>
+        <servlet-class>Controller.SearchMentorForRequest</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Databasecontext</servlet-name>
         <url-pattern>/Databasecontext</url-pattern>
@@ -159,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>ViewRequestByMentee</servlet-name>
         <url-pattern>/viewRequestByMentee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchMentorForRequest</servlet-name>
+        <url-pattern>/SearchMentorForRequest</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

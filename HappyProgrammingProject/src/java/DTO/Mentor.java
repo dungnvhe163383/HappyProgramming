@@ -16,7 +16,8 @@ public class Mentor {
     private int id;
     private String address;
     private String email;
-    private String name;
+    private String firstname;
+    private String lastname;
     private String phone;
     private Date birthday;
     private String sex;
@@ -25,13 +26,15 @@ public class Mentor {
     private String professionIntroduce;
     private String achievement;
     private String avatar;
+    private String mentorStatus;
     private int costHire;
 
-    public Mentor(int id, String address, String email, String name, String phone, Date birthday, String sex, String introduce, String profession, String professionIntroduce, String achievement, String avatar, int costHire) {
+    public Mentor(int id, String address, String email, String firstname, String lastname, String phone, Date birthday, String sex, String introduce, String profession, String professionIntroduce, String achievement, String avatar, int costHire) {
         this.id = id;
         this.address = address;
         this.email = email;
-        this.name = name;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.phone = phone;
         this.birthday = birthday;
         this.sex = sex;
@@ -41,6 +44,22 @@ public class Mentor {
         this.achievement = achievement;
         this.avatar = avatar;
         this.costHire = costHire;
+    }
+
+    public Mentor(String firstname, String lastname, String introduce, String avatar, String mentorStatus) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.introduce = introduce;
+        this.avatar = avatar;
+        this.mentorStatus = mentorStatus;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public int getId() {
@@ -67,13 +86,23 @@ public class Mentor {
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
+
+    public String getMentorStatus() {
+        return mentorStatus;
+    }
+
+    public void setMentorStatus(String mentorStatus) {
+        this.mentorStatus = mentorStatus;
+    }
+
+   
 
     public String getPhone() {
         return phone;
