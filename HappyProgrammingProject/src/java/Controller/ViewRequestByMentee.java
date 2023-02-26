@@ -4,13 +4,10 @@
  */
 package Controller;
 
-import DAO.DAO;
-import DTO.Account;
-import DTO.Mentee;
-import DTO.Mentor;
+import DAO.RequestDAO;
 import DTO.Request;
 import java.io.IOException;
-import jakarta.servlet.http.HttpSession;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,20 +29,21 @@ public class ViewRequestByMentee extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected static void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("account");
-        String id=request.getParameter("menteeid");
-        int menteeid=Integer.parseInt(id);
-        DAO dao= new DAO();
-        Mentee m = dao.getMenteeById(menteeid);
-        List<Request> list = dao.getRequestByMentee(menteeid);
-        request.setAttribute("historyRequestList", list);
-        request.setAttribute("mentee", m);
-        request.getRequestDispatcher("ViewRequestByMentee.jsp").forward(request, response);
-        
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ViewRequestByMentee</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ViewRequestByMentee at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -60,7 +58,10 @@ public class ViewRequestByMentee extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+      String id = request.getParameter("id");
+        List<Request> list = new RequestDAO().getRequestByMentee(id);
+        request.setAttribute("RequestList", list);
+        request.getRequestDispatcher("ViewRequestByMentee.jsp").forward(request, response);
     }
 
     /**
@@ -76,5 +77,15 @@ public class ViewRequestByMentee extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
 }

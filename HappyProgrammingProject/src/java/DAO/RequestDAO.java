@@ -12,27 +12,27 @@ import java.sql.SQLException;
 
 public class RequestDAO extends DBContext {
 
-    public List<Request> getRequestByMentee(int id) {
+    public List<Request> getRequestByMentee(String id) {
         List<Request> list = new ArrayList<>();
-        query = "select hrm.id , hrm.title, hrm.content, hrm.deadline, r.statusID\n"
-                + "from historyMenteeRequest hrm, request r, mentee me, status st\n"
-                + "where hrm.id = r.id and hrm.menteeID = me.id and st.ID = r.statusID and me.id = ?";
+        query = "select historyRequest.id,historyRequest.title, historyRequest.content, historyRequest.deadline\n" +
+"                , [status].[Status]\n" +
+"                from historyRequest\n" +
+"                left outer join account\n" +
+"                on historyRequest.accountID = account.id\n" +
+"                left outer join [status]\n" +
+"                on historyRequest.statusID = [status].id\n" +
+"                where account.id = ?";
         try {
             ps = connection.prepareStatement(query);
-            ps.setInt(1, id);
+            ps.setString(1, id);
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                int requestId = rs.getInt(1);
-                String title = rs.getString(2);
-                String content = rs.getString(3);
-                int menteeID = rs.getInt(4);
-                Date deadline = rs.getDate(5);
-                int statusID = rs.getInt(6);
-                int rate = rs.getInt(7);
-                list.add(new Request(requestId, title, content, menteeID, deadline, statusID, rate));
+                list.add(new Request(rs.getInt(1), rs.getString(2), rs.getString(3),
+                         rs.getDate(4), rs.getString(5)));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println(e);
         }
         return list;
     }
