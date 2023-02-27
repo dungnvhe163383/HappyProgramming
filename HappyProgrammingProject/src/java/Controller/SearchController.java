@@ -4,7 +4,7 @@
  */
 package Controller;
 
-import DAO.DAO;
+import DAO.RequestDAO;
 import DTO.Request;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -32,12 +32,11 @@ public class SearchControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");//để search có thể hiểu cả tiếng việt
         try (PrintWriter out = response.getWriter()) {
-            String idString = request.getParameter("id");
-            int id = Integer.parseInt(idString);
-            DAO dao = new DAO();
+            String id = request.getParameter("id");            
+            RequestDAO dao = new RequestDAO();
             List<Request> list = dao.getRequestByMentee(id);//search request của me theo id
             request.setAttribute("listP", list);
-            request.setAttribute("txts", idString);
+            request.setAttribute("txts", id);
             request.getRequestDispatcher("Home.jsp").forward(request, response);
         }
     }
