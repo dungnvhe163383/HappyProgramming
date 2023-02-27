@@ -4,7 +4,7 @@
  */
 package Controller;
 
-import DAO.DAO;
+import DAO.RequestDAO;
 import DTO.Mentor;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,7 +34,7 @@ public class SearchMentorForRequest extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter pr = response.getWriter();
         String id = request.getParameter("skillid");
-        DAO dao= new DAO();
+        RequestDAO dao= new RequestDAO();
         List<Mentor> list = dao.getMentorFromRequest(id);
         request.setAttribute("listMentor", list);
         request.getRequestDispatcher("ViewMentor.jsp").forward(request, response);
