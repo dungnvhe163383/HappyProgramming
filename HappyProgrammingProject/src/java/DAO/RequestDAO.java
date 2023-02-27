@@ -198,4 +198,5 @@ public class RequestDAO extends DBContext {
             System.out.println(e);
         }
         return list;
+    }
 }
