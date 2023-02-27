@@ -28,8 +28,20 @@ public class Mentor {
     private String avatar;
     private String mentorStatus;
     private int costHire;
+    private float averageRate;
 
-    public Mentor(int id, String address, String email, String firstname, String lastname, String phone, Date birthday, String sex, String introduce, String profession, String professionIntroduce, String achievement, String avatar, int costHire) {
+    public Mentor() {
+    }
+
+    public Mentor(int id, String firstname, String lastname, String avatar, float averageRate) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.avatar = avatar;
+        this.averageRate = averageRate;
+    }
+
+    public Mentor(int id, String address, String email, String firstname, String lastname, String phone, Date birthday, String sex, String introduce, String profession, String professionIntroduce, String achievement, String avatar, String mentorStatus, int costHire, float averageRate) {
         this.id = id;
         this.address = address;
         this.email = email;
@@ -43,8 +55,19 @@ public class Mentor {
         this.professionIntroduce = professionIntroduce;
         this.achievement = achievement;
         this.avatar = avatar;
+        this.mentorStatus = mentorStatus;
         this.costHire = costHire;
+        this.averageRate = averageRate;
     }
+
+    public float getAverageRate() {
+        return averageRate;
+    }
+
+    public void setAverageRate(float averageRate) {
+        this.averageRate = averageRate;
+    }
+    
 
     public Mentor(String firstname, String lastname, String introduce, String avatar, String mentorStatus) {
         this.firstname = firstname;

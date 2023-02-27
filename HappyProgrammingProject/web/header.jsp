@@ -35,14 +35,14 @@
             <div class="container d-flex justify-content-between align-items-center">
 
                 <div class="logo">
-                    <h1 class="text-light"><a href="HomePage.jsp"><span>CODELEARN</span></a></h1>
+                    <h1 class="text-light"><a href="ViewTop3Mentor"><span>CODELEARN</span></a></h1>
                     <!-- Uncomment below if you prefer to use an image logo -->
                     <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
                 </div>
 
                 <nav id="navbar" class="navbar">
                     <ul>
-                        <li><a class="" href="HomePage.jsp">Home</a></li>
+                        <li><a class="" href="ViewTop3Mentor">Home</a></li>
                         <li><a href="ViewAllMentor">Mentor</a></li>
                         <c:if test="${sessionScope.account.roleId == 1}">
                         <li><a href="CreateRequest">New Request</a></li>

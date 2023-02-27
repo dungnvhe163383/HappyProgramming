@@ -314,4 +314,23 @@ public class DAO extends DBContext {
         return list;
     }
 
+    public List<Mentor> getTop3Mentor() {
+        List<Mentor> list = new ArrayList<>();
+        query = "with t As (select Top (3) f.mentorID, AVG(f.rate) rateAverage from feedback f\n"
+                + "group by f.mentorID)\n"
+                + "select top (3) m.id,n.firstName,n.lastName,m.avatar,t.rateAverage from t,mentor m, [Name] n \n"
+                + "where t.[mentorID]=m.id and n.id=m.id";
+        try {
+            ps = connection.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5)));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+    
+
 }

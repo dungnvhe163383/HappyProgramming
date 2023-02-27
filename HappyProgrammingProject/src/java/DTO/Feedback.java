@@ -8,12 +8,12 @@ package DTO;
  *
  * @author okanh
  */
-public class Comment {
+public class Feedback {
     private int id;
     private String commentDetail;
     private int requestID;
 
-    public Comment(int id, String commentDetail, int requestID) {
+    public Feedback(int id, String commentDetail, int requestID) {
         this.id = id;
         this.commentDetail = commentDetail;
         this.requestID = requestID;
