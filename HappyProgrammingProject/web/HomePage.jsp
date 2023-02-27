@@ -90,6 +90,10 @@
                                 <input type="radio" id="rating1" name="rating-${t.lastname}" value="0.5" disabled="true"   /><label class="half" for="rating1" title="0.5 star"></label>
                                 <input type="radio" id="rating0" name="rating-${t.lastname}" value="0" disabled="true"   /><label for="rating0" title="No star"></label>
                             </fieldset>
+                            <h3>Some comment:</h3>
+                            <c:forEach items="${listf}" var="f">
+                                ${f.commentDetail}
+                            </c:forEach>
                         </div>
                     </div>
                 </c:forEach>

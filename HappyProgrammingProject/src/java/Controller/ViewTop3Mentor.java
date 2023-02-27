@@ -5,6 +5,7 @@
 package Controller;
 
 import DAO.DAO;
+import DTO.Feedback;
 import DTO.Mentor;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,6 +38,10 @@ public class ViewTop3Mentor extends HttpServlet {
         DAO dao=new DAO();
         List<Mentor> list=dao.getTop3Mentor();
         request.setAttribute("Top3", list);
+        for (Mentor mentor : list) {
+            List<Feedback> listf=dao.getFeedback(mentor.getId());
+            request.setAttribute("listf"+mentor.getId(), listf);
+        }        
         request.getRequestDispatcher("HomePage.jsp").forward(request, response);
     }
 

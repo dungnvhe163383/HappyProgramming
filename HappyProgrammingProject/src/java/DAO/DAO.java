@@ -332,5 +332,19 @@ public class DAO extends DBContext {
         return list;
     }
     
-
+    public List<Feedback> getFeedback(int mentorid){
+        List<Feedback> list = new ArrayList<>();
+        query = "select top 3 f.commentdetail,m.id from mentor m,feedback f where m.id=f.mentorid and m.id=?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1,mentorid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Feedback(rs.getString(1), rs.getInt(2)));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
 }
