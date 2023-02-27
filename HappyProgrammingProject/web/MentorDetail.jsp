@@ -71,29 +71,24 @@
 
                         <div class="col-lg-4">
                             <div class="portfolio-info">
-                                <h3>${Mentor.name}</h3>
+                                <h3>${Mentor.firstname} ${Mentor.lastname}</h3>
                                 <ul>
                                     <li><strong>Email</strong>: ${Mentor.email}</li>
                                     <li><strong>Address</strong>: ${Mentor.address}</li>
                                     <li><strong>Phone</strong>: ${Mentor.phone}</li>
                                     <li><strong>Birthday</strong>: ${Mentor.birthday}</li>
                                     <li><strong>Introduce</strong>: ${Mentor.introduce}</li>
-                                    <li><strong>Profession</strong>: ${Mentor.profession}</li>
-                                    <li><strong>Introduce Profession</strong>: ${Mentor.professionIntroduce}</li>
                                     <li><strong>Achievement</strong>: ${Mentor.achievement}</li>
-                                    <li><strong>Cost Hire</strong>: ${Mentor.costHire}</li>
+                                    <li><strong>Cost Hire</strong>: ${Mentor.costHire}$</li>
                                 </ul>
                             </div>
                             <div class="portfolio-description">
                                 <h2>You can see My Skill</h2>
-                                <a href="ViewSkill?mentorid=${Mentor.id}"">MY SKILL</a></br>
-                                <button class="btn btn-primary"><a style="color: white; text-decoration: none" href="HireForm">HIRE ME</a></button>
-
+                                <button class="btn btn-primary" href="ViewSkill?mentorid=${Mentor.id}"">MY SKILL</button>
                                 <p>I hope we will have lively discussions after you choose me as your mentor. Thank you very much </p>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </section><!-- End Portfolio Details Section -->
 

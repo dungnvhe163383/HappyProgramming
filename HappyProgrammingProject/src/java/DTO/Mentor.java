@@ -68,6 +68,21 @@ public class Mentor {
         this.averageRate = averageRate;
     }
 
+    public Mentor(int id, String address, String email, String firstname, String lastname, String phone, Date birthday, String sex, String introduce, String achievement, String avatar, int costHire) {
+        this.id = id;
+        this.address = address;
+        this.email = email;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.phone = phone;
+        this.birthday = birthday;
+        this.sex = sex;
+        this.introduce = introduce;
+        this.achievement = achievement;
+        this.avatar = avatar;
+        this.costHire = costHire;
+    }
+
     public float getAverageRate() {
         return averageRate;
     }
