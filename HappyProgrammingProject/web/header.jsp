@@ -47,6 +47,9 @@
                         <c:if test="${sessionScope.account.roleId == 1}">
                         <li><a href="CreateRequest">New Request</a></li>
                         </c:if>
+                        <c:if test="${sessionScope.account.roleId == 3}">
+                        <li><a href="ShowAllRequestByAdmin">Show All Request</a></li>
+                        </c:if>
                         <c:if test="${sessionScope.account == null}">
                         <li><a href="SignIn.jsp">Sign In</a></li>
                         </c:if>

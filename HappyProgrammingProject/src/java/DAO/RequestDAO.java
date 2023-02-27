@@ -109,7 +109,7 @@ public class RequestDAO extends DBContext {
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new Request(rs.getInt(1), rs.getString(2), rs.getString(3),
-                         rs.getDate(4), rs.getString(5), rs.getString(6)));
+                        rs.getDate(4), rs.getString(5), rs.getString(6)));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -140,8 +140,66 @@ public class RequestDAO extends DBContext {
         }
         return list;
     }
-    public static void main(String[] args) {
-        List<Request> list = new RequestDAO().searchHistoryRequest("boos", 4);
-        System.out.println(list.get(0).getContent());
+
+    public List<Request> getAllRequestByAdmin() {
+        List<Request> list = new ArrayList<>();
+        query = "select request.id, request.title, request.content, request.deadline, "
+                + "request.menteeID, mentorRequest.mentorID, [status].[Status]\n"
+                + "from request\n"
+                + "left outer join mentorRequest\n"
+                + "on request.id = mentorRequest.requestID\n"
+                + "left outer join requestStatus\n"
+                + "on request.id = requestStatus.requestID\n"
+                + "left outer join [status]\n"
+                + "on requestStatus.statusID = [status].id";
+        try {
+            ps = connection.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Request(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        rs.getDate(4), rs.getInt(5), rs.getInt(6), rs.getString(7)));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<Request> getAllRequestByKey(String key) {
+        List<Request> list = new ArrayList<>();
+        query = "select request.id, request.title, request.content, request.deadline, request.menteeID, "
+                + "mentorRequest.mentorID, [status].[Status]\n"
+                + "from request\n"
+                + "left outer join mentorRequest\n"
+                + "on request.id = mentorRequest.requestID\n"
+                + "left outer join requestStatus\n"
+                + "on request.id = requestStatus.requestID\n"
+                + "left outer join [status]\n"
+                + "on requestStatus.statusID = [status].id\n"
+                + "where request.id like ? \n"
+                + "or request.title like ? \n"
+                + "or request.content like ? \n"
+                + "or request.deadline like ? \n"
+                + "or request.menteeID like ? \n"
+                + "or mentorRequest.mentorID like ?\n"
+                + "or [status].[Status] like ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, "%" + key + "%");
+            ps.setString(2, "%" + key + "%");
+            ps.setString(3, "%" + key + "%");
+            ps.setString(4, "%" + key + "%");
+            ps.setString(5, "%" + key + "%");
+            ps.setString(6, "%" + key + "%");
+            ps.setString(7, "%" + key + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Request(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        rs.getDate(4), rs.getInt(5), rs.getInt(6), rs.getString(7)));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
     }
 }

@@ -13,15 +13,27 @@ public class Request {
     private int id;
     private String title;
     private String content;
-    private int menteeID;
     private Date deadline;
-    private int statusID;
+    private int menteeID;
+    private int mentorID;
     private String requestStatus;
+    private int statusID;
     private int rate;
     private String account;
     public Request() {
     }
 
+    public Request(int id, String title, String content, Date deadline, int menteeID, int mentorID, String requestStatus) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.deadline = deadline;
+        this.menteeID = menteeID;
+        this.mentorID = mentorID;
+        this.requestStatus = requestStatus;
+    }
+
+    
     public Request(int id, String title, String content, Date deadline, String account, String requestStatus) {
         this.id = id;
         this.title = title;
@@ -41,6 +53,7 @@ public class Request {
         this.rate = rate;
     }
 
+    
     public int getId() {
         return id;
     }
@@ -111,6 +124,14 @@ public class Request {
 
     public void setAccount(String account) {
         this.account = account;
+    }
+
+    public int getMentorID() {
+        return mentorID;
+    }
+
+    public void setMentorID(int mentorID) {
+        this.mentorID = mentorID;
     }
     
 }

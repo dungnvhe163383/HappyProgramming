@@ -80,6 +80,14 @@
         <servlet-name>RequestHistorySearch</servlet-name>
         <servlet-class>Controller.RequestHistorySearch</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowAllRequest</servlet-name>
+        <servlet-class>Controller.ShowAllRequest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RequestSearchByAdmin</servlet-name>
+        <servlet-class>Controller.RequestSearchByAdmin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Databasecontext</servlet-name>
         <url-pattern>/Databasecontext</url-pattern>
@@ -159,6 +167,14 @@
     <servlet-mapping>
         <servlet-name>RequestHistorySearch</servlet-name>
         <url-pattern>/RequestHistorySearch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowAllRequest</servlet-name>
+        <url-pattern>/ShowAllRequestByAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestSearchByAdmin</servlet-name>
+        <url-pattern>/RequestSearchByAdmin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
