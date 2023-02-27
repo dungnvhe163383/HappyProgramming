@@ -75,8 +75,8 @@
                             <img src="assets/img/${t.avatar}" class="img-fluid" alt="" height="350 px" width="350 px" >
                         </div>
                         <div class="col-md-7 pt-4">
-                            <h3>${t.firstname} ${t.lastname}</h3>
-                            <h3>Average Rate: ${t.averageRate}</h3>
+                            <h3><strong>${t.firstname} ${t.lastname}</strong></h3>
+                            <h4>Average Rate: ${t.averageRate}</h4>
                             <fieldset class="rate">
                                 <input type="radio" id="rating10" name="rating-${t.lastname}" value="5"  disabled="true" checked="true"  /><label for="rating10" title="5 stars"></label>
                                 <input type="radio" id="rating9" name="rating-${t.lastname}" value="4.5"  disabled="true"   /><label class="half" for="rating9" title="4.5 stars"></label>
@@ -90,10 +90,8 @@
                                 <input type="radio" id="rating1" name="rating-${t.lastname}" value="0.5" disabled="true"   /><label class="half" for="rating1" title="0.5 star"></label>
                                 <input type="radio" id="rating0" name="rating-${t.lastname}" value="0" disabled="true"   /><label for="rating0" title="No star"></label>
                             </fieldset>
-                            <h3>Some comment:</h3>
-                            <c:forEach items="${listf}" var="f">
-                                ${f.commentDetail}
-                            </c:forEach>
+                            <h4>Introduce: ${t.introduce}</h4>
+                            
                         </div>
                     </div>
                 </c:forEach>

@@ -37,11 +37,7 @@ public class ViewTop3Mentor extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         DAO dao=new DAO();
         List<Mentor> list=dao.getTop3Mentor();
-        request.setAttribute("Top3", list);
-        for (int i = 0; i < list.size(); i++) {
-            List<Feedback> listf=dao.getFeedback(list.get(i).getId());
-            request.setAttribute("listf"+i, listf);
-        }
+        request.setAttribute("Top3", list);   
         request.getRequestDispatcher("HomePage.jsp").forward(request, response);
     }
 
