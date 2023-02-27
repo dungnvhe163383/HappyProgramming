@@ -12,11 +12,45 @@ public class Feedback {
     private int id;
     private String commentDetail;
     private int requestID;
+    private int mentorID;
+    private int rate;
+
+    public Feedback() {
+    }
+
+    public Feedback(int id, String commentDetail, int requestID, int mentorID, int rate) {
+        this.id = id;
+        this.commentDetail = commentDetail;
+        this.requestID = requestID;
+        this.mentorID = mentorID;
+        this.rate = rate;
+    }
+
+    public Feedback(String commentDetail, int mentorID) {
+        this.commentDetail = commentDetail;
+        this.mentorID = mentorID;
+    }
 
     public Feedback(int id, String commentDetail, int requestID) {
         this.id = id;
         this.commentDetail = commentDetail;
         this.requestID = requestID;
+    }
+
+    public int getMentorID() {
+        return mentorID;
+    }
+
+    public void setMentorID(int mentorID) {
+        this.mentorID = mentorID;
+    }
+
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
     }
 
     public int getId() {
