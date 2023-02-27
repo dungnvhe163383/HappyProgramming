@@ -4,6 +4,29 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+
+function updateRating(buddy, rating) {
+  // Tìm đối tượng HTML input có giá trị đã chọn
+  const checkedInput = document.querySelector(`input[name="rating-${buddy}"]:checked`);
+  
+  // Lấy giá trị của input đã chọn
+  const checkedValue = checkedInput ? checkedInput.value : null;
+  
+  // Nếu giá trị đã chọn không giống với giá trị mới, cập nhật số sao
+  if (checkedValue !== rating) {
+    const starInputs = document.querySelectorAll(`input[name="rating-${buddy}"]`);
+    for (let i = 0; i < starInputs.length; i++) {
+      const starInput = starInputs[i];
+      if (Math.round(parseFloat(starInput.value) * 2) / 2 <= Math.round(parseFloat(rating) * 2) / 2) {
+        starInput.checked = true;
+      } else {
+        starInput.checked = false;
+      }
+    }
+  }
+}
+
+
 (function() {
   "use strict";
 

@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,55 +28,62 @@
         <!-- Template Main CSS File -->
         <link href="assets/css/style.css" rel="stylesheet">
     </head>
-    <body>          
-        <!-- ======= Header ======= -->
-        <jsp:include page="header.jsp"></jsp:include>
-            <main id="main">
-                <section class="h-100" style="background-color: #eee;">
-                    <div class="container py-5 h-100">
-                        <div class="row d-flex justify-content-center align-items-center h-100">
-                            <div class="col">
-                                <div class="card">
-                                    <div class="card-body p-4">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="row">
-                                                    <h5 class="col-4 mb-3">History Request</h5>
-                                                    <p class="fw-bold text-success col-4 mx-auto"></p>
-                                                </div>
-                                                <hr>
-                                                <table class="table table-striped ">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>ID</th>
-                                                            <th>Title</th>
-                                                            <th>Status</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <c:forEach items="${historyRequestList}" var="r">
-                                                        <tr>
-                                                            <td>${r.id}</td>
-                                                            <td>${r.title}</td>
-                                                            <td>${r.requestStatus}</td>
-                                                            <td>
-                                                                <a href="ViewRequestDetails=${r.id}"><i class="text-info fw-bold" data-toggle="tooltip" title="ViewDetails">View Request Details</i></a>
-                                                            </td>
-                                                        </tr>
-                                                    </c:forEach>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+    <body>
+
+        <c:if test="${sessionScope.account == null}">
+            <jsp:include page="NotFound.jsp"></jsp:include>
+        </c:if>
+        <c:if test="${sessionScope.account != null}">
+            <jsp:include page="header.jsp"></jsp:include>
+                <!-- ======= Hero Section ======= -->
+
+                <section class="vh-100 mt-5 py-5 px-5">
+                    <div class="container-fluid h-custom">
+                        <div class="row d-flex align-items-center h-100">
+                        <c:choose>
+                            <c:when test="${RequestList == null}">
+                                <h5 class="text text-center">No Record of Request Founded ! <a href="">Create Request Here</a></h5>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="col-md-4 col-lg-4 col-xl-4 offset-xl-1">
+                                    <h2 class="text-start text-primary fw-bold">My Request</h2>
                                 </div>
-                            </div>
-                        </div>
+                                <div class="col-md-6 col-lg-6 col-xl-4 offset-xl-1">
+                                </div>
+                                <table class="table table-striped mt-4">
+                                    <thead>
+                                        <tr class="text-bg-info">
+                                            <th scope="col">Request ID</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Content</th>
+                                            <th scope="col">Deadline</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="${RequestList}" var="r">
+                                            <tr>
+                                                <th scope="row">${r.id}</th>
+                                                <th scope="row">${r.title}</th>
+                                                <th scope="row">${r.content}</th>
+                                                <th scope="row">${r.deadline}</th>
+                                                <th scope="row">${r.requestStatus}</th>
+                                                <th scope="row"></th>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
-                </div>
+                </div>           
             </section>
-        </main>
-        <jsp:include page="Footer.jsp"></jsp:include>
+
+            <jsp:include page="Footer.jsp"></jsp:include>
+        </c:if>
+
+
         <!-- Vendor JS Files -->
         <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
         <script src="assets/vendor/aos/aos.js"></script>

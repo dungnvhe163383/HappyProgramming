@@ -57,10 +57,6 @@
         <servlet-class>Controller.ViewMenteeProfile</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ViewRequestByMentee</servlet-name>
-        <servlet-class>Controller.ViewRequestByMentee</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>CreateHireController</servlet-name>
         <servlet-class>Controller.CreateHireController</servlet-class>
     </servlet>
@@ -82,11 +78,19 @@
     </servlet>
     <servlet>
         <servlet-name>ShowAllRequest</servlet-name>
-        <servlet-class>Controller.ShowAllRequest</servlet-class>
+        <servlet-class>Controller.ShowAllRequestByAdmin</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RequestSearchByAdmin</servlet-name>
         <servlet-class>Controller.RequestSearchByAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewRequestByMentee</servlet-name>
+        <servlet-class>Controller.ViewRequestByMentee</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchMentorForRequest</servlet-name>
+        <servlet-class>Controller.SearchMentorForRequest</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Databasecontext</servlet-name>
@@ -145,10 +149,6 @@
         <url-pattern>/viewMenteeProfile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ViewRequestByMentee</servlet-name>
-        <url-pattern>/viewRequestByMentee</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>CreateHireController</servlet-name>
         <url-pattern>/HireForm</url-pattern>
     </servlet-mapping>
@@ -169,12 +169,21 @@
         <url-pattern>/RequestHistorySearch</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>ShowAllRequest</servlet-name>
         <url-pattern>/ShowAllRequestByAdmin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestSearchByAdmin</servlet-name>
         <url-pattern>/RequestSearchByAdmin</url-pattern>
+=======
+        <servlet-name>ViewRequestByMentee</servlet-name>
+        <url-pattern>/viewRequestByMentee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchMentorForRequest</servlet-name>
+        <url-pattern>/SearchMentorForRequest</url-pattern>
+>>>>>>> d50249095a98482d2e5bebb194e4a9baf80b2f77
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -182,6 +191,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>HomePage.jsp</welcome-file>
+        <welcome-file>ViewTop3Mentor</welcome-file>
     </welcome-file-list>
 </web-app>

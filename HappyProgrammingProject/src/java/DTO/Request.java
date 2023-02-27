@@ -53,7 +53,13 @@ public class Request {
         this.rate = rate;
     }
 
-    
+    public Request(int id, String title, String content, Date deadline, String requestStatus) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.deadline = deadline;
+        this.requestStatus = requestStatus;
+    }
     public int getId() {
         return id;
     }
