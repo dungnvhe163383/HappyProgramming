@@ -38,10 +38,10 @@ public class ViewTop3Mentor extends HttpServlet {
         DAO dao=new DAO();
         List<Mentor> list=dao.getTop3Mentor();
         request.setAttribute("Top3", list);
-        for (Mentor mentor : list) {
-            List<Feedback> listf=dao.getFeedback(mentor.getId());
-            request.setAttribute("listf"+mentor.getId(), listf);
-        }        
+        for (int i = 0; i < list.size(); i++) {
+            List<Feedback> listf=dao.getFeedback(list.get(i).getId());
+            request.setAttribute("listf"+i, listf);
+        }
         request.getRequestDispatcher("HomePage.jsp").forward(request, response);
     }
 
