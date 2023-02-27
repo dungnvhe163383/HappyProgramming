@@ -175,6 +175,8 @@
     <servlet-mapping>
         <servlet-name>RequestSearchByAdmin</servlet-name>
         <url-pattern>/RequestSearchByAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ViewRequestByMentee</servlet-name>
         <url-pattern>/viewRequestByMentee</url-pattern>
     </servlet-mapping>
