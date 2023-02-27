@@ -265,7 +265,22 @@ public class DAO extends DBContext {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getInt(13)));
+                list.add(new Mentor(rs.getInt(1), 
+                                    rs.getString(2), 
+                                    rs.getString(3), 
+                                    rs.getString(4), 
+                                    rs.getString(5), 
+                                    rs.getString(6),
+                                    rs.getDate(7), 
+                                    rs.getString(8), 
+                                    rs.getString(9), 
+                                    rs.getString(10), 
+                                    rs.getString(11), 
+                                    rs.getString(12), 
+                                    rs.getString(13),
+                                    rs.getString(14),
+                                    rs.getInt(15),
+                                    rs.getFloat(16)));
             }
         } catch (Exception e) {
         }
