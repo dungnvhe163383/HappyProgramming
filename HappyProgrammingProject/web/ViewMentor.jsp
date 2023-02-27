@@ -54,7 +54,7 @@
                             <div class="portfolio-item">
                                 <img src="assets/img/${o.avatar}" class=" img-thumbnail" alt="" height="250px" width="250px">
                                 <div class="portfolio-info">
-                                    <h3><a href="MentorDetailControll?mentorid=${o.id}">${o.name}</a></h3>
+                                    <h3><a href="MentorDetailControll?mentorid=${o.id}">${o.firstname} ${o.lastname}</a></h3>
                                 </div>
                             </div>
                         </div>

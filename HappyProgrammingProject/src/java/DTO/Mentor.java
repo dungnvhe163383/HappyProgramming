@@ -32,7 +32,7 @@ public class Mentor {
 
     public Mentor() {
     }
-
+    
     public Mentor(int id, String firstname, String lastname, String avatar) {
         this.id = id;
         this.firstname = firstname;
