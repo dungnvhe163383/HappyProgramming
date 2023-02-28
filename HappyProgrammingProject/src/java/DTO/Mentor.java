@@ -90,15 +90,18 @@ public class Mentor {
     public void setAverageRate(float averageRate) {
         this.averageRate = averageRate;
     }
-    
 
-    public Mentor(String firstname, String lastname, String introduce, String avatar, String mentorStatus) {
+    public Mentor(int id, String firstname, String lastname, String introduce, String avatar, String mentorStatus) {
+        this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.introduce = introduce;
         this.avatar = avatar;
         this.mentorStatus = mentorStatus;
     }
+    
+
+    
 
     public String getLastname() {
         return lastname;

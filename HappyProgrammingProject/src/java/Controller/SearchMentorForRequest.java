@@ -33,9 +33,8 @@ public class SearchMentorForRequest extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter pr = response.getWriter();
-        String id = request.getParameter("skillid");
         RequestDAO dao= new RequestDAO();
-        List<Mentor> list = dao.getMentorFromRequest(id);
+        List<Mentor> list = dao.getMentorFromRequest();
         request.setAttribute("listMentor", list);
         request.getRequestDispatcher("ViewMentor.jsp").forward(request, response);
     }

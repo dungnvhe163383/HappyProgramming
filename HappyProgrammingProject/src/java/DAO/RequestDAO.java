@@ -83,22 +83,22 @@ public class RequestDAO extends DBContext {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Mentor(rs.getInt(1), 
-                                    rs.getString(2), 
-                                    rs.getString(3), 
-                                    rs.getString(4), 
-                                    rs.getString(5), 
-                                    rs.getString(6),
-                                    rs.getDate(7), 
-                                    rs.getString(8), 
-                                    rs.getString(9), 
-                                    rs.getString(10), 
-                                    rs.getString(11), 
-                                    rs.getString(12), 
-                                    rs.getString(13),
-                                    rs.getString(14),
-                                    rs.getInt(15),
-                                    rs.getFloat(16)));
+                list.add(new Mentor(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getDate(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getString(11),
+                        rs.getString(12),
+                        rs.getString(13),
+                        rs.getString(14),
+                        rs.getInt(15),
+                        rs.getFloat(16)));
             }
         } catch (Exception e) {
         }
@@ -214,27 +214,19 @@ public class RequestDAO extends DBContext {
         }
         return list;
     }
-    
-    public List<Mentor> getMentorFromRequest(String skillId) {
+
+    public List<Mentor> getMentorFromRequest() {
         List<Mentor> list = new ArrayList<>();
-        query = "select [Name].firstName, [Name].lastName, mentor.avatar, mentor.introduce, [status].[Status]\n"
-                + "from mentor left outer join hire\n"
-                + "on mentor.id = hire.mentorID\n"
-                + "left outer join [Name]\n"
-                + "on mentor.id = [Name].id\n"
-                + "left outer join [status]\n"
-                + "on hire.statusID = [status].id\n"
-                + "left outer join mentorSkill\n"
-                + "on mentor.id = mentorSkill.mentorID\n"
-                + "where mentorSkill.skillID in (?,?,?)\n"
-                + "group by [Name].firstName, [Name].lastName, mentor.avatar, mentor.introduce, [status].[Status]\n"
-                + "HAVING COUNT(DISTINCT mentorSkill.skillID) = 4;";
+        query = "select mentor.id, [Name].firstName, [Name].lastName, mentor.avatar,mentor.introduce,[status].[Status]\n"
+                + "from mentor join [Name] on mentor.id = [Name].id\n"
+                + "join hire on mentor.id = hire.mentorID\n"
+                + "join [status] on hire.statusID = [status].id\n"
+                + "where [status].id = 3";
         try {
             ps = connection.prepareStatement(query);
-            ps.setString(1, skillId);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Mentor(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                list.add(new Mentor(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
             }
         } catch (SQLException e) {
             System.out.println(e);
