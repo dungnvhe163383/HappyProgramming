@@ -16,6 +16,23 @@ import java.sql.Date;
  * @author okanh
  */
 public class DAO extends DBContext {
+    public Account  getAccountByEmail(String username, String email) {
+        Account a=new Account();
+        query = "With t as(select a.id,a.username,a.password,m.email,a.roleid from Account a,mentor m where a.id=m.id\n"
+                + "Union \n"
+                + "select a.id,a.username,a.password,m.email,a.roleid from Account a,mentee m where a.id=m.id)\n"
+                + "select * from t where t.username like ? and t.email like ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, username);
+            ps.setString(2, email);
+            rs = ps.executeQuery();
+            if(rs.next())
+            a=new Account(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5));
+        } catch (Exception e) {
+        }
+        return a;
+    }
 
     public List<Mentor> getAllMentor() {
         List<Mentor> list = new ArrayList<>();
