@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import DAO.DAO;
 import DTO.Mentee;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,8 +14,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
+import java.sql.Date;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author fpt shop
@@ -74,7 +77,8 @@ public class EditProfile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int menteeId = Integer.parseInt(request.getParameter("id"));
+        try {
+            int menteeId = Integer.parseInt(request.getParameter("id"));
             Mentee mentee = new Mentee();
             mentee.setId(menteeId);
             mentee.setFirstName(request.getParameter("firstName"));
@@ -83,20 +87,17 @@ public class EditProfile extends HttpServlet {
             mentee.setAddress(request.getParameter("address"));
             String birthdayString = request.getParameter("birthday");
             SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-            Date birthday = format.parse(birthdayString);
+            java.util.Date birthday = format.parse(birthdayString);
             mentee.setBirthday(new java.sql.Date(birthday.getTime()));
             mentee.setSex(request.getParameter("sex"));
             mentee.setAvatar(request.getParameter("avatar"));
-            MenteeDAO menteeDAO = new MenteeDAO();
-            
+            DAO dao = new DAO();
+            dao.updateMentee(mentee);
             request.getRequestDispatcher("EditmenteeProfile.jsp").forward(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(EditProfile.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

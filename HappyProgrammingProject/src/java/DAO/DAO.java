@@ -270,5 +270,28 @@ public class DAO extends DBContext {
         return list;
     }
     
+    public void updateMentee(Mentee mentee) {
+    query = "UPDATE mentee m " +
+                   "JOIN address a ON m.id = a.id " +
+                   "JOIN name n ON m.id = n.id " +
+                   "SET m.email=?, m.phone=?, m.birthday=?, m.sex=?, m.avatar=?, a.address=?, n.first_name=?, n.last_name=? " +
+                   "WHERE m.id=?";
+    try {
+        ps = connection.prepareStatement(query);
+        ps.setString(1, mentee.getEmail());
+        ps.setString(2, mentee.getPhone());
+        ps.setDate(3, mentee.getBirthday());
+        ps.setString(4, mentee.getSex());
+        ps.setString(5, mentee.getAvatar());
+        ps.setString(6, mentee.getAddress());
+        ps.setString(7, mentee.getFirstName());
+        ps.setString(8, mentee.getLastName());
+        ps.setInt(9, mentee.getId());
+        ps.executeUpdate();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
     
 }
