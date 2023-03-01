@@ -50,10 +50,11 @@
                     <div class="container">
                         <div class="row gy-4">
                             <div class="col-lg-4 mx-4">
+                            <c:if test="${sessionScope.account.roleId == 1}">
                                 <div>
                                     <a class="btn btn-outline-primary my-4" href="editMenteeProfile">Edit Profile</a>
                                 </div>
-
+                            </c:if>
                                 <div class="portfolio-info">
                                     <h3>${mentee.firstName} ${mentee.lastName}</h3>
                                 <ul>

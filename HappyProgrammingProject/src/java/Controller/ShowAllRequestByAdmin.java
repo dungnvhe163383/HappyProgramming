@@ -18,7 +18,7 @@ import java.util.List;
  *
  * @author manuh
  */
-public class ShowAllRequest extends HttpServlet {
+public class ShowAllRequestByAdmin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +37,10 @@ public class ShowAllRequest extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ShowAllRequest</title>");            
+            out.println("<title>Servlet ShowAllRequestByAdmin</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ShowAllRequest at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ShowAllRequestByAdmin at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,7 +61,6 @@ public class ShowAllRequest extends HttpServlet {
         List<Request> list = new RequestDAO().getAllRequestByAdmin();
         request.setAttribute("RequestList", list);
         request.getRequestDispatcher("ShowAllRequestByAdmin.jsp").forward(request, response);
-        
     }
 
     /**

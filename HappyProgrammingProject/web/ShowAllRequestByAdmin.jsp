@@ -42,50 +42,55 @@
                         <c:choose>
                             <c:when test="${RequestList == null}">
                                 <h5 class="text text-center">No Record of Request Founded !
-                            </c:when>
-                            <c:otherwise>
-                                <div class="col-md-4 col-lg-4 col-xl-4 offset-xl-1">
-                                    <h2 class="text-start text-primary fw-bold">Request List</h2>
-                                </div>
-                                <div class="col-md-6 col-lg-6 col-xl-4 offset-xl-1">
-                                    <form class="d-flex my-1 mx-lg-1" action="RequestSearchByAdmin" method="get">                       
-                                        <input value="" class="form-control me-2" name="key" type="search" placeholder="Search Request ..." aria-label="Search">
-                                        <button onclick="this.form.submit()" class="btn btn-outline-primary" type="submit">Search</button>
-                                    </form>
-                                </div>
-                                <table class="table table-striped mt-4">
-                                    <thead>
-                                        <tr class="text-bg-info">
-                                            <th scope="col">Request ID</th>
-                                            <th scope="col">Title</th>
-                                            <th scope="col">Content</th>
-                                            <th scope="col">Deadline</th>
-                                            <th scope="col">Account</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach items="${RequestList}" var="r">
-                                            <tr>
-                                                <th scope="row">${r.id}</th>
-                                                <th scope="row">${r.title}</th>
-                                                <th scope="row">${r.content}</th>
-                                                <th scope="row">${r.deadline}</th>
-                                                <th scope="row">${r.menteeID}</th>
-                                                <th scope="row">${r.mentorID}</th>
-                                                <th scope="row">${r.requestStatus}</th>
-                                                <th scope="row"></th>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="col-md-4 col-lg-4 col-xl-4 offset-xl-1">
+                                        <h2 class="text-start text-primary fw-bold">Request List</h2>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-xl-4 offset-xl-1">
+                                        <form class="d-flex my-1 mx-lg-1" action="RequestSearchByAdmin" method="get">                       
+                                            <input value="" class="form-control me-2" name="key" type="search" placeholder="Search Request ..." aria-label="Search">
+                                            <button onclick="this.form.submit()" class="btn btn-outline-primary" type="submit">Search</button>
+                                        </form>
+                                    </div>
+                                    <table class="table table-striped mt-4">
+                                        <thead>
+                                            <tr class="text-bg-info">
+                                                <th scope="col">Request ID</th>
+                                                <th scope="col">Title</th>
+                                                <th scope="col">Content</th>
+                                                <th scope="col">Deadline</th>
+                                                <th scope="col">MenteeID</th>
+                                                <th scope="col">MentorID</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Action</th>
                                             </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
-                            </c:otherwise>
-                        </c:choose>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="${RequestList}" var="r">
+                                                <tr>
+                                                    <th scope="row">${r.id}</th>
+                                                    <th scope="row">${r.title}</th>
+                                                    <th scope="row">${r.content}</th>
+                                                    <th scope="row">${r.deadline}</th>
+                                                    <th scope="row">
+                                                        <a href="viewMenteeProfile?menteeID=${r.menteeID}">${r.menteeID}</a>
+                                                    </th>
+                                                    <th scope="row">
+                                                        <a href="MentorDetailControll?mentorid=${r.mentorID}">${r.mentorID}</a>
+                                                    </th>
+                                                    <th scope="row">${r.requestStatus}</th>
+                                                    <th scope="row"></th>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </c:otherwise>
+                            </c:choose>
                     </div>
                 </div>           
             </section>
-            
+
         </c:if>
 
 
