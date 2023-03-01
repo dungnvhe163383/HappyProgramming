@@ -34,27 +34,31 @@ public class RequestDAO extends DBContext {
         return list;
     }
 
-    public Request viewRequestDetail(int id) {
+   public Request viewRequestDetail(int id) {
         Request request = new Request();
-        query = "select *from Request where id=?";
+        query = "select * from Request where id=?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, id);
             rs = ps.executeQuery();
-            request = new Request(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5), rs.getInt(6), rs.getInt(7));
+            if(rs.next())
+                request = new Request(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getDate(4),rs.getInt(5));
         } catch (Exception e) {
         }
         return request;
     }
 
-    public Status getStatusOfRequest(int id) {
-        Status status = new Status();
-        query = "select s.Status from request r, status s where r.statusID=s.ID and r.id=?";
+    public List<Status> getStatusOfRequest(int id) {
+        List<Status> status = new ArrayList<>();
+        query = "select s.id,s.Status from request r,requestStatus rs, status s"
+                + " where r.id=rs.requestID and rs.statusID=s.id and r.id=?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, id);
             rs = ps.executeQuery();
-            status = new Status(rs.getInt(1), rs.getString(2));
+            while (rs.next()) {
+                status.add(new Status(rs.getInt(1), rs.getString(2)));
+            }
         } catch (Exception e) {
         }
         return status;
@@ -62,7 +66,7 @@ public class RequestDAO extends DBContext {
 
     public List<Skill> getSkillOfRequest(int id) {
         List<Skill> list = new ArrayList<>();
-        query = "select s.name from skill s,requestskill rs,request r where s.id=rs.skillID and r.id=rs.requestID and r.id=?";
+        query = "select s.id,s.name from skill s,requestskill rs,request r where s.id=rs.skillID and r.id=rs.requestID and r.id=?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, id);
@@ -77,28 +81,14 @@ public class RequestDAO extends DBContext {
 
     public List<Mentor> getMentorOfRequest(int id) {
         List<Mentor> list = new ArrayList<>();
-        query = "select m.name from mentor m,mentorRequest ms,request r where m.id=ms.mentorID and r.id=ms.requestID and r.id=?";
+        query = "select n.firstname,n.lastname from [Name] n, mentor m,mentorRequest ms,request r where "
+                + "m.id=ms.mentorID and r.id=ms.requestID and n.id=m.id and r.id=?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Mentor(rs.getInt(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getString(5),
-                        rs.getString(6),
-                        rs.getDate(7),
-                        rs.getString(8),
-                        rs.getString(9),
-                        rs.getString(10),
-                        rs.getString(11),
-                        rs.getString(12),
-                        rs.getString(13),
-                        rs.getString(14),
-                        rs.getInt(15),
-                        rs.getFloat(16)));
+                list.add(new Mentor(rs.getString(1),rs.getString(2)));
             }
         } catch (Exception e) {
         }

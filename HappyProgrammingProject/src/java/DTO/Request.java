@@ -60,6 +60,15 @@ public class Request {
         this.deadline = deadline;
         this.requestStatus = requestStatus;
     }
+
+    public Request(int id, String title, String content, Date deadline, int menteeID) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.deadline = deadline;
+        this.menteeID = menteeID;
+    }
+    
     public int getId() {
         return id;
     }
