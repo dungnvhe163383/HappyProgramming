@@ -27,8 +27,8 @@ public class ResetMail {
     
     public void send(String toEmail, String subject, String verifyCode) {
         //provide sender's email ID
-        String fromEmail = "okanhchaphet7@gmail.com";
-        String fromPassword = "dfoiohsukgguhrsm";
+        String fromEmail = "happyprogrammingisp392@gmail.com";
+        String fromPassword = "wronzyidaruxtpjn";
 
         //provide Mailtrap's host address
         String host = "smtp.gmail.com";

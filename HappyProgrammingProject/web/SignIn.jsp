@@ -37,7 +37,9 @@
                     <!-- Login part -->
                     <div class="col-md-6 col-lg-6 col-xl-4 offset-xl-1">
                         <h2 class="text-center text-primary fw-bold">Sign In</h2>
-
+                        <p class="text-success my-4 fw-bold">
+                            ${warning}
+                        </p>
                         <form class="" action="signIn" method="post">
                             <!-- Username input -->
                             <div class="form-outline mb-4">

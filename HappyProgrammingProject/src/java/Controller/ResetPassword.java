@@ -80,6 +80,7 @@ public class ResetPassword extends HttpServlet {
                 request.getSession().setAttribute("verifyCode", verifyCode);
                 // Update
                 dao.updatePassword(u.getUsername(),u.getPassword(), verifyCode);
+                request.setAttribute("warning", "send your email have new password, please check and SignIn");
                 request.getRequestDispatcher("SignIn.jsp").forward(request, response);
 
             }
