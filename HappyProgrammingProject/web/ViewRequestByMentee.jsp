@@ -65,7 +65,7 @@
                                         <c:forEach items="${RequestList}" var="r">
                                             <tr>
                                                 <th scope="row">${r.id}</th>
-                                                <th scope="row">${r.title}</th>
+                                                <th scope="row"><a href="ViewRequestDetail?requestid=${r.id}">${r.title}</a></th>
                                                 <th scope="row">${r.content}</th>
                                                 <th scope="row">${r.deadline}</th>
                                                 <th scope="row">${r.requestStatus}</th>

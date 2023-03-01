@@ -38,13 +38,13 @@ public class ViewRequestDetail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-//        String id= request.getParameter("requestid");
-//        int requestid= Integer.parseInt(id);
+        String id= request.getParameter("requestid");
+        int requestid= Integer.parseInt(id);
         RequestDAO rdao=new RequestDAO();
-        Request r=rdao.viewRequestDetail(3);
-        List<Skill> s=rdao.getSkillOfRequest(3);
-        List<Mentor> m=rdao.getMentorOfRequest(3);
-        List<Status> sr=rdao.getStatusOfRequest(3);        
+        Request r=rdao.viewRequestDetail(requestid);
+        List<Skill> s=rdao.getSkillOfRequest(requestid);
+        List<Mentor> m=rdao.getMentorOfRequest(requestid);
+        List<Status> sr=rdao.getStatusOfRequest(requestid);        
         request.setAttribute("request", r);
         request.setAttribute("skill", s);
         request.setAttribute("mentor", m);

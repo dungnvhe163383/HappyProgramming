@@ -33,8 +33,6 @@
                         <div class="col-md-4 col-lg-4 col-xl-4 offset-xl-1">
                             <h2 class="text-start text-primary fw-bold">Request Detail</h2>
                         </div>
-                        <div class="col-md-6 col-lg-6 col-xl-4 offset-xl-1">
-                        </div>
                         <table class="table table-striped mt-4">
                             <thead>
                                 <tr class="text-bg-info">
@@ -73,7 +71,10 @@
                         </tbody>
                     </table>
                 </div>
-            </div>           
+            </div>
+            <button class="btn btn-outline-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">
+               View Answer
+            </button>
         </section>
         <jsp:include page="Footer.jsp"></jsp:include>
         <!-- Vendor JS Files -->
