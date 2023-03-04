@@ -1,8 +1,8 @@
-﻿use master
+﻿--use master
 
-drop database HappyProgramming
-create database HappyProgramming
-use HappyProgramming
+--drop database HappyProgramming
+--create database HappyProgramming
+--use HappyProgramming
 ---------------------------------------------- Table roles -------------------------------
 
 create table roles (

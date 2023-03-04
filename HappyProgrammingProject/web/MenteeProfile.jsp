@@ -52,7 +52,7 @@
                             <div class="col-lg-4 mx-4">
                             <c:if test="${sessionScope.account.roleId == 1}">
                                 <div>
-                                    <a class="btn btn-outline-primary my-4" href="editMenteeProfile">Edit Profile</a>
+                                    <a class="btn btn-outline-primary my-4" href="EditMenteeProfile.jsp">Edit Profile</a>
                                 </div>
                             </c:if>
                                 <div class="portfolio-info">

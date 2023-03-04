@@ -1,9 +1,3 @@
-<%-- 
-    Document   : HomePage
-    Created on : Jan 28, 2023, 5:25:10 PM
-    Author     : okanh
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -11,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <title>HomePage</title>
+        <title>Edit Mentee Profile</title>
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
@@ -28,47 +22,58 @@
         <!-- Template Main CSS File -->
         <link href="assets/css/style.css" rel="stylesheet">
     </head>
-    <body>    
-        <jsp:include page="header.jsp"></jsp:include>
+    <body>
+            <jsp:include page="header.jsp"></jsp:include>
             <!-- ======= Hero Section ======= -->
-            <section  class="vh-100 mt-5">
+                                    
+
+            <section class="vh-100 mt-5">
             <div class="container-fluid h-custom">
                 <div class="row d-flex justify-content-start align-items-center h-100">
                     <!-- Login part -->
                     <div class="col-md-6 col-lg-6 col-xl-4 offset-xl-1">
+                        <h2 class="text-center text-primary fw-bold">Edit Profile</h2>
                         
-                        <h2 class="text-center text-primary fw-bold">Sign In</h2>
-                        <p class="text-success my-4 fw-bold">
-                            ${warning}
-                        </p>
-                        <form class="" action="signIn" method="post">
-                            <!-- Username input -->
+                        <form class="" action="EditProfile" method="post">
+                            <!-- firstName -->
                             <div class="form-outline mb-4">
-                                <label class="form-label">Username</label>
-                                <input name="username" type="text" class="form-control form-control-lg" value="${inputUsername}" />   
+                                <label class="form-label">First Name</label>
+                                <input name="firstName" type="text" class="form-control form-control-lg" value="${firstName}" />   
                             </div>
-                            <!-- Password input -->
-                            <div class="form-outline mb-3">
-                                <label class="form-label">Password</label>
-                                <input name="password" type="password" class="form-control form-control-lg"  value="" />
+                            <!--lastName-->
+                            <div class="form-outline mb-4">
+                                <label class="form-label">Last Name</label>
+                                <input name="lastName" type="text" class="form-control form-control-lg" value="${lastName}" />   
                             </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <!-- Checkbox -->
-                                <div class="form-check mb-0">
-                                    <input name="remember" value="1" class="form-check-input me-2" type="checkbox"/>
-                                    <label class="form-check-label">
-                                        Remember me!
-                                    </label>
-                                </div>
-                                <a href="ResetPass.jsp" class="text text-warning">Forgot password?</a>
+                            <!-- Email-->
+                            <div class="form-outline mb-4">
+                                <label class="form-label">Email</label>
+                                <input name="email" type="text" class="form-control form-control-lg" value="${email}" />   
+                            </div>
+                            <!--address-->
+                            <div class="form-outline mb-4">
+                                <label class="form-label">Address</label>
+                                <input name="address" type="text" class="form-control form-control-lg" value="${address}" />   
+                            </div>
+                            <!--Sex-->
+                            <div class="form-outline mb-4">
+                                <label class="form-label">Sex</label>
+                                <input name="sex" type="text" class="form-control form-control-lg" value="${sex}" />   
+                            </div>
+                            <!--Avatar-->
+                            <div class="form-outline mb-4">
+                                <label class="form-label">Avatar</label>
+                                <input name="avatar" type="text" class="form-control form-control-lg" value="${avatar}" />   
                             </div>
                             <div class="text-center text-lg-start mt-4 pt-2 mb-4">
                                 <button type="submit" class="btn btn-outline-primary btn-lg"style="padding-left: 2.5rem; padding-right: 2.5rem;">
-                                    SIGN IN
+                                    Done
                                 </button>
-                            </div>    
-                            You don't have account ?<a href="SignUp.jsp" class="text text-primary">Register here!</a> 
-                        </form>
+                            </div> 
+                        </form>    
+                            <p class="text-danger my-4 fw-bold">
+                            ${doneMessage}
+                        </p>
                         <p class="text-danger my-4 fw-bold">
                             ${errorMessage}
                         </p>

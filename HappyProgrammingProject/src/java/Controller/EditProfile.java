@@ -77,7 +77,7 @@ public class EditProfile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
+   
             int menteeId = Integer.parseInt(request.getParameter("id"));
             Mentee mentee = new Mentee();
             mentee.setId(menteeId);
@@ -85,18 +85,13 @@ public class EditProfile extends HttpServlet {
             mentee.setLastName(request.getParameter("lastName"));
             mentee.setEmail(request.getParameter("email"));
             mentee.setAddress(request.getParameter("address"));
-            String birthdayString = request.getParameter("birthday");
-            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-            java.util.Date birthday = format.parse(birthdayString);
-            mentee.setBirthday(new java.sql.Date(birthday.getTime()));
+            //Date dob = Date.valueOf(request.getParameter("birthday"));
             mentee.setSex(request.getParameter("sex"));
             mentee.setAvatar(request.getParameter("avatar"));
             DAO dao = new DAO();
             dao.updateMentee(mentee);
             request.getRequestDispatcher("EditmenteeProfile.jsp").forward(request, response);
-        } catch (ParseException ex) {
-            Logger.getLogger(EditProfile.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    
     }
     @Override
     public String getServletInfo() {

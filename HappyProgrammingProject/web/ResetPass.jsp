@@ -35,7 +35,7 @@
                     <div class="row d-flex justify-content-start align-items-center h-100">
                         <!-- Login part -->
                         <div class="col-md-6 col-lg-6 col-xl-4 offset-xl-1">
-                            <h2 class="text-center text-primary fw-bold">Reset Pasword</h2>
+                            <h2 class="text-center text-primary fw-bold">Reset Password</h2>
 
                             <form class="" action="ResetPassword" method="post">
                                 <!-- Username input -->
