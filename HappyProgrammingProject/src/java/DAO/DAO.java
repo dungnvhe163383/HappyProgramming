@@ -312,4 +312,44 @@ public class DAO extends DBContext {
 //        dao.updateMentee(m);
 //        System.out.println(m);
 //    }
+    public List<Hire> getHireById(String id) {
+        List<Hire> listHire = new ArrayList<>();
+        query = "select hire.content, [status].[Status]\n"
+                + "from mentor left outer join hire on mentor.id = hire.mentorID\n"
+                + " left outer join account on account.id = hire.menteeID or account.id = hire.mentorID\n"
+                + "left outer join [status] on [status].id = hire.statusID\n"
+                + "where account.id = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                listHire.add(new Hire(rs.getString(1), rs.getString(2)));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return listHire;
+
+    }
+
+    public List<Mentor> getMetorOfHire(String id) {
+        List<Mentor> list = new ArrayList<>();
+        query = "select [Name].firstName,[Name].lastName\n"
+                + " from mentor  join hire  on mentor.id = hire.mentorID\n"
+                + " join [Name]  on [Name].id = mentor.id\n"
+                + " join account  on account.id = hire.menteeID or account.id = hire.mentorID\n"
+                + " where account.id = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Mentor(rs.getString(1), rs.getString(2)));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
 }

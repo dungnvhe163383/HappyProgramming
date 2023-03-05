@@ -92,6 +92,10 @@
         <servlet-name>ShowAllRequestByAdmin</servlet-name>
         <servlet-class>Controller.ShowAllRequestByAdmin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewHireInvitation</servlet-name>
+        <servlet-class>Controller.ViewHireInvitation</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Databasecontext</servlet-name>
         <url-pattern>/Databasecontext</url-pattern>
@@ -183,6 +187,10 @@
     <servlet-mapping>
         <servlet-name>ShowAllRequestByAdmin</servlet-name>
         <url-pattern>/ShowAllRequestByAdmin</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>ViewHireInvitation</servlet-name>
+        <url-pattern>/ViewHireInvitation</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

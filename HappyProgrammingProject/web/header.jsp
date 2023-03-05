@@ -56,6 +56,9 @@
                         <c:if test="${sessionScope.account == null}">
                         <li><a href="SignUp">Sign Up</a></li>
                         </c:if>
+                          <c:if test="${sessionScope.account != null}">
+                         <li><a href="ViewHireInvitation?id=${sessionScope.account.id}">Hire Invitation</a></li>
+                        </c:if>
                         <c:if test="${sessionScope.account != null}">
                         <li class="dropdown"><a href="#"><span>Setting</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>

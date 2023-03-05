@@ -13,6 +13,7 @@ public class Hire {
     private int menteeID;
     private String content;
     private int statusID;
+    private String statusHire;
 
     public Hire() {
     }
@@ -22,6 +23,11 @@ public class Hire {
         this.menteeID = menteeID;
         this.content = content;
         this.statusID = statusID;
+    }
+
+    public Hire(String content, String statusHire) {
+        this.content = content;
+        this.statusHire = statusHire;
     }
 
     public int getMentorID() {
@@ -54,6 +60,14 @@ public class Hire {
 
     public void setStatusID(int statusID) {
         this.statusID = statusID;
+    }
+
+    public String getStatusHire() {
+        return statusHire;
+    }
+
+    public void setStatusHire(String statusHire) {
+        this.statusHire = statusHire;
     }
     
     
