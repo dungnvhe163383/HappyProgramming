@@ -39,32 +39,32 @@
                             <!-- firstName -->
                             <div class="form-outline mb-4">
                                 <label class="form-label">First Name</label>
-                                <input name="firstName" type="text" class="form-control form-control-lg" value="${sessionScope.firstName}" />   
+                                <input name="firstName" type="text" class="form-control form-control-lg" value="${sessionScope.account.firstName}" />   
                             </div>
                             <!--lastName-->
                             <div class="form-outline mb-4">
                                 <label class="form-label">Last Name</label>
-                                <input name="lastName" type="text" class="form-control form-control-lg" value="${sessionScope.lastName}" />   
+                                <input name="lastName" type="text" class="form-control form-control-lg" value="${sessionScope.account.lastName}" />   
                             </div>
                             <!-- Email-->
                             <div class="form-outline mb-4">
                                 <label class="form-label">Email</label>
-                                <input name="email" type="text" class="form-control form-control-lg" value="${sessionScope.email}" />   
+                                <input name="email" type="text" class="form-control form-control-lg" value="${sessionScope.account.email}" />   
                             </div>
                             <!--address-->
                             <div class="form-outline mb-4">
                                 <label class="form-label">Address</label>
-                                <input name="address" type="text" class="form-control form-control-lg" value="${sessionScope.address}" />   
+                                <input name="address" type="text" class="form-control form-control-lg" value="${sessionScope.account.address}" />   
                             </div>
                             <!--Sex-->
                             <div class="form-outline mb-4">
                                 <label class="form-label">Sex</label>
-                                <input name="sex" type="text" class="form-control form-control-lg" value="${sessionScope.sex}" />   
+                                <input name="sex" type="text" class="form-control form-control-lg" value="${sessionScope.account.sex}" />   
                             </div>
                             <!--Avatar-->
                             <div class="form-outline mb-4">
                                 <label class="form-label">Avatar</label>
-                                <input name="avatar" type="text" class="form-control form-control-lg" value="${sessionScope.avatar}" />   
+                                <input name="avatar" type="text" class="form-control form-control-lg" value="${sessionScope.account.avatar}" />   
                             </div>
                             <div class="text-center text-lg-start mt-4 pt-2 mb-4">
                                 <button type="submit" class="btn btn-outline-primary btn-lg"style="padding-left: 2.5rem; padding-right: 2.5rem;">

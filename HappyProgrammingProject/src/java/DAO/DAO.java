@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -271,35 +272,36 @@ public class DAO extends DBContext {
     }
     
     public void updateMentee(Mentee mentee) {
-   
     query="Update mentee "
-            + "set email=?,phone=?,avatar=?"
+            + "set phone=?,avatar=? "
             + "where id=?";
     try {
         ps = connection.prepareStatement(query);
-        ps.setString(1, mentee.getEmail());
-        ps.setString(2, mentee.getPhone());
-        ps.setDate(3, mentee.getBirthday());
-        ps.setString(4, mentee.getSex());
-        ps.setString(5, mentee.getAvatar());
-        ps.setInt(6,mentee.getId());
+        //ps.setString(1, mentee.getEmail());
+        ps.setString(1, mentee.getPhone());
+        //ps.setDate(3, mentee.getBirthday());
+        //ps.setString(4, mentee.getSex());
+        ps.setString(2, mentee.getAvatar());
+        ps.setInt(3,mentee.getId());
         ps.executeUpdate();
         
-        query="Update [address]"
-                + "set[address].address=?"
+        String query2="Update [address]"
+                + "set address=? "
                 + "where id=?";
-        ps.setString(1,mentee.getAddress());
-        ps.setInt(2, mentee.getId());
-        ps.executeUpdate();
+        PreparedStatement ps2 = connection.prepareStatement(query2);
+        ps2.setString(1,mentee.getAddress());
+        ps2.setInt(2, mentee.getId());
+        ps2.executeUpdate();
         
-        query="Update [Name]"
-                + "set [firstName]=?,[lastName]=?"
+        String query3="Update [Name] "
+                + "set [firstName]=?, [lastName]=? "
                 + "where id=?";
-        ps.setString(1, mentee.getFirstName());
-        ps.setString(2, mentee.getLastName());
-        ps.setInt(3, mentee.getId());
-        ps.executeUpdate();    
-        
+        PreparedStatement ps3 = connection.prepareStatement(query3);
+        ps3.setString(1, mentee.getFirstName());
+        ps3.setString(2, mentee.getLastName());
+        ps3.setInt(3, mentee.getId());
+        ps3.executeUpdate(); 
+          
     } catch (SQLException e) {
         e.printStackTrace();
     }
@@ -351,5 +353,23 @@ public class DAO extends DBContext {
             System.out.println(e);
         }
         return list;
+    }
+    
+    public Answer getAnswer(int requestID,int mentorID){
+        Answer a = new Answer();
+        query ="select * from answerRequest "
+                + "where requestID=? and mentorID=?";
+        try{
+            ps=connection.prepareStatement(query);
+            ps.setInt(1,a.getMentorID());
+            ps.setInt(2, a.getMentorID());
+            rs = ps.executeQuery();
+            while(rs.next()){
+                a = new Answer(rs.getInt(1),rs.getInt(2),rs.getString(3));
+            }
+        }catch(SQLException e){
+            
+        }
+        return a;
     }
 }
