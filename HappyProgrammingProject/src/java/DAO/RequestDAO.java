@@ -14,12 +14,14 @@ public class RequestDAO extends DBContext {
 
     public List<Request> getRequestByMentee(String id) {
         List<Request> list = new ArrayList<>();
-        query = "select historyRequest.id,historyRequest.title, historyRequest.content, historyRequest.deadline,[status].[Status]\n"
-                + "from historyRequest left outer join account\n"
-                + "on historyRequest.accountID = account.id\n"
-                + "left outer join [status]\n"
-                + "on historyRequest.statusID = [status].id\n"
-                + "where account.id = ?";
+        query = "select request.id, request.title, request.content, request.deadline, [status].[Status]\n"
+                + "from mentee join request on mentee.id = request.id\n"
+                + "join mentorRequest on request.id = mentorRequest.requestID\n"
+                + "join mentor on mentor.id = mentorRequest.mentorID\n"
+                + "join requestStatus on request.id = requestStatus.requestID\n"
+                + "join [status] on [status].id = requestStatus.statusID\n"
+                + "where mentee.id = ?\n"
+                + "group by request.id, request.title, request.content, request.deadline, [status].[Status]";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, id);
@@ -34,6 +36,28 @@ public class RequestDAO extends DBContext {
         return list;
     }
 
+    public List<Mentor> getMentorFromRequest(String id) {
+        List<Mentor> list = new ArrayList<>();
+        query = "select [Name].firstName, [Name].lastName\n"
+                + "from mentee join request on mentee.id = request.id\n"
+                + "join mentorRequest on request.id = mentorRequest.requestID\n"
+                + "join mentor on mentor.id = mentorRequest.mentorID\n"
+                + "join [Name] on [Name].id = mentor.id\n"
+                + "where mentee.id = ?\n"
+                + "group by [Name].firstName, [Name].lastName";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Mentor(rs.getString(1), rs.getString(2)));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
    public Request viewRequestDetail(int id) {
         Request request = new Request();
         query = "select * from Request where id=?";

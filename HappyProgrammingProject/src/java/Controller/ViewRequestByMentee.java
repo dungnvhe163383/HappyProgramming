@@ -5,6 +5,7 @@
 package Controller;
 
 import DAO.RequestDAO;
+import DTO.Mentor;
 import DTO.Request;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -58,9 +59,11 @@ public class ViewRequestByMentee extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("menteeid");
+         String id = request.getParameter("menteeid");
         List<Request> list = new RequestDAO().getRequestByMentee(id);
+        List<Mentor> mentorList = new RequestDAO().getMentorFromRequest(id);
         request.setAttribute("RequestList", list);
+        request.setAttribute("mentorList", mentorList);
         request.getRequestDispatcher("ViewRequestByMentee.jsp").forward(request, response);
     }
 

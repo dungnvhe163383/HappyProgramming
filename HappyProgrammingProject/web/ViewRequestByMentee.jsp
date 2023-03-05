@@ -53,25 +53,48 @@
                                 <table class="table table-striped mt-4">
                                     <thead>
                                         <tr class="text-bg-info">
-                                            <th scope="col">Request ID</th>
                                             <th scope="col">Title</th>
                                             <th scope="col">Content</th>
+                                            <th scope="col">Mentor</th>
                                             <th scope="col">Deadline</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach items="${RequestList}" var="r">
-                                            <tr>
-                                                <th scope="row">${r.id}</th>
-                                                <th scope="row"><a href="ViewRequestDetail?requestid=${r.id}">${r.title}</a></th>
-                                                <th scope="row">${r.content}</th>
-                                                <th scope="row">${r.deadline}</th>
-                                                <th scope="row">${r.requestStatus}</th>
-                                                <th scope="row"></th>
-                                            </tr>
-                                        </c:forEach>
+                                       <tr>
+                                            <th scope="row">
+                                                <c:forEach items="${RequestList}" var="r">
+                                                  <a href="ViewRequestDetail?requestid=${r.id}">${r.title}</a> <br>
+                                                </c:forEach>
+                                            </th>
+                                            <th scope="row">
+                                                <c:forEach items="${RequestList}" var="r">
+                                                    ${r.content} <br>
+                                                </c:forEach>
+                                            </th>
+                                            <th scope="row">
+                                                <c:forEach items="${mentorList}" var="m">
+                                                    ${m.firstname} ${m.lastname}<br>
+                                                </c:forEach>
+                                            </th>
+                                            <th scope="row">
+                                                <c:forEach items="${RequestList}" var="r">
+                                                     ${r.deadline} <br>
+                                                </c:forEach>
+                                            </th>
+                                            <th scope="row">
+                                                <c:forEach items="${RequestList}" var="r">
+                                                     ${r.requestStatus} <br>
+                                                </c:forEach>
+                                            </th>
+                                            <th scope="row">
+                                                <c:forEach items="${RequestList}" var="r">
+                                                     
+                                                </c:forEach>
+                                            </th>
+                                        </tr>
+                                            
                                     </tbody>
                                 </table>
                             </c:otherwise>
