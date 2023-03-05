@@ -52,7 +52,7 @@
                     <c:forEach items="${listMentor}" var="o">
                         <div class="col-lg-4 col-md-6 portfolio-wrap filter-app">
                             <div class="portfolio-item">
-                                <img src="assets/img/${o.avatar}" class=" img-thumbnail" alt="" height="250px" width="250px">
+                                <img src="assets/img/mentor/${o.avatar}" class=" img-thumbnail" alt="" height="250px" width="250px">
                                 <div class="portfolio-info">
                                     <h3><a href="MentorDetailControll?mentorid=${o.id}">${o.firstname} ${o.lastname}</a></h3>
                                 </div>
