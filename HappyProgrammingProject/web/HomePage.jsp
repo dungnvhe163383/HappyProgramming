@@ -6,7 +6,11 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import = "DAO.*" %>
+<%@page import = "DTO.*" %>
+<%@page import = "java.util.*" %>
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -15,7 +19,7 @@
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Vendor CSS Files -->
         <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
         <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -30,10 +34,15 @@
         <link href="assets/css/RateStar.css" rel="stylesheet">
     </head>
     <body>          
+        
         <!-- ======= Header ======= -->
         <jsp:include page="header.jsp"></jsp:include>
 
+
             <!-- ======= Hero Section ======= -->
+            <% DAO dao=new DAO();
+                List<Mentor> x=  dao.getTop3Mentor(); 
+            %>
             <section id="hero" class="d-flex justify-cntent-center align-items-center">
                 <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
@@ -42,6 +51,7 @@
                         <div class="carousel-container">
                             <h2 class="animate__animated animate__fadeInDown">Welcome to <span>CODELEARN</span></h2>
                             <p class="animate__animated animate__fadeInUp">You can bring your programming questions to our advisors for answers. Together, progress in programming and become excellent programmers in the future. Nice to meet you.</p>
+                            <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
                         </div>
                     </div>
 
@@ -49,7 +59,8 @@
                     <div class="carousel-item">
                         <div class="carousel-container">
                             <h2 class="animate__animated animate__fadeInDown">CODEING TOGETHER</h2>
-                            <p class="animate__animated animate__fadeInUp"><img src="assets/img/code.jpg" class="img-fluid" width="350px" height="350px"></p>
+                            <p class="animate__animated animate__fadeInUp"><img src="assets/img/code.jpg" class="img-fluid" width="350px" height="350px"></p>  
+                            <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
                         </div>
                     </div>
 
@@ -69,32 +80,23 @@
                     <div class="section-title">
                         <h2>Outstanding Mentor</h2>
                     </div>
-                <c:forEach items="${Top3}" var="t">
+                <% for (Mentor m : x) { %>
                     <div class="row" data-aos="fade-up">
                         <div class="col-md-5">
-                            <img src="assets/img/${t.avatar}" class="img-fluid" alt="" height="350 px" width="350 px" >
+                            <img src="assets/img/mentor/<%= m.getAvatar() %>" class="img-fluid" alt="" height="350 px" width="350 px" >
                         </div>
+                       
                         <div class="col-md-7 pt-4">
-                            <h3><strong>${t.firstname} ${t.lastname}</strong></h3>
-                            <h4>Average Rate: ${t.averageRate}</h4>
-                            <fieldset class="rate">
-                                <input type="radio" id="rating10" name="rating-${t.lastname}" value="5"  disabled="true" checked="true"  /><label for="rating10" title="5 stars"></label>
-                                <input type="radio" id="rating9" name="rating-${t.lastname}" value="4.5"  disabled="true"   /><label class="half" for="rating9" title="4.5 stars"></label>
-                                <input type="radio" id="rating8" name="rating-${t.lastname}" value="4"  disabled="true"  /><label for="rating8" title="4 stars"></label>
-                                <input type="radio" id="rating7" name="rating-${t.lastname}" value="3.5" disabled="true"   /><label class="half" for="rating7" title="3.5 stars"></label>
-                                <input type="radio" id="rating6" name="rating-${t.lastname}" value="3" disabled="true"   /><label for="rating6" title="3 stars"></label>
-                                <input type="radio" id="rating5" name="rating-${t.lastname}" value="2.5" disabled="true"   /><label class="half" for="rating5" title="2.5 stars"></label>
-                                <input type="radio" id="rating4" name="rating-${t.lastname}" value="2" disabled="true"   /><label for="rating4" title="2 stars"></label>
-                                <input type="radio" id="rating3" name="rating-${t.lastname}" value="1.5" disabled="true"   /><label class="half" for="rating3" title="1.5 stars"></label>
-                                <input type="radio" id="rating2" name="rating-${t.lastname}" value="1" disabled="true"   /><label for="rating2" title="1 star"></label>
-                                <input type="radio" id="rating1" name="rating-${t.lastname}" value="0.5" disabled="true"   /><label class="half" for="rating1" title="0.5 star"></label>
-                                <input type="radio" id="rating0" name="rating-${t.lastname}" value="0" disabled="true"   /><label for="rating0" title="No star"></label>
-                            </fieldset>
-                            <h4>Introduce: ${t.introduce}</h4>
-                            
+                            <h3><strong><%= m.getFirstname() %> <%= m.getLastname() %></strong></h3>
+                            <h4>Average Rate: <%= m.getAverageRate() %></h4>   
+                             <% for(int i=0;i<m.getAverageRate();i++) { %>
+                             <span content="\2B50">&#11088;</span>
+                             <% } %>
+                            <h4>Introduce: <%= m.getIntroduce() %></h4>                            
                         </div>
+                        
                     </div>
-                </c:forEach>
+                <% } %>
             </div>
         </section><!-- End Features Section -->
         <!-- ======= Footer ======= -->
@@ -113,12 +115,5 @@
 
         <!-- Template Main JS File -->
         <script src="assets/js/main.js"></script>
-<!--        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-         $(document).ready(function () {
-            var rating = 3;
-            $('.star-rating input[value="' + rating + '"]').prop('checked', true).trigger('change');
-            });
-        </script>-->
     </body>
 </html>
