@@ -33,11 +33,12 @@ public class Mentor {
     public Mentor() {
     }
     
-    public Mentor(int id, String firstname, String lastname, String avatar) {
+    public Mentor(int id, String firstname, String lastname, String avatar,String introduce) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.avatar = avatar;
+        this.introduce=introduce;
     }
      
     public Mentor(int id, String firstname, String lastname, String avatar, float averageRate,String introduce) {

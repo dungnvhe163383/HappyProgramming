@@ -33,31 +33,49 @@
     <body>
         <!-- ======= Header ======= -->
         <jsp:include page="header.jsp"></jsp:include>
-        <main id="main">
+            <main id="main">
 
-            <!-- ======= Our Portfolio Section ======= -->
-            <section class="breadcrumbs">
-                <div class="container">
+                <!-- ======= Our Portfolio Section ======= -->
+                <section class="breadcrumbs">
+                    <div class="container">
 
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h2>MENTORS</h2>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2>MENTORS</h2>
+                        </div>
+
                     </div>
+                </section><!-- End Our Portfolio Section -->
 
-                </div>
-            </section><!-- End Our Portfolio Section -->
-   
-            <!-- ======= Portfolio Section ======= -->
-            <div class="container">
-                <div class="row portfolio-container" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+                <!-- ======= Portfolio Section ======= -->
+                <div class="container">
+                    <div class="row portfolio-container" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
                     <c:forEach items="${listMentor}" var="o">
-                        <div class="col-lg-4 col-md-6 portfolio-wrap filter-app">
-                            <div class="portfolio-item">
-                                <img src="assets/img/mentor/${o.avatar}" class=" img-thumbnail" alt="" height="250px" width="250px">
-                                <div class="portfolio-info">
-                                    <h3><a href="MentorDetailControll?mentorid=${o.id}">${o.firstname} ${o.lastname}</a></h3>
+                        <section class="team" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+                            <div class="container">
+
+                                <div class="row">
+
+                                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                        <div class="member">
+                                            <div class="member-img">
+                                                <img src="assets/img/mentor/${o.avatar}" class="img-fluid" alt="">
+                                                <div class="social">
+                                                    <a href=""><i class="bi bi-twitter"></i></a>
+                                                    <a href=""><i class="bi bi-facebook"></i></a>
+                                                    <a href=""><i class="bi bi-instagram"></i></a>
+                                                    <a href=""><i class="bi bi-linkedin"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="member-info">
+                                                <h4>${o.firstname} ${o.lastname}</h4>
+                                                <span>Chief Executive Officer</span>
+                                                <p>${o.introduce}</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </section>
                     </c:forEach>
                 </div>
             </div>   

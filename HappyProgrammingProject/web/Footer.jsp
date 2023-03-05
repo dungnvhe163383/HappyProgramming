@@ -39,7 +39,7 @@
                     <div class="col-lg-4 col-md-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="ViewTop3Mentor">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="HomePage.jsp">Home</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="ViewAllMentor">Mentor</a></li>
                                 <c:if test="${sessionScope.account == null}">
                                 <li><i class="bx bx-chevron-right"></i> <a href="SignIn.jsp">Sign In</a></li>

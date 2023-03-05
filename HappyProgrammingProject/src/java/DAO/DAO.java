@@ -36,12 +36,12 @@ public class DAO extends DBContext {
 
     public List<Mentor> getAllMentor() {
         List<Mentor> list = new ArrayList<>();
-        query = "select m.id,n.firstname,n.lastname,m.avatar from mentor m, [Name] n where m.id=n.id";
+        query = "select m.id,n.firstname,n.lastname,m.avatar,m.introduce from mentor m, [Name] n where m.id=n.id";
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                list.add(new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5)));
             }
         } catch (Exception e) {
         }
