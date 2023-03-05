@@ -5,6 +5,7 @@
 package Controller;
 
 import DAO.DAO;
+import DTO.Account;
 import DTO.Mentee;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,11 +14,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.text.SimpleDateFormat;
-import java.sql.Date;
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import jakarta.servlet.http.HttpSession;
+//import java.text.SimpleDateFormat;
+//import java.sql.Date;
+//import java.text.ParseException;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 /**
  *
  * @author fpt shop
@@ -77,21 +79,28 @@ public class EditProfile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-   
-            int menteeId = Integer.parseInt(request.getParameter("id"));
-            Mentee mentee = new Mentee();
-            mentee.setId(menteeId);
-            mentee.setFirstName(request.getParameter("firstName"));
-            mentee.setLastName(request.getParameter("lastName"));
-            mentee.setEmail(request.getParameter("email"));
-            mentee.setAddress(request.getParameter("address"));
-            //Date dob = Date.valueOf(request.getParameter("birthday"));
-            mentee.setSex(request.getParameter("sex"));
-            mentee.setAvatar(request.getParameter("avatar"));
+            HttpSession session = request.getSession();
+            Mentee m = (Mentee) session.getAttribute("account");
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+            String email = request.getParameter("email");
+            String address = request.getParameter("address");
+            String sex = request.getParameter("sex");
+            String avatar = request.getParameter("avatar");
             DAO dao = new DAO();
-            dao.updateMentee(mentee);
-            request.getRequestDispatcher("EditmenteeProfile.jsp").forward(request, response);
-    
+//            Mentee m = dao.getMenteeById(a.getId());
+            m.setFirstName(firstName);
+            m.setLastName(lastName);
+            m.setEmail(email);
+            m.setEmail(email);
+            m.setAddress(address);
+            m.setSex(sex);
+            m.setAvatar(avatar);
+            dao.updateMentee(m);
+            Mentee a= dao.getMenteeById(m.getAcc().getId());
+            session.setAttribute("account", a);
+            request.setAttribute("doneMessage", "Update profile successful");
+            request.getRequestDispatcher("EditMenteeProfile.jsp").forward(request, response);
     }
     @Override
     public String getServletInfo() {

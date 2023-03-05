@@ -6,6 +6,7 @@ package Controller;
 
 import DAO.DAO;
 import DTO.Account;
+import DTO.Mentee;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -76,7 +77,9 @@ public class SignInController extends HttpServlet {
         }
         else{
             HttpSession session = request.getSession();
-            session.setAttribute("account", account);
+            Mentee m = userDAO.getMenteeById(account.getId());
+            m.setAcc(account);
+            session.setAttribute("account", m);
             request.getRequestDispatcher("HomePage.jsp").forward(request, response);
         }
     }

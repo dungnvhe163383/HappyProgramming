@@ -271,11 +271,10 @@ public class DAO extends DBContext {
     }
     
     public void updateMentee(Mentee mentee) {
-    query = "UPDATE mentee m " +
-                   "JOIN address a ON m.id = a.id " +
-                   "JOIN name n ON m.id = n.id " +
-                   "SET m.email=?, m.phone=?, m.birthday=?, m.sex=?, m.avatar=?, a.address=?, n.first_name=?, n.last_name=? " +
-                   "WHERE m.id=?";
+   
+    query="Update mentee "
+            + "set email=?,phone=?,avatar=?"
+            + "where id=?";
     try {
         ps = connection.prepareStatement(query);
         ps.setString(1, mentee.getEmail());
@@ -283,13 +282,34 @@ public class DAO extends DBContext {
         ps.setDate(3, mentee.getBirthday());
         ps.setString(4, mentee.getSex());
         ps.setString(5, mentee.getAvatar());
-        ps.setString(6, mentee.getAddress());
-        ps.setString(7, mentee.getFirstName());
-        ps.setString(8, mentee.getLastName());
-        ps.setInt(9, mentee.getId());
+        ps.setInt(6,mentee.getId());
         ps.executeUpdate();
+        
+        query="Update [address]"
+                + "set[address].address=?"
+                + "where id=?";
+        ps.setString(1,mentee.getAddress());
+        ps.setInt(2, mentee.getId());
+        ps.executeUpdate();
+        
+        query="Update [Name]"
+                + "set [firstName]=?,[lastName]=?"
+                + "where id=?";
+        ps.setString(1, mentee.getFirstName());
+        ps.setString(2, mentee.getLastName());
+        ps.setInt(3, mentee.getId());
+        ps.executeUpdate();    
+        
     } catch (SQLException e) {
         e.printStackTrace();
     }
-}   
+}
+//    public static void main(String[] args) {
+//        DAO dao = new DAO();
+//        Mentee m=dao.getMenteeById(1);
+//        System.out.println(m);
+//        m.setFirstName("DAO");
+//        dao.updateMentee(m);
+//        System.out.println(m);
+//    }
 }

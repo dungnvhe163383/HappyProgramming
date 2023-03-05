@@ -53,13 +53,15 @@ public class ViewMenteeProfile extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("account");
-        Mentee mentee = new Mentee();
-        if (account.getRoleId() == 3) {
+        Mentee account = (Mentee) session.getAttribute("account");
+        Mentee mentee ;
+        
+        if (account.getAcc().getRoleId() == 3) {
+            
             mentee = new DAO().getMenteeById(Integer.parseInt(request.getParameter("menteeID")));
         }
         else{
-            mentee = new DAO().getMenteeById(account.getId());
+            mentee = account;
         }
        
         request.setAttribute("mentee", mentee);

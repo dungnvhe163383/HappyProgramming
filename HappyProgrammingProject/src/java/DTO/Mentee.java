@@ -18,7 +18,8 @@ public class Mentee {
     private Date birthday;
     private String sex;
     private String avatar;
-
+    private Account acc;
+    
     public Mentee() {
     }
 
@@ -106,6 +107,32 @@ public class Mentee {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public Account getAcc() {
+        return acc;
+    }
+
+    public void setAcc(Account acc) {
+        this.acc = acc;
+    }
+
+    public Mentee(int id, String firstName, String lastName, String email, String address, String phone, Date birthday, String sex, String avatar, Account acc) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.phone = phone;
+        this.birthday = birthday;
+        this.sex = sex;
+        this.avatar = avatar;
+        this.acc = acc;
+    }
+
+    @Override
+    public String toString() {
+        return "Mentee{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", address=" + address + ", phone=" + phone + ", birthday=" + birthday + ", sex=" + sex + ", avatar=" + avatar + ", acc=" + acc + '}';
     }
     
     
