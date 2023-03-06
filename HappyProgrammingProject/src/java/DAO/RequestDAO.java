@@ -58,15 +58,17 @@ public class RequestDAO extends DBContext {
         }
         return list;
     }
-   public Request viewRequestDetail(int id) {
+
+    public Request viewRequestDetail(int id) {
         Request request = new Request();
         query = "select * from Request where id=?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, id);
             rs = ps.executeQuery();
-            if(rs.next())
-                request = new Request(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getDate(4),rs.getInt(5));
+            if (rs.next()) {
+                request = new Request(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getInt(5));
+            }
         } catch (Exception e) {
         }
         return request;
@@ -112,7 +114,7 @@ public class RequestDAO extends DBContext {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Mentor(rs.getString(1),rs.getString(2)));
+                list.add(new Mentor(rs.getString(1), rs.getString(2)));
             }
         } catch (Exception e) {
         }
@@ -134,8 +136,7 @@ public class RequestDAO extends DBContext {
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Request(rs.getInt(1), rs.getString(2), rs.getString(3),
-                        rs.getDate(4), rs.getString(5), rs.getString(6)));
+                list.add(new Request(rs.getInt("id"), rs.getString("title"), rs.getString("content"), rs.getDate("deadline"), rs.getString("username"), rs.getString("Status")));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -159,7 +160,7 @@ public class RequestDAO extends DBContext {
             ps.setString(2, "%" + key + "%");
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Request(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), rs.getString(6)));
+                list.add(new Request(rs.getInt("id"), rs.getString("title"), rs.getString("content"), rs.getDate("deadline"), rs.getString("username"), rs.getString("Status")));
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -182,8 +183,8 @@ public class RequestDAO extends DBContext {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Request(rs.getInt(1), rs.getString(2), rs.getString(3),
-                        rs.getDate(4), rs.getInt(5), rs.getInt(6), rs.getString(7)));
+                list.add(new Request(rs.getInt("id"), rs.getString("title"), rs.getString("content"),
+                        rs.getDate("deadline"), rs.getInt("menteeID"), rs.getInt("mentorID"), rs.getString("Status")));
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -220,8 +221,8 @@ public class RequestDAO extends DBContext {
             ps.setString(7, "%" + key + "%");
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Request(rs.getInt(1), rs.getString(2), rs.getString(3),
-                        rs.getDate(4), rs.getInt(5), rs.getInt(6), rs.getString(7)));
+                list.add(new Request(rs.getInt("id"), rs.getString("title"), rs.getString("content"),
+                        rs.getDate("deadline"), rs.getInt("menteeID"), rs.getInt("mentorID"), rs.getString("Status")));
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -240,11 +241,31 @@ public class RequestDAO extends DBContext {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Mentor(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+                list.add(new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
             }
         } catch (SQLException e) {
             System.out.println(e);
         }
         return list;
+    }
+
+    public Request getRequestByMentorId(int id, int mentorID) {
+        query = "SELECT request.id, request.title, request.content, request.deadline, mentorRequest.mentorID \n"
+                + "FROM request\n"
+                + "LEFT OUTER JOIN mentorRequest\n"
+                + "ON request.id = mentorRequest.requestID\n"
+                + "WHERE request.id = ? AND mentorRequest.mentorID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            ps.setInt(2, mentorID);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Request(rs.getInt("id"), rs.getString("title"), rs.getString("content"), rs.getDate("deadline"), rs.getInt("mentorID"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
     }
 }

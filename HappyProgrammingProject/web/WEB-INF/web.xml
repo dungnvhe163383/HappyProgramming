@@ -96,6 +96,10 @@
         <servlet-name>ViewHireInvitation</servlet-name>
         <servlet-class>Controller.ViewHireInvitation</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateRequest</servlet-name>
+        <servlet-class>Controller.UpdateRequest</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Databasecontext</servlet-name>
         <url-pattern>/Databasecontext</url-pattern>
@@ -188,9 +192,13 @@
         <servlet-name>ShowAllRequestByAdmin</servlet-name>
         <url-pattern>/ShowAllRequestByAdmin</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ViewHireInvitation</servlet-name>
         <url-pattern>/ViewHireInvitation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateRequest</servlet-name>
+        <url-pattern>/UpdateRequest</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
