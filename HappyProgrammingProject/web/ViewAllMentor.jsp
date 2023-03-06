@@ -43,9 +43,7 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-
 <body>
-
   <!-- ======= Header ======= -->
   <jsp:include page="header.jsp"></jsp:include>
 
