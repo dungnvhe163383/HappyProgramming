@@ -35,7 +35,7 @@
             <div class="container d-flex justify-content-between align-items-center">
 
                 <div class="logo">
-                    <h1 class="text-light"><a href="HomPage.jsp"><span>CODELEARN</span></a></h1>
+                    <h1 class="text-light"><a href="HomePage.jsp"><span>CODELEARN</span></a></h1>
                     <!-- Uncomment below if you prefer to use an image logo -->
                     <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
                 </div>
@@ -44,10 +44,10 @@
                     <ul>
                         <li><a class="" href="HomePage.jsp">Home</a></li>
                         <li><a href="ViewAllMentor">Mentor</a></li>
-                        <c:if test="${sessionScope.account.acc.roleId== 1}">
+                        <c:if test="${sessionScope.account.roleId== 1}">
                         <li><a href="CreateRequest">New Request</a></li>
                         </c:if>
-                        <c:if test="${sessionScope.account.acc.roleId== 3}">
+                        <c:if test="${sessionScope.account.roleId== 3}">
                         <li><a href="ShowAllRequestByAdmin">Show All Request</a></li>
                         </c:if>
                         <c:if test="${sessionScope.account == null}">
@@ -62,14 +62,14 @@
                         <c:if test="${sessionScope.account != null}">
                         <li class="dropdown"><a href="#"><span>Setting</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
-                                <c:if test="${sessionScope.account.acc.roleId == 1}">
+                                <c:if test="${sessionScope.account.roleId == 1}">
                                     <li><a href="viewMenteeProfile">Profile</a></li>
                                 </c:if>
-                                <c:if test="${sessionScope.account.acc.roleId == 1}">
-                                    <li><a href="viewRequestByMentee?menteeid=${sessionScope.account.acc.id}">My Request</a></li>
+                                <c:if test="${sessionScope.account.roleId == 1}">
+                                    <li><a href="viewRequestByMentee?menteeid=${sessionScope.account.id}">My Request</a></li>
                                 </c:if>
-                                <c:if test="${sessionScope.account.acc.roleId == 1 || sessionScope.account.acc.roleId == 2}">
-                                    <li><a href="RequestHistory?id=${sessionScope.account.acc.id}">Request History</a></li>
+                                <c:if test="${sessionScope.account.roleId == 1 || sessionScope.account.roleId == 2}">
+                                    <li><a href="RequestHistory?id=${sessionScope.account.id}">Request History</a></li>
                                 </c:if>
                                 <c:if test="${sessionScope.account != null}">
                                     <li><a href="ChangePassword.jsp">Change Password</a></li>

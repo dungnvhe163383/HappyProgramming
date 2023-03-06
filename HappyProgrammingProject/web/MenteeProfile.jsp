@@ -50,7 +50,7 @@
                     <div class="container">
                         <div class="row gy-4">
                             <div class="col-lg-4 mx-4">
-                            <c:if test="${sessionScope.account.acc.roleId == 1}">
+                            <c:if test="${sessionScope.account.roleId == 1}">
                                 <div>
                                     <a class="btn btn-outline-primary my-4" href="EditMenteeProfile.jsp">Edit Profile</a>
                                 </div>

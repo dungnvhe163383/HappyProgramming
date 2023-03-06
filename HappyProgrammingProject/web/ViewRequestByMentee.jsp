@@ -48,7 +48,7 @@
                                 <div class="col-md-4 col-lg-4 col-xl-4 offset-xl-1">
                                     <h2 class="text-start text-primary fw-bold">My Request</h2>
                                 </div>
-                                
+                                <h4 class="text text-bg-success">${message}</h4>
                                 <div class="col-md-3 col-lg-3 col-xl-2 offset-xl-1">
                                     <a href="CreateRequest" class="btn btn-outline-primary">Create Request</a>
                                 </div>
@@ -93,7 +93,7 @@
                                             </th>
                                             <th scope="row">
                                                 <c:forEach items="${RequestList}" var="r">
-                                                    <a href="UpdateRequest?id=${r.id}&r.title=${r.title}&content=${r.content}&deadline=${r.deadline}">Edit</a><br>
+                                                    <a href="UpdateRequest?id=${r.id}&title=${r.title}&content=${r.content}&deadline=${r.deadline}">Edit</a><br>
                                                 </c:forEach>
                                             </th>
                                         </tr>

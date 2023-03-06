@@ -62,9 +62,10 @@ public class UpdateRequest extends HttpServlet {
         String title = request.getParameter("title");
         String content = request.getParameter("content");
         Date deadline = Date.valueOf(request.getParameter("deadline"));
-        request.setAttribute("title", requestID);
-        request.setAttribute("content", requestID);
-        request.setAttribute("deadline", requestID);
+        request.setAttribute("requestID", requestID);
+        request.setAttribute("title", title);
+        request.setAttribute("content", content);
+        request.setAttribute("deadline", deadline);
         request.getRequestDispatcher("UpdateRequest.jsp").forward(request, response);
     }
 
@@ -79,7 +80,16 @@ public class UpdateRequest extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        int requestID = Integer.parseInt(request.getParameter("requestID"));
+        boolean isUpdate = new RequestDAO().updateRequest(requestID
+                ,request.getParameter("title")
+                ,request.getParameter("content")
+                ,request.getParameter("deadline"));
+        if (isUpdate) {
+            request.setAttribute("message", "Request has changed!");
+            request.getRequestDispatcher("ViewRequestByMentee.jsp").forward(request, response);
+        }
     }
 
     /**

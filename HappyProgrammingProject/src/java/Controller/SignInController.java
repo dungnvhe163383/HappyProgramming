@@ -77,9 +77,7 @@ public class SignInController extends HttpServlet {
         }
         else{
             HttpSession session = request.getSession();
-            Mentee m = userDAO.getMenteeById(account.getId());
-            m.setAcc(account);
-            session.setAttribute("account", m);
+            session.setAttribute("account", account);
             request.getRequestDispatcher("HomePage.jsp").forward(request, response);
         }
     }

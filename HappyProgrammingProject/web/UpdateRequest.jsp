@@ -40,28 +40,37 @@
                 <div class="container-fluid h-custom">
                     <div class="row d-flex justify-content-start align-items-center h-100">
                         <!-- Login part -->
-                        <div class="col-md-6 col-lg-6 col-xl-4 offset-xl-1">
+                        <div class="col-md-8 col-lg-8 col-xl-6 offset-xl-1">
                             <h2 class="text-center text-primary fw-bold">Edit Request</h2>
                             <form class="" action="UpdateRequest" method="post">
-                                    <div class="form-outline mb-4">
+                                <div class="col-md-2 form-outline mb-4">
+                                        <label class="form-label">Request ID</label>
+                                        <input name="requestID" class="form-control" type="text" value="${requestID}" readonly>   
+                                </div>
+                                    <div class="col-md-5 form-outline mb-4">
                                         <label class="form-label">Request Title</label>
                                         <input name="requestTitle" type="text" class="form-control form-control-lg" value="${title}" />   
                                 </div>
-
                                 <div class="form-outline mb-3">
                                     <label class="form-label">Request Content</label>
                                     <input name="requestContent" type="text" class="form-control form-control-lg"  value="${content}" />
                                 </div>
-                                <div class="form-outline mb-3">
+                                <div class="col-md-4 form-outline mb-3">
                                     <label class="form-label">Deadline</label>
                                     <input name="deadline" type="date" class="form-control form-control-lg"  value="${deadline}" />
                                 </div>
                                 <div class="text-center text-lg-start mt-4 pt-2 mb-4">
-                                    <button type="submit" class="btn btn-outline-primary btn-lg"style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                                    <button type="submit" class="btn btn-outline-success btn-lg"style="padding-left: 2.5rem; padding-right: 2.5rem;">
                                         SAVE
                                     </button>
-                                </div>    
+                                    The mentor support for this request will not change
+                                </div>
                             </form>
+                                <div class="text-center text-lg-start mt-4 pt-2 mb-4">
+                                    <a href="#" class="btn btn-outline-primary btn-lg"style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                                        FIND MENTOR
+                                    </a>
+                                </div> 
                             <p class="text-danger my-4 fw-bold">
                                 ${errorMessage}
                             </p>

@@ -34,7 +34,7 @@ public class SignOutController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
             session.removeAttribute("account");
-            response.sendRedirect("ViewTop3Mentor");
+            response.sendRedirect("HomePage.jsp");
         }
     }
 

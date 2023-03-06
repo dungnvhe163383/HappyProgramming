@@ -268,4 +268,22 @@ public class RequestDAO extends DBContext {
         }
         return null;
     }
+
+    public boolean updateRequest(int requestID, String title, String content, String deadline) {
+        query = "UPDATE request\n"
+                + "SET title = ?, content = ?, deadline = ?\n"
+                + "WHERE request.id = ? ";
+        try{
+            ps = connection.prepareStatement(query);
+            ps.setString(1, title);
+            ps.setString(2, content);
+            ps.setDate(3, Date.valueOf(deadline));
+            ps.setInt(4, requestID);
+            return true;
+        }
+        catch (SQLException e){
+            System.out.println(e);
+            return false;
+        }
+    }
 }
