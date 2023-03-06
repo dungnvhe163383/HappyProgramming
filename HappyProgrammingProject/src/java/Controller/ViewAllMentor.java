@@ -38,7 +38,7 @@ public class ViewAllMentor extends HttpServlet {
         DAO dao= new DAO();
         List<Mentor> list = dao.getAllMentor();
         request.setAttribute("listMentor", list);
-        request.getRequestDispatcher("ViewMentor.jsp").forward(request, response);
+        request.getRequestDispatcher("ViewAllMentor.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
