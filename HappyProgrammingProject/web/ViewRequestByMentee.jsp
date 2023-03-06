@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -48,7 +49,7 @@
                                 <div class="col-md-4 col-lg-4 col-xl-4 offset-xl-1">
                                     <h2 class="text-start text-primary fw-bold">My Request</h2>
                                 </div>
-                                <h4 class="text text-bg-success">${message}</h4>
+
                                 <div class="col-md-3 col-lg-3 col-xl-2 offset-xl-1">
                                     <a href="CreateRequest" class="btn btn-outline-primary">Create Request</a>
                                 </div>
@@ -56,50 +57,31 @@
                                 <table class="table table-striped mt-4">
                                     <thead>
                                         <tr class="text-bg-info">
+                                            <th scope="col">Mentor</th>
                                             <th scope="col">Title</th>
                                             <th scope="col">Content</th>
-                                            <th scope="col">Mentor</th>
                                             <th scope="col">Deadline</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       <tr>
-                                            <th scope="row">
-                                                <c:forEach items="${RequestList}" var="r">
-                                                  <a href="ViewRequestDetail?requestid=${r.id}">${r.title}</a> <br>
-                                                </c:forEach>
-                                            </th>
-                                            <th scope="row">
-                                                <c:forEach items="${RequestList}" var="r">
-                                                    ${r.content} <br>
-                                                </c:forEach>
-                                            </th>
-                                            <th scope="row">
-                                                <c:forEach items="${mentorList}" var="m">
-                                                    ${m.firstname} ${m.lastname}<br>
-                                                </c:forEach>
-                                            </th>
-                                            <th scope="row">
-                                                <c:forEach items="${RequestList}" var="r">
-                                                     ${r.deadline} <br>
-                                                </c:forEach>
-                                            </th>
-                                            <th scope="row">
-                                                <c:forEach items="${RequestList}" var="r">
-                                                     ${r.requestStatus} <br>
-                                                </c:forEach>
-                                            </th>
-                                            <th scope="row">
-                                                <c:forEach items="${RequestList}" var="r">
-                                                    <a href="UpdateRequest?id=${r.id}&title=${r.title}&content=${r.content}&deadline=${r.deadline}">Edit</a><br>
-                                                </c:forEach>
-                                            </th>
-                                        </tr>
-                                            
+                                        <c:forEach items="${mentorList}" var="m">   
+                                        <c:forEach items="${RequestList}" var="r">
+                                                                                
+                                                <tr>
+                                                    <td scope="row"> ${m.firstname} ${m.lastname} </td> 
+                                                    <td scope="row"> <a href="ViewRequestDetail?requestid=${r.id}">${r.title}</a> </td>
+                                                    <td scope="row"> ${r.content}</td>
+                                                    <td scope="row"> ${r.deadline}</td> 
+                                                    <td scope="row">${r.requestStatus}</td>
+                                                    <td scope="row"><a href="UpdateRequest?id=${r.id}&r.title=${r.title}&content=${r.content}&deadline=${r.deadline}">Edit</a></td> 
+                                                </tr>
+                                            </c:forEach>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
+                               
                             </c:otherwise>
                         </c:choose>
                     </div>

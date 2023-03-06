@@ -59,7 +59,7 @@ public class ViewRequestByMentee extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String id = request.getParameter("menteeid");
+          String id = request.getParameter("menteeid");
         List<Request> list = new RequestDAO().getRequestByMentee(id);
         List<Mentor> mentorList = new RequestDAO().getMentorFromRequest(id);
         request.setAttribute("RequestList", list);
