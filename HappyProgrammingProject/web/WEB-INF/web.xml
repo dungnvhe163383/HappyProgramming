@@ -129,8 +129,8 @@
         <url-pattern>/signOut</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ViewSkill</servlet-name>
-        <url-pattern>/ViewSkill</url-pattern>
+        <servlet-name>ViewAllSkill</servlet-name>
+        <url-pattern>/ViewAllSkill</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewFramework</servlet-name>
