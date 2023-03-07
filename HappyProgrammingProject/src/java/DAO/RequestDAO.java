@@ -35,7 +35,7 @@ public class RequestDAO extends DBContext {
         return list;
     }
 
-    public List<Mentor> getMentorFromRequest(String id) {
+       public List<Mentor> getMentorFromRequest(String id) {
         List<Mentor> list = new ArrayList<>();
         query = "select [Name].firstName, [Name].lastName\n"
                 + "from mentee left outer join request on mentee.id = request.menteeID\n"
@@ -44,7 +44,8 @@ public class RequestDAO extends DBContext {
                 + "left outer join [Name] on [Name].id = mentor.id\n"
                 + "left outer join requestStatus on request.id = requestStatus.requestID\n"
                 + "left outer join [status] on [status].id = requestStatus.statusID\n"
-                + "where mentee.id = ?";
+                + "where mentee.id = ?\n"
+                + "order by request.deadline";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, id);
