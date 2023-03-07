@@ -15,13 +15,12 @@ public class RequestDAO extends DBContext {
     public List<Request> getRequestByMentee(String id) {
         List<Request> list = new ArrayList<>();
         query = "select request.id, request.title, request.content, request.deadline, [status].[Status]\n"
-                + "from mentee join request on mentee.id = request.id\n"
-                + "join mentorRequest on request.id = mentorRequest.requestID\n"
-                + "join mentor on mentor.id = mentorRequest.mentorID\n"
-                + "join requestStatus on request.id = requestStatus.requestID\n"
-                + "join [status] on [status].id = requestStatus.statusID\n"
+                + "from mentee left outer join request on mentee.id = request.menteeID\n"
+                + "  left outer join mentorRequest on request.id = mentorRequest.requestID\n"
+                + "  left outer join requestStatus on request.id = requestStatus.requestID\n"
+                + "  left outer join [status] on [status].id = requestStatus.statusID\n"
                 + "where mentee.id = ?\n"
-                + "group by request.id, request.title, request.content, request.deadline, [status].[Status]";
+                + "order by request.deadline";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, id);
@@ -39,12 +38,13 @@ public class RequestDAO extends DBContext {
     public List<Mentor> getMentorFromRequest(String id) {
         List<Mentor> list = new ArrayList<>();
         query = "select [Name].firstName, [Name].lastName\n"
-                + "from mentee join request on mentee.id = request.id\n"
-                + "join mentorRequest on request.id = mentorRequest.requestID\n"
-                + "join mentor on mentor.id = mentorRequest.mentorID\n"
-                + "join [Name] on [Name].id = mentor.id\n"
-                + "where mentee.id = ?\n"
-                + "group by [Name].firstName, [Name].lastName";
+                + "from mentee left outer join request on mentee.id = request.menteeID\n"
+                + "left outer join mentorRequest on request.id = mentorRequest.requestID\n"
+                + "left outer join mentor on mentor.id = mentorRequest.mentorID\n"
+                + "left outer join [Name] on [Name].id = mentor.id\n"
+                + "left outer join requestStatus on request.id = requestStatus.requestID\n"
+                + "left outer join [status] on [status].id = requestStatus.statusID\n"
+                + "where mentee.id = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, id);
@@ -273,15 +273,14 @@ public class RequestDAO extends DBContext {
         query = "UPDATE request\n"
                 + "SET title = ?, content = ?, deadline = ?\n"
                 + "WHERE request.id = ? ";
-        try{
+        try {
             ps = connection.prepareStatement(query);
             ps.setString(1, title);
             ps.setString(2, content);
             ps.setDate(3, Date.valueOf(deadline));
             ps.setInt(4, requestID);
             return true;
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e);
             return false;
         }

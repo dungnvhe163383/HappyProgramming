@@ -53,7 +53,7 @@
                                 <div class="col-md-3 col-lg-3 col-xl-2 offset-xl-1">
                                     <a href="CreateRequest" class="btn btn-outline-primary">Create Request</a>
                                 </div>
-                                
+
                                 <table class="table table-striped mt-4">
                                     <thead>
                                         <tr class="text-bg-info">
@@ -66,22 +66,53 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach items="${mentorList}" var="m">   
-                                        <c:forEach items="${RequestList}" var="r">
-                                                                                
-                                                <tr>
-                                                    <td scope="row"> ${m.firstname} ${m.lastname} </td> 
-                                                    <td scope="row"> <a href="ViewRequestDetail?requestid=${r.id}">${r.title}</a> </td>
-                                                    <td scope="row"> ${r.content}</td>
-                                                    <td scope="row"> ${r.deadline}</td> 
-                                                    <td scope="row">${r.requestStatus}</td>
-                                                    <td scope="row"><a href="UpdateRequest?id=${r.id}&r.title=${r.title}&content=${r.content}&deadline=${r.deadline}">Edit</a></td> 
-                                                </tr>
-                                            </c:forEach>
+                                        <tr>
+                                        <td scope="row">
+                                        <c:forEach items="${mentorList}" var="m">
+                                                 ${m.firstname} ${m.lastname} <br>                                           
                                         </c:forEach>
+                                        </td>
+                                          <td scope="row">
+                                        <c:forEach items="${RequestList}" var="r">
+                                               <a href="ViewRequestDetail?requestid=${r.id}">${r.title}</a> <br>
+                                               
+                                        </c:forEach>
+                                          </td>
+                                            <td scope="row">
+                                        <c:forEach items="${RequestList}" var="r">
+                                              
+                                                 ${r.content} <br>
+                                                
+                                        </c:forEach>
+                                          </td>
+                                           <td scope="row">
+                                        <c:forEach items="${RequestList}" var="r">
+                                              
+                                                
+                                                 ${r.deadline}<br>
+                                               
+                                        </c:forEach>
+                                          </td>
+                                       
+                                           <td scope="row">
+                                        <c:forEach items="${RequestList}" var="r">
+                                              
+                                               
+                                                ${r.requestStatus}<br>
+                                               
+                                        </c:forEach>
+                                          </td>
+                                           <td scope="row">
+                                        <c:forEach items="${RequestList}" var="r">
+                                              
+                                                
+                                                <a href="UpdateRequest?id=${r.id}&r.title=${r.title}&content=${r.content}&deadline=${r.deadline}">Edit</a> <br>
+                                        </c:forEach>
+                                          </td>
+                                         </tr>
                                     </tbody>
                                 </table>
-                               
+
                             </c:otherwise>
                         </c:choose>
                     </div>
