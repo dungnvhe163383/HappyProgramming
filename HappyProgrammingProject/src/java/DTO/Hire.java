@@ -9,6 +9,7 @@ package DTO;
  * @author ASUS
  */
 public class Hire {
+    private int hireID;
     private int mentorID;
     private int menteeID;
     private String content;
@@ -25,7 +26,8 @@ public class Hire {
         this.statusID = statusID;
     }
 
-    public Hire(String content, String statusHire) {
+    public Hire(int hireID, String content, String statusHire) {
+        this.hireID = hireID;
         this.content = content;
         this.statusHire = statusHire;
     }
@@ -68,6 +70,14 @@ public class Hire {
 
     public void setStatusHire(String statusHire) {
         this.statusHire = statusHire;
+    }
+
+    public int getHireID() {
+        return hireID;
+    }
+
+    public void setHireID(int hireID) {
+        this.hireID = hireID;
     }
     
     

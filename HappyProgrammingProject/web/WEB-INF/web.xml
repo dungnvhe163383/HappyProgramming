@@ -100,6 +100,10 @@
         <servlet-name>UpdateRequest</servlet-name>
         <servlet-class>Controller.UpdateRequest</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RejectHire</servlet-name>
+        <servlet-class>Controller.RejectHire</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Databasecontext</servlet-name>
         <url-pattern>/Databasecontext</url-pattern>
@@ -199,6 +203,10 @@
     <servlet-mapping>
         <servlet-name>UpdateRequest</servlet-name>
         <url-pattern>/UpdateRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RejectHire</servlet-name>
+        <url-pattern>/RejectHire</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -330,7 +330,7 @@ public class DAO extends DBContext {
 //    }
     public List<Hire> getHireById(String id) {
         List<Hire> listHire = new ArrayList<>();
-        query = "select hire.content, [status].[Status]\n"
+        query = "select hire.id, hire.content, [status].[Status]\n"
                 + "from mentor left outer join hire on mentor.id = hire.mentorID\n"
                 + " left outer join account on account.id = hire.menteeID or account.id = hire.mentorID\n"
                 + "left outer join [status] on [status].id = hire.statusID\n"
@@ -340,7 +340,7 @@ public class DAO extends DBContext {
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                listHire.add(new Hire(rs.getString(1), rs.getString(2)));
+                listHire.add(new Hire(rs.getInt(1), rs.getString(2), rs.getString(3)));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -385,5 +385,15 @@ public class DAO extends DBContext {
             
         }
         return a;
+    }
+    public void rejectHire (String hireID){
+        query = "update hire set hire.statusID = '10' where hire.id = ?";
+        try{
+            ps=connection.prepareStatement(query);
+            ps.setString(1, hireID);
+            rs = ps.executeQuery();
+        }catch(SQLException e){
+            
+        }   
     }
 }

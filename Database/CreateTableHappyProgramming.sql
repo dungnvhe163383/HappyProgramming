@@ -2,7 +2,7 @@
 
 --drop database HappyProgramming
 --create database HappyProgramming
---use HappyProgramming
+use HappyProgramming
 ---------------------------------------------- Table roles -------------------------------
 
 create table roles (
@@ -101,6 +101,7 @@ create table requestStatus(
 create table Feedback(
 	id int identity(1, 1) primary key,
 	requestID int foreign key references request(id),
+	menteeID int foreign key references mentee(id),
 	mentorID int foreign key references mentor(id),
 	rate int,
 	commentDetail nvarchar(250),
@@ -139,6 +140,7 @@ create table historyRequest(
 
 create table hire(
 -- bảng mentee gửi yêu cầu thuê mentor 
+	id int identity(1, 1),
 	mentorID int foreign key references mentor(id),
 	menteeID int foreign key references mentee(id),
 	primary key (mentorID,menteeID),
@@ -169,13 +171,4 @@ create table answerRequest(
 	primary key (requestid,mentorid)
 )
 
-select Cast(AVG(Cast(f.rate as decimal(10,1))) as decimal(10,1)) from feedback f group by f.mentorID
 
-
-with t as(select f.mentorID,Cast(AVG(Cast(f.rate as decimal(10,1))) as decimal(10,1)) rateaverage from feedback f group by f.mentorID)
-select * from feedback f, t where f.mentorid=3
-with t As (select Top (3) f.mentorID, AVG(f.rate) rateAverage from feedback f
-                group by f.mentorID)
-                select top (3) m.id,n.firstName,n.lastName,m.avatar,t.rateAverage,m.introduce from t,mentor m, [Name] n 
-                where t.[mentorID]=m.id and n.id=m.id
-update feedback set rate=4 where mentorID=4 and requestID=6

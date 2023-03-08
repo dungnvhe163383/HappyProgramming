@@ -77,8 +77,12 @@
                                                     ${h.statusHire}<br>
                                                 </c:forEach>
                                             </th>
+                                            
                                             <th scope="row">
                                                 <c:forEach items="${hire}" var="h">
+                                                    
+                                                      <a href="RejectHire?hireID=${h.hireID}"><button style="height:20px ;width: 30px;" type="button" class="btn btn-danger btn-rounded btn-sm my-0">Reject</button></a> <br>
+                                                      
                                                 </c:forEach>
                                             </th>
                                         </tr>
