@@ -14,7 +14,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
+import jakarta.servlet.http.HttpSession;
+
 
 /**
  *
@@ -56,8 +57,8 @@ public class ViewMentorDetail extends HttpServlet {
         int mentorid=Integer.parseInt(id);
         DAO dao= new DAO();
         Mentor m = dao.getMentor(mentorid);
-        request.setAttribute("Mentor", m);
-            request.getRequestDispatcher("MentorDetail.jsp").forward(request, response);
+        request.getSession().setAttribute("Mentor", m);
+        request.getRequestDispatcher("MentorDetail.jsp").include(request, response);
     }
 
     /**

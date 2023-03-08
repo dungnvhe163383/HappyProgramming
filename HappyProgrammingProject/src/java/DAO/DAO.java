@@ -17,6 +17,20 @@ import java.sql.PreparedStatement;
  * @author okanh
  */
 public class DAO extends DBContext {
+    public List<Profession> getProfessionByMentor(int mentorid){
+        List<Profession> list = new ArrayList<>();
+        query = "select * from profession where mentorid=?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, mentorid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Profession(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
     public Account  getAccountByEmail(String username, String email) {
         Account a=new Account();
         query = "With t as(select a.id,a.username,a.password,m.email,a.roleid from Account a,mentor m where a.id=m.id\n"

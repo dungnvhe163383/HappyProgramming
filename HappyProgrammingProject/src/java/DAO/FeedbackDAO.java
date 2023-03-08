@@ -19,7 +19,7 @@ import java.util.List;
 public class FeedbackDAO extends DBContext  {
     public List<Feedback> getComment(int mentorID){
         List<Feedback> list = new ArrayList<>();
-        query = "select n.firstname,n.lastName,m.avatar,f.commentDetail from feedback f,"
+        query = "select top 3 n.firstname,n.lastName,m.avatar,f.commentDetail from feedback f,"
                 + "mentee m,[Name] n where mentorid=? and f.menteeID=m.id and n.id=m.id";
         try {
             ps = connection.prepareStatement(query);

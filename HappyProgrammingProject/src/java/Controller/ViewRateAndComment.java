@@ -5,8 +5,9 @@ package Controller;
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
+import DAO.DAO;
 import DAO.FeedbackDAO;
-import DTO.Feedback;
+import DTO.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,6 +15,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -37,10 +39,18 @@ public class ViewRateAndComment extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         int mentorid=Integer.parseInt(request.getParameter("mentorid"));
         FeedbackDAO f= new FeedbackDAO();
+        DAO dao=new DAO();
         List<Feedback> list=f.getComment(mentorid);
         double averageRate=f.getAverage(mentorid);
+        Mentor x=dao.getMentor(mentorid);
+        List<Profession> pro=dao.getProfessionByMentor(mentorid);
+        HttpSession session = request.getSession();
+        List<Skill> skill=dao.getSkillByMentorID(mentorid);
         request.setAttribute("average", averageRate);
         request.setAttribute("comment", list);
+        request.setAttribute("mentor", x);
+        request.setAttribute("profession", pro);
+        session.setAttribute("skill", skill);
         request.getRequestDispatcher("ViewRateAndComment.jsp").forward(request, response);
     }
 
