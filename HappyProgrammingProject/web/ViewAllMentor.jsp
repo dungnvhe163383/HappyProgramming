@@ -42,12 +42,25 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+      h4{
+          color:black;
+      }
+  </style>
 </head>
 <body>
   <!-- ======= Header ======= -->
   <jsp:include page="header.jsp"></jsp:include>
 
   <main id="main">
+       <section class="breadcrumbs">
+                    <div class="container">
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2>Mentor List</h2>
+                        </div>
+                    </div>
+                </section>
     <!-- ======= Team Section ======= -->
     <section class="team" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
       <div class="container">
@@ -56,7 +69,7 @@
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">
               <div class="member-img">
-                <img src="assets/img/mentor/${l.avatar}" class="img-fluid" alt="">
+                <img  src="assets/img/mentor/${l.avatar}" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -65,7 +78,7 @@
                 </div>
               </div>
               <div class="member-info">
-                <h4>${l.firstname} ${l.lastname}</h4>
+                  <h4><a style="color: black;" href ="MentorDetailControll?mentorid=${l.id}" >${l.firstname} ${l.lastname}</a></h4>
                 <span></span>
                 <p>${l.introduce}</p>
               </div>

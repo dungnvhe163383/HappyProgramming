@@ -58,11 +58,11 @@
                                     <div class="swiper-wrapper align-items-center">
 
                                         <div class="swiper-slide">
-                                            <img src="assets/img/${Mentor.avatar}" alt="">
+                                            <img src="assets/img/mentor/${Mentor.avatar}" alt="">
                                     </div>
 
                                     <div class="swiper-slide">
-                                        <img src="assets/img/${Mentor.avatar}" alt="">
+                                        <img src="assets/img/mentor/${Mentor.avatar}" alt="">
                                     </div>
                                 </div>
                                 <div class="swiper-pagination"></div>
@@ -83,8 +83,10 @@
                                 </ul>
                             </div>
                             <div class="portfolio-description">
-                                <h2>You can see My Skill</h2>
-                                <button class="btn btn-primary" href="ViewSkill?mentorid=${Mentor.id}"">MY SKILL</button>
+                                <h2>More Information</h2>
+                                <div>
+                                    <button class="btn btn-primary"><a href="ViewRateAndComment?mentorid=${Mentor.id}">Rate And comment</a></button><br>
+                                </div>
                                 <p>I hope we will have lively discussions after you choose me as your mentor. Thank you very much </p>
                             </div>
                         </div>

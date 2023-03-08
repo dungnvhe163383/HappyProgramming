@@ -89,7 +89,7 @@
                         <div class="col-md-7 pt-4">
                             <h3><strong><%= m.getFirstname() %> <%= m.getLastname() %></strong></h3>
                             <h4>Average Rate: <%= m.getAverageRate() %></h4>   
-                             <% for(int i=0;i<m.getAverageRate();i++) { %>
+                             <% for(int i=1;i<=m.getAverageRate();i++) { %>
                              <span content="\2B50">&#11088;</span>
                              <% } %>
                             <h4>Introduce: <%= m.getIntroduce() %></h4>                            

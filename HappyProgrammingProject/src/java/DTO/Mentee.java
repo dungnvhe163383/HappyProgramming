@@ -23,6 +23,12 @@ public class Mentee {
     public Mentee() {
     }
 
+    public Mentee(String firstName, String lastName, String avatar) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.avatar = avatar;
+    }
+
     public Mentee(int id, String firstName, String lastName, String email, String address, String phone, Date birthday, String sex, String avatar) {
         this.id = id;
         this.firstName = firstName;

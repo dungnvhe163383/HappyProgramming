@@ -10,6 +10,7 @@ package DTO;
  */
 public class Feedback {
     private int id;
+    private Mentee mentee;
     private String commentDetail;
     private int requestID;
     private int mentorID;
@@ -18,6 +19,11 @@ public class Feedback {
     public Feedback() {
     }
 
+    public Feedback(Mentee mentee, String commentDetail) {
+        this.mentee = mentee;
+        this.commentDetail = commentDetail;
+    }
+    
     public Feedback(int id, String commentDetail, int requestID, int mentorID, int rate) {
         this.id = id;
         this.commentDetail = commentDetail;
@@ -35,6 +41,14 @@ public class Feedback {
         this.id = id;
         this.commentDetail = commentDetail;
         this.requestID = requestID;
+    }
+
+    public Mentee getMentee() {
+        return mentee;
+    }
+
+    public void setMentee(Mentee mentee) {
+        this.mentee = mentee;
     }
 
     public int getMentorID() {
