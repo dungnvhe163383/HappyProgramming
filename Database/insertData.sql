@@ -87,11 +87,11 @@ insert mentorRequest values (8,4)
 
 
 
-insert into feedback values (6,3,5,'good1')
-insert into feedback values (2,4,5,'good2')
-insert into feedback values (8,4,5,'good3')
-insert into feedback values (2,3,5,'good4')
-insert into feedback values (4,3,5,'good5')
+insert into feedback values (6,2,3,4,'good1')
+insert into feedback values (2,1,4,5,'good2')
+insert into feedback values (8,2,4,3,'good3')
+insert into feedback values (2,1,3,2,'good4')
+insert into feedback values (4,1,3,1,'good5')
 
 
 

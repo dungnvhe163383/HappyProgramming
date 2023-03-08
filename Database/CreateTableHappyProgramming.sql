@@ -169,4 +169,13 @@ create table answerRequest(
 	primary key (requestid,mentorid)
 )
 
+select Cast(AVG(Cast(f.rate as decimal(10,1))) as decimal(10,1)) from feedback f group by f.mentorID
 
+
+with t as(select f.mentorID,Cast(AVG(Cast(f.rate as decimal(10,1))) as decimal(10,1)) rateaverage from feedback f group by f.mentorID)
+select * from feedback f, t where f.mentorid=3
+with t As (select Top (3) f.mentorID, AVG(f.rate) rateAverage from feedback f
+                group by f.mentorID)
+                select top (3) m.id,n.firstName,n.lastName,m.avatar,t.rateAverage,m.introduce from t,mentor m, [Name] n 
+                where t.[mentorID]=m.id and n.id=m.id
+update feedback set rate=4 where mentorID=4 and requestID=6
