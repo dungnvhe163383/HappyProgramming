@@ -26,9 +26,10 @@ public class Hire {
         this.statusID = statusID;
     }
 
-    public Hire(int hireID, String content, String statusHire) {
+    public Hire(int hireID, String content,int statusID ,String statusHire) {
         this.hireID = hireID;
         this.content = content;
+        this.statusID = statusID;
         this.statusHire = statusHire;
     }
 

@@ -104,6 +104,10 @@
         <servlet-name>RejectHire</servlet-name>
         <servlet-class>Controller.RejectHire</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AcceptHire</servlet-name>
+        <servlet-class>Controller.AcceptHire</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Databasecontext</servlet-name>
         <url-pattern>/Databasecontext</url-pattern>
@@ -207,6 +211,10 @@
     <servlet-mapping>
         <servlet-name>RejectHire</servlet-name>
         <url-pattern>/RejectHire</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AcceptHire</servlet-name>
+        <url-pattern>/AcceptHire</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
