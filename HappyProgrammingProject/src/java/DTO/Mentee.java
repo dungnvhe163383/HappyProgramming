@@ -41,6 +41,11 @@ public class Mentee {
         this.avatar = avatar;
     }
 
+    public Mentee(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     
     
     public int getId() {

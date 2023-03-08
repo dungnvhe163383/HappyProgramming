@@ -54,17 +54,17 @@
                                     <thead>
                                         <tr class="text-bg-info">
                                             
-                                            <th scope="col">Name</th>
+                                            <th scope="col">Hired </th>
                                             <th scope="col">Content</th>
                                             <th scope="col">Status</th>
-                                            
+                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <th scope="row">
-                                                <c:forEach items="${mentor}" var="m">
-                                                    <a href="MentorDetailControll?mentorid=${m.id}">${m.firstname} ${m.lastname}</a> <br>
+                                                <c:forEach items="${mentee}" var="m">
+                                                    ${m.firstName} ${m.lastName}<br>
                                                 </c:forEach>
                                             </th>
                                             <th scope="row">
@@ -77,6 +77,14 @@
                                                     ${h.statusHire}<br>
                                                 </c:forEach>
                                             </th>                                           
+                                            <th scope="row">     
+                                                <c:forEach items="${hire}" var="h">
+                                                    <c:if test="${h.statusHire == 'unhire'}">
+                                                      <a href="AcceptHire?id=${h.hireID}">Accept</a> 
+                                                      <a href="RejectHire?id=${h.hireID}">Reject</a> <br>
+                                                     </c:if>
+                                                </c:forEach> 
+                                            </th>  
                                         </tr>
                                     </tbody>
                                 </table>

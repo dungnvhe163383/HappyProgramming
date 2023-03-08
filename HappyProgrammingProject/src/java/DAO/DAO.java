@@ -17,7 +17,8 @@ import java.sql.PreparedStatement;
  * @author okanh
  */
 public class DAO extends DBContext {
-    public List<Profession> getProfessionByMentor(int mentorid){
+
+    public List<Profession> getProfessionByMentor(int mentorid) {
         List<Profession> list = new ArrayList<>();
         query = "select * from profession where mentorid=?";
         try {
@@ -31,8 +32,9 @@ public class DAO extends DBContext {
         }
         return list;
     }
-    public Account  getAccountByEmail(String username, String email) {
-        Account a=new Account();
+
+    public Account getAccountByEmail(String username, String email) {
+        Account a = new Account();
         query = "With t as(select a.id,a.username,a.password,m.email,a.roleid from Account a,mentor m where a.id=m.id\n"
                 + "Union \n"
                 + "select a.id,a.username,a.password,m.email,a.roleid from Account a,mentee m where a.id=m.id)\n"
@@ -42,8 +44,9 @@ public class DAO extends DBContext {
             ps.setString(1, username);
             ps.setString(2, email);
             rs = ps.executeQuery();
-            if(rs.next())
-            a=new Account(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5));
+            if (rs.next()) {
+                a = new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+            }
         } catch (Exception e) {
         }
         return a;
@@ -56,7 +59,7 @@ public class DAO extends DBContext {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5)));
+                list.add(new Mentor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
         } catch (Exception e) {
         }
@@ -206,7 +209,6 @@ public class DAO extends DBContext {
         }
         return null;
     }
-    
 
     public List<Hire> getHire() {
         List<Hire> hireList = new ArrayList<>();
@@ -235,7 +237,6 @@ public class DAO extends DBContext {
         }
     }
 
-   
     public List<Skill> getAllSkill() {
         List<Skill> list = new ArrayList<>();
         query = "Select * From skill";
@@ -284,42 +285,42 @@ public class DAO extends DBContext {
         }
         return list;
     }
-    
+
     public void updateMentee(Mentee mentee) {
-    query="Update mentee "
-            + "set phone=?,avatar=? "
-            + "where id=?";
-    try {
-        ps = connection.prepareStatement(query);
-        //ps.setString(1, mentee.getEmail());
-        ps.setString(1, mentee.getPhone());
-        //ps.setDate(3, mentee.getBirthday());
-        //ps.setString(4, mentee.getSex());
-        ps.setString(2, mentee.getAvatar());
-        ps.setInt(3,mentee.getId());
-        ps.executeUpdate();
-        
-        String query2="Update [address]"
-                + "set address=? "
+        query = "Update mentee "
+                + "set phone=?,avatar=? "
                 + "where id=?";
-        PreparedStatement ps2 = connection.prepareStatement(query2);
-        ps2.setString(1,mentee.getAddress());
-        ps2.setInt(2, mentee.getId());
-        ps2.executeUpdate();
-        
-        String query3="Update [Name] "
-                + "set [firstName]=?, [lastName]=? "
-                + "where id=?";
-        PreparedStatement ps3 = connection.prepareStatement(query3);
-        ps3.setString(1, mentee.getFirstName());
-        ps3.setString(2, mentee.getLastName());
-        ps3.setInt(3, mentee.getId());
-        ps3.executeUpdate(); 
-          
-    } catch (SQLException e) {
-        e.printStackTrace();
+        try {
+            ps = connection.prepareStatement(query);
+            //ps.setString(1, mentee.getEmail());
+            ps.setString(1, mentee.getPhone());
+            //ps.setDate(3, mentee.getBirthday());
+            //ps.setString(4, mentee.getSex());
+            ps.setString(2, mentee.getAvatar());
+            ps.setInt(3, mentee.getId());
+            ps.executeUpdate();
+
+            String query2 = "Update [address]"
+                    + "set address=? "
+                    + "where id=?";
+            PreparedStatement ps2 = connection.prepareStatement(query2);
+            ps2.setString(1, mentee.getAddress());
+            ps2.setInt(2, mentee.getId());
+            ps2.executeUpdate();
+
+            String query3 = "Update [Name] "
+                    + "set [firstName]=?, [lastName]=? "
+                    + "where id=?";
+            PreparedStatement ps3 = connection.prepareStatement(query3);
+            ps3.setString(1, mentee.getFirstName());
+            ps3.setString(2, mentee.getLastName());
+            ps3.setInt(3, mentee.getId());
+            ps3.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-}
 //    public static void main(String[] args) {
 //        DAO dao = new DAO();
 //        Mentee m=dao.getMenteeById(1);
@@ -328,6 +329,7 @@ public class DAO extends DBContext {
 //        dao.updateMentee(m);
 //        System.out.println(m);
 //    }
+
     public List<Hire> getHireById(String id) {
         List<Hire> listHire = new ArrayList<>();
         query = "select hire.id, hire.content, hire.statusID, [status].[Status]\n"
@@ -340,7 +342,7 @@ public class DAO extends DBContext {
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                listHire.add(new Hire(rs.getInt(1), rs.getString(2),rs.getInt(3) ,rs.getString(4)));
+                listHire.add(new Hire(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4)));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -368,42 +370,84 @@ public class DAO extends DBContext {
         }
         return list;
     }
-    
-    public Answer getAnswer(int requestID,int mentorID){
+
+    public Answer getAnswer(int requestID, int mentorID) {
         Answer a = new Answer();
-        query ="select * from answerRequest "
+        query = "select * from answerRequest "
                 + "where requestID=? and mentorID=?";
-        try{
-            ps=connection.prepareStatement(query);
-            ps.setInt(1,a.getMentorID());
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, a.getMentorID());
             ps.setInt(2, a.getMentorID());
             rs = ps.executeQuery();
-            while(rs.next()){
-                a = new Answer(rs.getInt(1),rs.getInt(2),rs.getString(3));
+            while (rs.next()) {
+                a = new Answer(rs.getInt(1), rs.getInt(2), rs.getString(3));
             }
-        }catch(SQLException e){
-            
+        } catch (SQLException e) {
+
         }
         return a;
     }
-    public void rejectHire (String hireID){
+
+    public void rejectHire(String hireID) {
         query = "update hire set hire.statusID = '10' where hire.id = ?";
-        try{
-            ps=connection.prepareStatement(query);
+        try {
+            ps = connection.prepareStatement(query);
             ps.setString(1, hireID);
             rs = ps.executeQuery();
-        }catch(SQLException e){
-            
-        }   
+        } catch (SQLException e) {
+
+        }
     }
-    public void acceptHire (String hireID){
+
+    public void acceptHire(String hireID) {
         query = "update hire set hire.statusID = '3' where hire.id = ?";
-        try{
-            ps=connection.prepareStatement(query);
+        try {
+            ps = connection.prepareStatement(query);
             ps.setString(1, hireID);
             rs = ps.executeQuery();
-        }catch(SQLException e){
-            
-        }   
+        } catch (SQLException e) {
+
+        }
+    }
+
+    public List<Hire> getHireByMenorId(String id) {
+        List<Hire> listHire = new ArrayList<>();
+        query = "select hire.id, hire.content, hire.statusID, [status].[Status]\n"
+                + "from mentor left outer join hire on mentor.id = hire.mentorID\n"
+                + "left outer join [status] on [status].id = hire.statusID\n"
+                + "where mentor.id = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                listHire.add(new Hire(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4)));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return listHire;
+
+    }
+
+    public List<Mentee> getMenteeOfHire(String id) {
+        List<Mentee> list = new ArrayList<>();
+        query = "select [Name].firstName,[Name].lastName\n"
+                + "from mentee left outer join hire  on mentee.id = hire.menteeID\n"
+                + "left outer join [Name] on [Name].id = mentee.id\n"
+                + "left outer join mentor on mentor.id = hire.mentorID\n"
+                + "where mentor.id = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Mentee(rs.getString(1), rs.getString(2)));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
     }
 }

@@ -60,6 +60,7 @@ public class AcceptHire extends HttpServlet {
         String hireID = request.getParameter("hireID");
         dao.acceptHire(hireID);
         response.sendRedirect("ViewHireInvitation");
+        response.sendRedirect("HireInvitationByMentor");
     }
 
     /**
