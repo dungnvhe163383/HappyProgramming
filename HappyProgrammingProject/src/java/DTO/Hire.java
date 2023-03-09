@@ -26,11 +26,17 @@ public class Hire {
         this.statusID = statusID;
     }
 
-    public Hire(int hireID, String content,int statusID ,String statusHire) {
+    public Hire(int hireID, String content,int statusID ,int menteeID, String statusHire) {
         this.hireID = hireID;
         this.content = content;
         this.statusID = statusID;
+        this.menteeID = menteeID;
         this.statusHire = statusHire;
+    }
+
+    public Hire(int hireID, String content) {
+        this.hireID = hireID;
+        this.content = content;
     }
 
     public int getMentorID() {

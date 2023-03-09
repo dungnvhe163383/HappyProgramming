@@ -112,6 +112,10 @@
         <servlet-name>HireInvitationByMentor</servlet-name>
         <servlet-class>Controller.HireInvitationByMentor</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewHireDetail</servlet-name>
+        <servlet-class>Controller.ViewHireDetail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Databasecontext</servlet-name>
         <url-pattern>/Databasecontext</url-pattern>
@@ -223,6 +227,10 @@
     <servlet-mapping>
         <servlet-name>HireInvitationByMentor</servlet-name>
         <url-pattern>/HireInvitationByMentor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewHireDetail</servlet-name>
+        <url-pattern>/ViewHireDetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

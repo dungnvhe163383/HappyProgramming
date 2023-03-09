@@ -53,7 +53,7 @@
                                 <table class="table table-striped mt-4">
                                     <thead>
                                         <tr class="text-bg-info">
-                                            
+
                                             <th scope="col">Hired </th>
                                             <th scope="col">Content</th>
                                             <th scope="col">Status</th>
@@ -61,31 +61,29 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">
-                                                <c:forEach items="${mentee}" var="m">
-                                                    ${m.firstName} ${m.lastName}<br>
-                                                </c:forEach>
-                                            </th>
-                                            <th scope="row">
-                                                <c:forEach items="${hire}" var="h">
-                                                    ${h.content} <br>
-                                                </c:forEach>
-                                            </th>
-                                            <th scope="row">
-                                                <c:forEach items="${hire}" var="h">
-                                                    ${h.statusHire}<br>
-                                                </c:forEach>
-                                            </th>                                           
-                                            <th scope="row">     
-                                                <c:forEach items="${hire}" var="h">
-                                                    <c:if test="${h.statusHire == 'unhire'}">
-                                                      <a href="AcceptHire?id=${h.hireID}">Accept</a> 
-                                                      <a href="RejectHire?id=${h.hireID}">Reject</a> <br>
-                                                     </c:if>
-                                                </c:forEach> 
-                                            </th>  
-                                        </tr>
+                                        <c:forEach items="${hire}" var="h">
+                                            <tr>
+                                                <td>
+                                                    <c:forEach items="${mentee}" var="m">
+                                                        <c:if test="${m.id == h.menteeID}">
+                                                            ${m.firstName} ${m.lastName}<br>
+                                                        </c:if>
+                                                    </c:forEach>
+                                                </td>
+                                                <td>
+                                                    <a href="ViewHireDetail?hireid=${h.hireID}">${h.content}</a><br>
+                                                </td>
+                                                <td>
+                                                    ${h.statusHire}
+                                                </td>
+                                                <td>
+                                                    <c:if test="${h.statusID == 5}">
+                                                        <a href="AcceptHire?hireID=${h.hireID}">Accept</a>
+                                                        <a href="RejectHire?hireID=${h.hireID}">Reject</a>
+                                                    </c:if>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </c:otherwise>

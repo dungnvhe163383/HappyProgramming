@@ -89,6 +89,12 @@ public class Mentor {
         this.lastname = lastname;
     }
 
+    public Mentor(String firstname, String lastname, int costHire) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.costHire = costHire;
+    }
+
 
     public float getAverageRate() {
         return averageRate;

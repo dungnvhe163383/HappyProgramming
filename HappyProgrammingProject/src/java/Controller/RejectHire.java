@@ -35,7 +35,7 @@ public class RejectHire extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RejectHire</title>");            
+            out.println("<title>Servlet RejectHire</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet RejectHire at " + request.getContextPath() + "</h1>");
@@ -56,7 +56,10 @@ public class RejectHire extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        DAO dao = new DAO();
+        String hireID = request.getParameter("hireID");
+        dao.rejectHire(hireID);
+        response.sendRedirect("HireInvitationByMentor");
     }
 
     /**
@@ -70,11 +73,7 @@ public class RejectHire extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DAO dao = new DAO();
-        String hireID = request.getParameter("hireID");
-        dao.rejectHire(hireID);
-        response.sendRedirect("ViewHireInvitation");
-        response.sendRedirect("HireInvitationByMentor");
+            processRequest(request, response);
     }
 
     /**

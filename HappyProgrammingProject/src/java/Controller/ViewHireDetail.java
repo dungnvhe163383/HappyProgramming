@@ -5,18 +5,21 @@
 package Controller;
 
 import DAO.DAO;
+import DTO.Hire;
+import DTO.Mentor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
  * @author ASUS
  */
-public class AcceptHire extends HttpServlet {
+public class ViewHireDetail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,19 +32,15 @@ public class AcceptHire extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AcceptHire</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AcceptHire at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+//        response.setContentType("text/html;charset=UTF-8");
+//        String id = request.getParameter("hireid");
+//        int hireid = Integer.parseInt(id);
+//        DAO dao = new DAO();
+//        Hire hire = dao.getHireByID(hireid);
+//        List<Mentor> mentor = dao.getMetorFromHire(hireid);
+//        request.setAttribute("hire", hire);
+//        request.setAttribute("mentor", mentor);
+//        request.getRequestDispatcher("ViewHireDetail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -56,10 +55,7 @@ public class AcceptHire extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DAO dao = new DAO();
-        String hireID = request.getParameter("hireID");
-        dao.acceptHire(hireID);
-        response.sendRedirect("HireInvitationByMentor");
+        processRequest(request, response);
     }
 
     /**

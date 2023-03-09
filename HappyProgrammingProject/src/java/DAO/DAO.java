@@ -413,7 +413,7 @@ public class DAO extends DBContext {
 
     public List<Hire> getHireByMenorId(String id) {
         List<Hire> listHire = new ArrayList<>();
-        query = "select hire.id, hire.content, hire.statusID, [status].[Status]\n"
+        query = "select hire.id, hire.content, hire.statusID, hire.menteeID,[status].[Status]\n"
                 + "from mentor left outer join hire on mentor.id = hire.mentorID\n"
                 + "left outer join [status] on [status].id = hire.statusID\n"
                 + "where mentor.id = ?";
@@ -422,7 +422,7 @@ public class DAO extends DBContext {
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                listHire.add(new Hire(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4)));
+                listHire.add(new Hire(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),rs.getString(5)));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -433,7 +433,7 @@ public class DAO extends DBContext {
 
     public List<Mentee> getMenteeOfHire(String id) {
         List<Mentee> list = new ArrayList<>();
-        query = "select [Name].firstName,[Name].lastName\n"
+        query = "select hire.menteeID, [Name].firstName,[Name].lastName\n"
                 + "from mentee left outer join hire  on mentee.id = hire.menteeID\n"
                 + "left outer join [Name] on [Name].id = mentee.id\n"
                 + "left outer join mentor on mentor.id = hire.mentorID\n"
@@ -443,7 +443,42 @@ public class DAO extends DBContext {
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Mentee(rs.getString(1), rs.getString(2)));
+                list.add(new Mentee(rs.getInt(1), rs.getString(2), rs.getString(3)));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public Hire getHireByID(int id) {
+        Hire hire = new Hire();
+        query = "select hire.id, hire.content\n"
+                + "from hire where hire.id = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                hire = new Hire(rs.getInt(1), rs.getString(2));
+            }
+        } catch (Exception e) {
+        }
+        return hire;
+    }
+
+    public List<Mentor> getMetorFromHire(int id) {
+        List<Mentor> list = new ArrayList<>();
+        query = "select [Name].firstName, [Name].lastName, mentor.costHire\n"
+                + "from mentor join hire on hire.mentorID = mentor.id\n"
+                + "join [Name] on [Name].id = mentor.id\n"
+                + "where hire.id = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Mentor(rs.getString(1), rs.getString(2), rs.getInt(3)));
             }
         } catch (SQLException e) {
             System.out.println(e);

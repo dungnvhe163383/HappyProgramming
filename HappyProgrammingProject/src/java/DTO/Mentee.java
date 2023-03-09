@@ -41,7 +41,8 @@ public class Mentee {
         this.avatar = avatar;
     }
 
-    public Mentee(String firstName, String lastName) {
+    public Mentee(int id, String firstName, String lastName) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
