@@ -32,15 +32,15 @@ public class ViewHireDetail extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        response.setContentType("text/html;charset=UTF-8");
-//        String id = request.getParameter("hireid");
-//        int hireid = Integer.parseInt(id);
-//        DAO dao = new DAO();
-//        Hire hire = dao.getHireByID(hireid);
-//        List<Mentor> mentor = dao.getMetorFromHire(hireid);
-//        request.setAttribute("hire", hire);
-//        request.setAttribute("mentor", mentor);
-//        request.getRequestDispatcher("ViewHireDetail.jsp").forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        String id = request.getParameter("hireid");
+        int hireid = Integer.parseInt(id);
+        DAO dao = new DAO();
+        Hire hire = dao.getHireByID(hireid);
+        List<Mentor> mentor = dao.getMetorFromHire(hireid);
+        request.setAttribute("hire", hire);
+        request.setAttribute("mentor", mentor);
+        request.getRequestDispatcher("ViewHireDetail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

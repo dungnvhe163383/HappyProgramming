@@ -54,7 +54,7 @@
                                     <thead>
                                         <tr class="text-bg-info">
                                             
-                                            <th scope="col">Name</th>
+                                            <th scope="col">Mentor</th>
                                             <th scope="col">Content</th>
                                             <th scope="col">Status</th>
                                             

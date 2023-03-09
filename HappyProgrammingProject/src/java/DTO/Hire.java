@@ -34,6 +34,14 @@ public class Hire {
         this.statusHire = statusHire;
     }
 
+    public Hire(int hireID, String content, int statusID, String statusHire) {
+        this.hireID = hireID;
+        this.content = content;
+        this.statusID = statusID;
+        this.statusHire = statusHire;
+    }
+    
+
     public Hire(int hireID, String content) {
         this.hireID = hireID;
         this.content = content;
