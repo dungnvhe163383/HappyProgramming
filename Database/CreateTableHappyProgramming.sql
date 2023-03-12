@@ -46,6 +46,16 @@ create table mentor(
 	avatar nvarchar(250),
 	costHire int
 )
+---------------------------------------------- Table Admin -------------------------------
+
+create table [admin] (
+	id int foreign key references account(id) primary key,
+	email nvarchar(250),
+	phone nvarchar(250),
+	birthday Date ,
+	sex nvarchar(250) ,
+	avatar nvarchar(250)
+)
 
 ---------------------------------------------image-------------------------------------------
 create table [Image](

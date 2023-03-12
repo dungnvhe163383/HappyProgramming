@@ -17,10 +17,13 @@ insert into Mentor values (3, 'okanhchaphet7@gmail.com', '0887654321','11-05-200
 insert into Mentor values (4, 'nguyenvudung96@gmail.com', '0887654321','10-05-2002', 'M', 
 'toi la mot nguoi co trach nhiem va muon mang den cho ban nhieu kien thức','tot nghiep dai hoc fpt', 'avatar2.jpg',400);
 
+insert into [Admin] values  (5,'khoaninh992002@gmail.com', '0987654321','11-04-2002', 'm', 'avatar4.jpg')
+
 insert into [Name] values (1,'Nguyen','Duy Manh')
 insert into [Name] values (2,'Nguyen','Hoang Long')
 insert into [Name] values (3,'Pham','Anh Tuan')
 insert into [Name] values (4,'Nguyen','Vu Dung')
+insert into [Name] values (5,'Pham','Khoan Ninh')
 
 insert into profession values ('Developer','toi code phan mem và xay dung ke hoach kinh phat trien phan mem',3)
 insert into profession values ('Tester','toi kiem thu phan mem',3)
