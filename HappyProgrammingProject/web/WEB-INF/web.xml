@@ -116,6 +116,10 @@
         <servlet-name>ViewHireDetail</servlet-name>
         <servlet-class>Controller.ViewHireDetail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewAllUser</servlet-name>
+        <servlet-class>Controller.ViewAllUser</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Databasecontext</servlet-name>
         <url-pattern>/Databasecontext</url-pattern>
@@ -231,6 +235,10 @@
     <servlet-mapping>
         <servlet-name>ViewHireDetail</servlet-name>
         <url-pattern>/ViewHireDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAllUser</servlet-name>
+        <url-pattern>/ViewAllUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

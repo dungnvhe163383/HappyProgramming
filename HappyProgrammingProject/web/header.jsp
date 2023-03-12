@@ -62,6 +62,9 @@
                           <c:if test="${sessionScope.account.roleId == 2}">
                          <li><a href="HireInvitationByMentor?id=${sessionScope.account.id}">Hire Invitations</a></li>
                         </c:if>
+                         <c:if test="${sessionScope.account.roleId == 3}">
+                         <li><a href="ViewAllUser">Users</a></li>
+                        </c:if>
                         <c:if test="${sessionScope.account != null}">
                         <li class="dropdown"><a href="#"><span>Setting</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>

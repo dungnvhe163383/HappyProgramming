@@ -422,7 +422,7 @@ public class DAO extends DBContext {
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                listHire.add(new Hire(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),rs.getString(5)));
+                listHire.add(new Hire(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5)));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -479,6 +479,95 @@ public class DAO extends DBContext {
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new Mentor(rs.getString(1), rs.getString(2), rs.getInt(3)));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<Account> getUserName() {
+        List<Account> list = new ArrayList<>();
+        query = "select account.id, account.username, account.roleID\n"
+                + "from account";
+        try {
+            ps = connection.prepareStatement(query);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Account(rs.getInt("id"), rs.getString("username"), rs.getInt("roleId")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<Admin> getAdmin() {
+        List<Admin> list = new ArrayList<>();
+        query = "select account.id, [Name].firstName, [Name].lastName, [Admin].email\n"
+                + "from account join [Admin] on account.id = [Admin].id\n"
+                + "join [Name] on [Admin].id= [Name].id\n"
+                + "join roles on account.roleID = roles.id";
+        try {
+            ps = connection.prepareStatement(query);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Admin(rs.getInt("id"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("email")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<Mentee> getMentees() {
+        List<Mentee> list = new ArrayList<>();
+        query = "select account.id, [Name].firstName, [Name].lastName, mentee.email\n"
+                + "from account join mentee on account.id = mentee.id\n"
+                + "join [Name] on mentee.id= [Name].id\n"
+                + "join roles on account.roleID = roles.id";
+        try {
+            ps = connection.prepareStatement(query);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Mentee(rs.getInt("id"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("email")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<Mentor> getMentors() {
+        List<Mentor> list = new ArrayList<>();
+        query = "select account.id, [Name].firstName, [Name].lastName, mentor.email\n"
+                + "from account join mentor on account.id = mentor.id\n"
+                + "join [Name] on mentor.id= [Name].id\n"
+                + "join roles on account.roleID = roles.id";
+        try {
+            ps = connection.prepareStatement(query);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Mentor(rs.getInt("id"), rs.getString("email"), rs.getString("firstname"), rs.getString("lastname")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<Role> getAllRoles() {
+        List<Role> list = new ArrayList<>();
+        query = "select * from roles";
+        try {
+            ps = connection.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Role(rs.getInt(1), rs.getString(2)));
             }
         } catch (SQLException e) {
             System.out.println(e);
