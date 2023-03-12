@@ -71,12 +71,12 @@
                                             </c:forEach>
                                             <c:forEach items="${mentee}" var="mt">
                                                 <c:if test="${mt.id == u.id}">
-                                                    ${mt.firstName} ${mt.lastName}<br>
+                                                    <a href="viewMenteeProfile?menteeID=${mt.id}" >${mt.firstName} ${mt.lastName}</a><br>
                                                 </c:if>
                                             </c:forEach>
                                             <c:forEach items="${mentor}" var="m">
                                                 <c:if test="${m.id == u.id}">
-                                                    ${m.firstname} ${m.lastname}<br>
+                                                    <a href ="MentorDetailControll?mentorid=${m.id}" >${m.firstname} ${m.lastname}</a><br>
                                                 </c:if>
                                             </c:forEach>
                                         </td>

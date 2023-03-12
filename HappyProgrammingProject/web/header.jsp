@@ -69,7 +69,7 @@
                         <li class="dropdown"><a href="#"><span>Setting</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
                                 <c:if test="${sessionScope.account.roleId == 1}">
-                                    <li><a href="viewMenteeProfile">Profile</a></li>
+                                    <li><a href="viewMenteeProfile?menteeID=${sessionScope.account.id}">Profile</a></li>
                                 </c:if>
                                 <c:if test="${sessionScope.account.roleId == 1}">
                                     <li><a href="viewRequestByMentee?menteeid=${sessionScope.account.id}">My Request</a></li>
