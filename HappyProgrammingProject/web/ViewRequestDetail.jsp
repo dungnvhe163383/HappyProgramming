@@ -43,7 +43,6 @@
                                     <th scope="col">Mentor</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Skill</th>
-
                                 </tr>
                             </thead>
                             <tbody>

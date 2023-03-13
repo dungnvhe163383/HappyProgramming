@@ -37,7 +37,6 @@
         <c:if test="${sessionScope.account != null}">
             <jsp:include page="header.jsp"></jsp:include>
                 <!-- ======= Hero Section ======= -->
-
                 <section class="vh-100 mt-5 py-5 px-5">
                     <div class="container-fluid h-custom">
                         <div class="row d-flex align-items-center h-100">
@@ -53,7 +52,6 @@
                                 <div class="col-md-3 col-lg-3 col-xl-2 offset-xl-1">
                                     <a href="CreateRequest" class="btn btn-outline-primary">Create Request</a>
                                 </div>
-
                                 <table class="table table-striped mt-4">
                                     <thead>
                                         <tr class="text-bg-info">
@@ -72,47 +70,35 @@
                                                  ${m.firstname} ${m.lastname} <br>                                           
                                         </c:forEach>
                                         </td>
-                                          <td scope="row">
+                                        <td scope="row">
                                         <c:forEach items="${RequestList}" var="r">
                                                <a href="ViewRequestDetail?requestid=${r.id}">${r.title}</a> <br>
                                                
                                         </c:forEach>
-                                          </td>
-                                            <td scope="row">
-                                        <c:forEach items="${RequestList}" var="r">
-                                              
-                                                 ${r.content} <br>
-                                                
+                                        </td>
+                                        <td scope="row">
+                                        <c:forEach items="${RequestList}" var="r">                                              
+                                                 ${r.content} <br>                                              
                                         </c:forEach>
-                                          </td>
-                                           <td scope="row">
-                                        <c:forEach items="${RequestList}" var="r">
-                                              
-                                                
-                                                 ${r.deadline}<br>
-                                               
+                                        </td>
+                                        <td scope="row">
+                                        <c:forEach items="${RequestList}" var="r">                                              
+                                                 ${r.deadline}<br>                                              
                                         </c:forEach>
-                                          </td>
-                                       
-                                           <td scope="row">
-                                        <c:forEach items="${RequestList}" var="r">
-                                              
-                                               
-                                                ${r.requestStatus}<br>
-                                               
+                                        </td>                                      
+                                        <td scope="row">
+                                        <c:forEach items="${RequestList}" var="r">                                              
+                                                ${r.requestStatus}<br>                                              
                                         </c:forEach>
-                                          </td>
-                                           <td scope="row">
-                                        <c:forEach items="${RequestList}" var="r">
-                                              
-                                                
+                                        </td>
+                                        <td scope="row">
+                                        <c:forEach items="${RequestList}" var="r">                                                                                         
                                                 <a href="UpdateRequest?id=${r.id}&r.title=${r.title}&content=${r.content}&deadline=${r.deadline}">Edit</a> <br>
                                         </c:forEach>
                                           </td>
                                          </tr>
                                     </tbody>
                                 </table>
-
                             </c:otherwise>
                         </c:choose>
                     </div>
