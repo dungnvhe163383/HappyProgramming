@@ -1,9 +1,9 @@
-﻿--use master
-
---drop database HappyProgramming
---create database HappyProgramming
+﻿use master
+drop database HappyProgramming
+create database HappyProgramming
 use HappyProgramming
 ---------------------------------------------- Table roles -------------------------------
+--có 3 role là admin, mentee, mentor
 
 create table roles (
 	id int identity(1, 1) primary key,
@@ -14,84 +14,89 @@ create table roles (
 
 create table account (
 	id int identity(1, 1) primary key,
-	username varchar(50),
-	[password] varchar(50),
-	roleID int foreign key references Roles(ID)
+	accountname varchar(50) not null,
+	[password] varchar(50) not null,
+	roleid int foreign key references Roles(ID),
+	email varchar(250)
 )
 
 ---------------------------------------------- Table Mentee -------------------------------
 
 
 create table mentee (
-	id int foreign key references account(id) primary key,
-	email nvarchar(250),
+	id int identity(1, 1) primary key,
+	accountid int foreign key references account(id),
+	[name] nvarchar(250) not null,
+	[address] nvarchar(250),
 	phone nvarchar(250),
 	birthday Date ,
 	sex nvarchar(250) ,
-	avatar nvarchar(250)
+	avatar nvarchar(250),
+	introduce nvarchar(250)
 )
 
 
 
 ---------------------------------------------- Table Mentor -------------------------------
--- 1 bảng tách họ, tên đệm, tên
 create table mentor(
-	id int foreign key references Account(ID) primary key,
-	email nvarchar(250) unique,
+	id int identity(1, 1) primary key,
+	accountid int foreign key references account(id),
+	[name] nvarchar(250),
+	[address] nvarchar(250),
 	phone nvarchar(250) ,
 	birthday Date ,
 	sex nvarchar(250) ,
 	introduce nvarchar(250),
 	achievement nvarchar(250),
 	avatar nvarchar(250),
-	costHire int
-)
----------------------------------------------- Table Admin -------------------------------
-
-create table [admin] (
-	id int foreign key references account(id) primary key,
-	email nvarchar(250),
-	phone nvarchar(250),
-	birthday Date ,
-	sex nvarchar(250) ,
-	avatar nvarchar(250)
+	costHire float not null
 )
 
 ---------------------------------------------image-------------------------------------------
+--1 account có nhiều ảnh
 create table [Image](
 	id int identity(1, 1) primary key,
 	accountid int foreign key references account(id),
 	[image] nvarchar(250),
 )
 
-create table [Name](
-	id int foreign key references Account(ID) primary key,
-	firstName nvarchar(250),
-	lastName nvarchar(250),
-)
+---------------------------------------------Job-------------------------------------------
 
-
-create table profession(
+create table job(
 	id int identity(1,1) primary key,
-	profession nvarchar(250),
-	professionIntroduce nvarchar(250),
-	mentorid int foreign key references mentor(id)
+	jobname nvarchar(250),
+	introduce nvarchar(250)
 )
 
-create table [address](
-	id int foreign key references Account(id) primary key,
-	[address] nvarchar(250)
-)
----------------------------------------------- Table Status -------------------------------
+---------------------------------------------Skill-------------------------------------------
 
-create table status(
+create table skill(
 	id int identity(1, 1) primary key,
-	[Status] nvarchar(250)
+	[name] nvarchar(250),
+)
+---------------------------------------------MentorSkill-------------------------------------------
+--1 mentor có nhiều skill và 1 skill có ở nhiều mentor
+
+create table mentorskill(
+	id int identity(1,1),
+	mentorid int foreign key references mentor(id),
+	skillid int foreign key references skill(id),
+	primary key (mentorid, skillid) 
+)
+
+---------------------------------------------MentorJob-------------------------------------------
+--1 mentor có nhiều job và 1 job có ở nhiều mentor
+
+create table mentorjob(
+	id int identity(1,1),
+	mentorid int foreign key references mentor(id),
+	jobid int foreign key references job(id),
+	primary key (mentorid, jobid) 
 )
 
 
----------------------------------------------- Table Request(các request do Mentee đưa ra) -------------------------------
-create table request (
+---------------------------------------------- Table CodeRequest -------------------------------
+create table coderequest (
 	id int identity(1, 1) primary key,
 	title nvarchar(250),
 	content nvarchar(250),	
@@ -99,86 +104,97 @@ create table request (
 	menteeID int foreign key references mentee(id),
 )
 
-
-create table requestStatus(
-	requestID int foreign key references request(id),
-	statusID int foreign key references status(id),
-	primary key (requestID, statusID)
-)
-
+---------------------------------------------- Table Feedback -------------------------------
 
 
 create table Feedback(
 	id int identity(1, 1) primary key,
-	requestID int foreign key references request(id),
-	menteeID int foreign key references mentee(id),
-	mentorID int foreign key references mentor(id),
-	rate int,
-	commentDetail nvarchar(250),
+	menteeid int foreign key references mentee(id),
+	star int,
+	comment nvarchar(250),
 )
 
----------------------------------------------- Table Skill -------------------------------
+---------------------------------------------- Table CodeRequestSkill -------------------------------
+--1 code request yêu cầu nhiều skill và 1 skill có trong nhiều request
 
-
-create table skill(
-	id int identity(1, 1) primary key,
-	[name] nvarchar(250),
-)
-
-create table requestSkill(
-	skillID int foreign key references skill(id),
-	requestID int foreign key references request(id),
-	primary key(skillID, requestID)
-)
-
-create table mentorRequest(
-	requestID int foreign key references request(id),
-	mentorID int foreign key references mentor(id),
-	primary key(requestID, mentorID)
-)
-
-
-create table historyRequest(
-	id int identity(1, 1) primary key,
-	title nvarchar(250),
-	content nvarchar(250),
-	deadline date,
-	accountID int foreign key references Account(id),
-	statusID int foreign key references Status(id)
-)
-
-
-create table hire(
--- bảng mentee gửi yêu cầu thuê mentor 
+create table coderequestskill(
 	id int identity(1, 1),
-	mentorID int foreign key references mentor(id),
-	menteeID int foreign key references mentee(id),
-	primary key (mentorID,menteeID),
-	content nvarchar(250),
-	statusID int foreign key references Status(id) --(thuê, đã từng thuê, không thuê)
-)
-
----------------------------------------------- Table MentorSkill ( mentor có nhiều skill) -------------------------------
-
-create table mentorSkill(
-	skillID int foreign key references skill(id),
-	mentorID int foreign key references mentor(id),
-	primary key(skillID, mentorID)
+	coderequestid int foreign key references coderequest(id),
+	skillid int foreign key references skill(id),
+	primary key (coderequestid, skillid)
 )
 
 
-create table [following](
-	mentorID int foreign key references mentor(id),
-	menteeID int foreign key references mentee(id),
-	primary key (mentorID,menteeID),
-	statusID int foreign key references Status(id) --(follow, unfollow)
-)
+---------------------------------------------- Table MentorCodeRequest -------------------------------
+--1 code request yêu cầu nhiều mentor và 1 mentor có trong nhiều request
 
-create table answerRequest(
-	content nvarchar(250),
-	requestID int foreign key references request(id),
+create table mentorcoderequest(
+	id int identity(1, 1) primary key,
+	coderequestid int foreign key references coderequest(id),
 	mentorid int foreign key references mentor(id),
-	primary key (requestid,mentorid)
 )
 
 
+---------------------------------------------- Table Answer -------------------------------
+--1 answer chỉ có 1 feedback và 1 answer có 1 cặp request mentor riêng
+--muốn đặt status (trả lời hay chưa) thì lấy request với mentor id check trong bảng answer
+--nếu có thì để answed, nếu ko có thì để not answer)
+create table answer(
+	id int identity(1,1) primary key,
+	mentorcoderequestid int foreign key references mentorcoderequest(id),
+	content nvarchar(250)
+	)
+
+----------------------------------------------Table FeedbackAnswer-------------------------
+--không để feedbackid trong bảng anser do có anser nhưng ch có feed back
+create table feedbackanswer(
+	id int identity(1,1) primary key,
+	feedbackid int foreign key references feedback(id),
+	answerid int foreign key references answer(id)
+)
+---------------------------------------------- Table Status -------------------------------
+--chỉ bao gồm các status(accept, reject,not yet)
+create table [status](
+	id int identity(1, 1) primary key,
+	[Status] nvarchar(50)
+)
+
+
+---------------------------------------------- Table MenteeMentorRelationship -------------------------------
+--mentee thuê mentor (mặc định status của bảng này là hire)
+create table HireRelatitonship(
+	id int identity(1,1) ,
+	menteeid int foreign key references mentee(id),
+	mentorid int foreign key references mentor(id),
+	primary key(menteeid,mentorid)
+)
+
+---------------------------------------------- Table HistoryMenteeMentorRelationship -------------------------------
+--mentee đã từng thuê mentor
+create table historyHireRelationship(
+	id int identity(1,1),
+	menteeid int foreign key references mentee(id),
+	mentorid int foreign key references mentor(id),
+	closedate date, --ngày hủy thuê hoặc ngày reject yêu cầu thuê
+	primary key(menteeid,mentorid)
+)
+
+---------------------------------------------- Table HireRequest -------------------------------
+--mentee gửi yêu cầu thuê cho mentor
+create table hirerequest(
+	id int identity(1,1) primary key,
+	menteeid int foreign key references mentee(id),
+	mentorid int foreign key references mentor(id),
+	tital nvarchar(250),
+	content nvarchar(250),
+	statusid int foreign key references [status](id) -- chỉ có (accept,reject,not yet)
+)
+
+---------------------------------------------- Table MentorCodeRequestStatus -------------------------------
+--1 cặp request mentor thì có status là (accept,reject,not yet. nếu yêu cầu từ mentor đã thuê thì để accept)
+
+create table MentorCodeRequestStatus(
+	id int identity(1,1) primary key,
+	mentorcoderequestid int foreign key references mentorcoderequest(id),
+	statusid int foreign key references [status](id)
+)
