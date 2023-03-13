@@ -14,7 +14,6 @@
         <meta content="" name="description">
         <meta content="" name="keywords">
 
-
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
 
@@ -41,10 +40,10 @@
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="HomePage.jsp">Home</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="ViewAllMentor">Mentor</a></li>
-                                <c:if test="${sessionScope.account == null}">
+                            <c:if test="${sessionScope.account == null}">
                                 <li><i class="bx bx-chevron-right"></i> <a href="SignIn.jsp">Sign In</a></li>
                                 <li><i class="bx bx-chevron-right"></i> <a href="SignUp">Sign Up</a></li>
-                                </c:if>
+                            </c:if>
                         </ul>
                     </div>
                     <div class="col-lg-4 col-md-6 footer-contact">
@@ -66,7 +65,6 @@
                             <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
