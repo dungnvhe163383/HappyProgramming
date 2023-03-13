@@ -31,7 +31,6 @@
                     <!-- Login part -->
                     <div class="col-md-6 col-lg-6 col-xl-4 offset-xl-1">
                         <h2 class="text-center text-primary fw-bold">Change Password</h2>
-
                         <form class="" action="ChangePasswordControll" method="post">
                             <!-- Username input -->
                             <div class="form-outline mb-4">
@@ -70,9 +69,6 @@
                 </div>
             </div>           
         </section>
-
-
-
         <!-- Vendor JS Files -->
         <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
         <script src="assets/vendor/aos/aos.js"></script>
