@@ -71,7 +71,7 @@
                     ${error}
                 </p>
             </c:if>
-            <form class="" action="EditMentorProfile?accountid=${sessionScope.account.id}&menteeid=${sessionScope.getmentee.id}" method="post">
+            <form class="" action="EditMenteeProfile?accountid=${sessionScope.account.id}&menteeid=${sessionScope.getmentee.id}" method="post">
                     <div class="cr" >
                 <!--Login part--> 
                     <div class="" style="height: 600px;  flex: 1.5;">
