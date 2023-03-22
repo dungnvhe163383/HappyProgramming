@@ -67,7 +67,6 @@ public class CreateRequest extends HttpServlet {
         String content=request.getParameter("content");
         String[] mentorid=request.getParameterValues("choosementor");
         String[] skill=request.getParameterValues("skill");
-        
         if(mentorid==null||skill==null){
              request.setAttribute("error", "you forget choosse mentor or skill");
         request.getRequestDispatcher("CreateRequest.jsp").forward(request, response);
