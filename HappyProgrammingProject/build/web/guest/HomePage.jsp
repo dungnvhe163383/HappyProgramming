@@ -84,10 +84,7 @@
                                     <li><a href="ViewMentorProfile?accmentorid=${sessionScope.getmentor.accountid}">Profile</a></li>
                                     <li><a href="ViewAllRequest?mentorid=${sessionScope.getmentor.id}">My Request</a></li>
                                     </c:if>
-                                    <c:if test="${sessionScope.getmentor!=null}">
-                                    <li><a href="ViewMentorProfile?accmentorid=${sessionScope.getmentor.accountid}">Profile</a></li>
-                                    <li><a href="ViewAllRequest?mentorid=${sessionScope.getmentor.id}">My Request</a></li>
-                                    </c:if>
+                
                                     <c:if test="${sessionScope.account.roleid==3}">
                                     <li><a href="ViewAllAccount">Account List</a></li>
                                     <li><a href="ViewAllMentee">Mentee List</a></li>

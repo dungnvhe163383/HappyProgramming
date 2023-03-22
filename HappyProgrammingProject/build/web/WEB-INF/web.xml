@@ -132,6 +132,10 @@
         <servlet-name>SearchMentee</servlet-name>
         <servlet-class>controller.admincontroll.SearchMentee</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditMentorProfile</servlet-name>
+        <servlet-class>controller.mentorcontroll.EditMentorProfile</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ViewTop3Mentor</servlet-name>
         <url-pattern>/ViewTop3Mentor</url-pattern>
@@ -263,6 +267,10 @@
     <servlet-mapping>
         <servlet-name>SearchMentee</servlet-name>
         <url-pattern>/SearchMentee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditMentorProfile</servlet-name>
+        <url-pattern>/EditMentorProfile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

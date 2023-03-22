@@ -81,7 +81,7 @@
                             <c:forEach items="${coderequest}" var="c">
                                 <tr>
                                     <td>${c.id}</td>
-                                    <td><a href="ViewRequestDetail?reid=${c.id}menteeid=${sessionScope.getmentee.id}">${c.title}</a></td>
+                                    <td><a href="ViewRequestDetail?reid=${c.id}&menteeid=${sessionScope.getmentee.id}">${c.title}</a></td>
                                     <td>${c.content}</td>
                                     <td>${c.deadline}</td> 
                                 </tr>
