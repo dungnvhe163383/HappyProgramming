@@ -6,6 +6,8 @@ insert into Account values ('mentee1', 'mentee', 1,'manhndhe161791@fpt.edu.vn');
 insert into Account values ('mentee2', 'mentee', 1,'longnhhe164030@fpt.edu.vn');
 insert into Account values ('mentor1', 'mentor', 2,'okanhchaphet7@gmail.com');
 insert into Account values ('mentor2', 'mentor', 2,'nguyenvudung96@gmail.com');
+insert into Account values ('mentor3', 'mentor', 2,'nguyenvandung@gmail.com');
+insert into Account values ('mentor4', 'mentor', 2,'nguyenvietdung@gmail.com');
 insert into Account values ('admin1', 'admin', 3,'');
 
 insert into Mentee values  (1,N'Nguyễn Duy Mạnh',N'43 Nguyễn Chí Thanh, Hà Nội','0123456789','11-03-2002', 'M', 'mentee1.jpg', N'tôi là người năng động')
@@ -16,6 +18,10 @@ insert into Mentor values (3,N'Phạm Anh Tuấn', N'43 Nguyễn Chí Thanh, L�
 N'tôi là một người yêu thích học tập, du lịch và khám phá những điều mới',N'tốt nghiệp loại giỏi đại học FPT', 'mentor1.jpg',300);
 insert into Mentor values (4,N'Nguyễn Vũ Dũng', N'43 Nguyễn Chí Thanh, Phú Thọ', '0887654321','10-05-2002', 'M', 
 N'tôi là một người tốt bụng và bạn bè tôi đánh giá tôi rất siêng năng ',N'tốt nghiệp loại giỏi đại học FPT', 'mentor2.jpg',400);
+insert into Mentor values (5,N'Nguyễn Duy Mạnh', N'43 Nguyễn Chí Thanh, Phú Thọ', '0887654321','10-05-2002', 'M', 
+N'tôi là một người tốt bụng và bạn bè tôi đánh giá tôi rất siêng năng ',N'tốt nghiệp loại giỏi đại học FPT', 'mentor3.jpg',250);
+insert into Mentor values (6,N'Nguyễn Viet Dũng', N'43 Nguyễn Chí Thanh, Phú Thọ', '0887654321','10-05-2002', 'M', 
+N'tôi là một người tốt bụng và bạn bè tôi đánh giá tôi rất siêng năng ',N'tốt nghiệp loại giỏi đại học FPT', 'mentor4.jpg',400);
 
 insert into [Image] values (1,'mentee11.jpg')
 insert into [Image] values (1,'mentee12.jpg')
@@ -27,9 +33,9 @@ insert into [Image] values (4,'mentee41.jpg')
 insert into [Image] values (4,'mentee42.jpg')
 
 
-insert into job values ('Developer',N'tôi code back-end và front-end để phát triển phần mềm')
-insert into job values ('Tester',N'tôi kiểm thử phần mềm')
-insert into job values ('BA',N'tôi thu thập yêu cầu khách hàng và phân tích chúng')
+insert into job values ('Developer')
+insert into job values ('Tester')
+insert into job values ('BA')
 
 insert into Skill values('Java')
 insert into Skill values('Python')
@@ -114,9 +120,9 @@ insert into [status] values ('reject');
 insert into [status] values ('not yet');
 
 
-insert into HireRelationship values (1,1)
-insert into HireRelationship values (1,2)
-insert into HireRelationship values (2,1)
+insert into HireRelatitonship values (1,1)
+insert into HireRelatitonship values (1,2)
+insert into HireRelatitonship values (2,1)
 
 insert into historyHireRelationship values (2,2,'3-10-2023')
 

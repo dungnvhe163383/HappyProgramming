@@ -64,8 +64,7 @@ create table [Image](
 
 create table job(
 	id int identity(1,1) primary key,
-	jobname nvarchar(250),
-	introduce nvarchar(250)
+	jobname nvarchar(250)
 )
 
 ---------------------------------------------Skill-------------------------------------------
@@ -185,7 +184,7 @@ create table hirerequest(
 	id int identity(1,1) primary key,
 	menteeid int foreign key references mentee(id),
 	mentorid int foreign key references mentor(id),
-	tital nvarchar(250),
+	title nvarchar(250),
 	content nvarchar(250),
 	statusid int foreign key references [status](id) -- chỉ có (accept,reject,not yet)
 )
