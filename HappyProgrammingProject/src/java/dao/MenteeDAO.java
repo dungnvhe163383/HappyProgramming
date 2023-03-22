@@ -335,7 +335,7 @@ public class MenteeDAO extends DBContext {
     
      public List<HireRequestlist> pagingMenteeHireRequest(int mid, int index) {
          List<HireRequestlist> list = new ArrayList<>();
-         query = "SELECT h.id,m.[name],h.title,h.content,m.costhire,s.[Status] FROM hirerequest h, [status] s,mentor m \n"
+         query = "SELECT h.id,m.[name],h.title,h.content,m.costHire,s.[Status] FROM hirerequest h, [status] s,mentor m \n"
                  + "WHERE h.mentorid=m.id AND h.statusid=s.id AND menteeid=?\n"
                  + "ORDER BY id\n"
                  + "OFFSET ? ROWS FETCH NEXT 4 ROWS ONLY";
